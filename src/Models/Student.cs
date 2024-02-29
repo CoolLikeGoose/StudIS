@@ -6,5 +6,5 @@ public class Student
     public string Jmeno { get; set; }
     public string Prijmeni { get; set; }
     public string FotografieUrl { get; set; }
-    public virtual ICollection<Předmět> Predmety { get; set; } = new List<Predmet>();
+    public virtual ICollection<Predmet> Predmety { get; set; } = new List<Predmet>();
 }
