@@ -1,6 +1,7 @@
-﻿namespace StudIS.Common.Tests.Seeds;
-
+﻿using Microsoft.EntityFrameworkCore;
 using StudIS.DAL.Entities;
+
+namespace StudIS.Common.Tests.Seeds;
 public static class StudentSeeds
 {
     public static readonly StudentEntity EmptyStudent = new(
@@ -34,5 +35,13 @@ public static class StudentSeeds
     {
         Subjects = new List<SubjectEntity>(){SubjectSeeds.NoActivitySubject,SubjectSeeds.OneActivitySubject,SubjectSeeds.MultipleActivitySubject}
     };
-    
+
+    public static void Seed(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<StudentEntity>().HasData(
+            StudentNoSubject,
+            StudentOneSubject,
+            StudentMultiipleSubjects
+        );
+    }
 }

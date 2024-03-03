@@ -1,4 +1,5 @@
-﻿using StudIS.DAL.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using StudIS.DAL.Entities;
 using StudIS.Common.Enums;
 namespace StudIS.Common.Tests.Seeds;
 
@@ -42,5 +43,11 @@ public static class ActivitySeeds
         Subject = SubjectSeeds.MultipleActivitySubject,
         Evaluations = new List<EvaluationEntity>(){EvaluationSeeds.MultipleSubjectStudentEvaluation}
     };
-    
+    public static void Seed(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ActivityEntity>().HasData(
+            NoEvaluationActivity,
+            EvaluationActivity
+        );
+    }
 }

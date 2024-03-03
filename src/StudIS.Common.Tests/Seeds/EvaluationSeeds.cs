@@ -1,8 +1,9 @@
 ﻿using StudIS.DAL.Entities;
 using StudIS.Common.Enums;
+using Microsoft.EntityFrameworkCore;
 namespace StudIS.Common.Tests.Seeds;
 
-public class EvaluationSeeds
+public static class EvaluationSeeds
 {
     public static readonly EvaluationEntity EmptyEvaluation = new(
         default,
@@ -24,4 +25,10 @@ public class EvaluationSeeds
         Activity = ActivitySeeds.EvaluationActivity,
         Student = StudentSeeds.StudentMultiipleSubjects
     };
+    public static void Seed(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<EvaluationEntity>().HasData(
+            MultipleSubjectStudentEvaluation
+        );
+    }
 }
