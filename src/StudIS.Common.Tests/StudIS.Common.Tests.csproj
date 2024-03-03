@@ -20,4 +20,9 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj" />
+    </ItemGroup>
+
+
 </Project>

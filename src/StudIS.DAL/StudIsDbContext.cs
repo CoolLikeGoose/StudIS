@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudIS.DAL.Entities;
+using StudIS.DAL.Seeds;
 
 namespace StudIS.DAL;
 
@@ -36,7 +37,10 @@ public class StudIsDbContext(DbContextOptions contextOptions, bool seedDemoData 
 
         if (seedDemoData)
         {
-            //Add later for tests
+            // ActivitySeeds.Seed(modelBuilder);
+            // EvaluationSeeds.Seed(modelBuilder);
+            // StudentSeeds.Seed(modelBuilder);
+            // SubjectSeeds.Seed(modelBuilder);
         }
     }
 }
