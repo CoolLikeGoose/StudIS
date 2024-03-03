@@ -1,7 +1,6 @@
 ﻿using Xunit.Abstractions;
 using Xunit;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using StudIS.Common.Tests;
 using StudIS.DAL.Factories;
 
