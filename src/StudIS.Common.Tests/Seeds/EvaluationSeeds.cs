@@ -19,11 +19,11 @@ public static class EvaluationSeeds
         Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
         "example description",
         ActivitySeeds.EvaluationActivity.Id,
-        StudentSeeds.StudentMultiipleSubjects.Id
+        StudentSeeds.MultiipleSubjectsStudent.Id
     )
     {
         Activity = ActivitySeeds.EvaluationActivity,
-        Student = StudentSeeds.StudentMultiipleSubjects
+        Student = StudentSeeds.MultiipleSubjectsStudent
     };
     public static void Seed(this ModelBuilder modelBuilder)
     {

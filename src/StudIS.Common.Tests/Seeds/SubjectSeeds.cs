@@ -17,7 +17,7 @@ public static class SubjectSeeds
         "ima1"
     )
     {
-        Students = new List<StudentEntity>(){StudentSeeds.StudentMultiipleSubjects,StudentSeeds.StudentOneSubject}
+        Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent,StudentSeeds.OneSubjectStudent}
     };
 
     public static readonly SubjectEntity OneActivitySubject = new(
@@ -26,7 +26,7 @@ public static class SubjectSeeds
         "ima2"
     )
     {
-        Students = new List<StudentEntity>(){StudentSeeds.StudentMultiipleSubjects},
+        Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent},
         Activities = new List<ActivityEntity>(){ActivitySeeds.NoEvaluationActivity}
     };
     public static readonly SubjectEntity MultipleActivitySubject = new(
@@ -35,15 +35,25 @@ public static class SubjectSeeds
         "ids"
     )
     {
-        Students = new List<StudentEntity>(){StudentSeeds.StudentMultiipleSubjects},
-        Activities = new List<ActivityEntity>(){ActivitySeeds.NoEvaluationActivity,ActivitySeeds.EvaluationActivity}
+        Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent},
+        Activities = new List<ActivityEntity>(){ActivitySeeds.EvaluationActivity,ActivitySeeds.NoEvaluationActivity1}
+    };
+    public static readonly SubjectEntity MultipleActivityMultipleStudentSubject = new(
+        Guid.Parse("62bce783-9813-45ec-b46f-01327e5a032b"),
+        "matlab seminar",
+        "imt"
+    )
+    {
+        Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent,StudentSeeds.OtherMultipleSubjectsStudent},
+        Activities = new List<ActivityEntity>(){ActivitySeeds.NoEvaluationActivity2,ActivitySeeds.NoEvaluationActivity3}
     };
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
             NoActivitySubject,
             OneActivitySubject,
-            MultipleActivitySubject
+            MultipleActivitySubject,
+            MultipleActivityMultipleStudentSubject
         );
     }
 }
