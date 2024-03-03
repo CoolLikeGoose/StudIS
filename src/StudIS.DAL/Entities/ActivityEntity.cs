@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using StudIS.Common.Enums;
 
 namespace StudIS.DAL.Entities;
@@ -10,9 +12,8 @@ public record ActivityEntity(
     Place Room,
     ActivityType ActivityType,
     string? Description,
-    Guid SubjectId,
-    Guid EvaluationId) : IEntity
+    Guid SubjectId) : IEntity
 {
     public SubjectEntity? Subject { get; init; }
-    public EvaluationEntity? Evaluation { get; init; } //poeben' kakayato
+    public ICollection<EvaluationEntity> Evaluations { get; set; } = new List<EvaluationEntity>();
 }
