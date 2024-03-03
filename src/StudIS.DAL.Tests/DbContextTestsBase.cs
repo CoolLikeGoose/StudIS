@@ -2,7 +2,7 @@
 using Xunit;
 using Microsoft.EntityFrameworkCore;
 using StudIS.Common.Tests;
-using StudIS.DAL.Factories;
+using StudIS.Common.Tests.Factories;
 
 namespace StudIS.DAL.Tests;
 
@@ -16,7 +16,7 @@ public class DbContextTestsBase : IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
 
-        DbContextFactory = new DbContextSqLiteFactory(GetType().FullName!, seedTestingData: true);
+        DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
         StudIsDbContextSUT = DbContextFactory.CreateDbContext();
     }
 

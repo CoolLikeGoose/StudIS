@@ -24,4 +24,5 @@
       <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj" />
     </ItemGroup>
 
+
 </Project>

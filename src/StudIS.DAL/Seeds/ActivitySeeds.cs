@@ -20,6 +20,7 @@ public static class ActivitySeeds
     {
         
     };
+    
     public static readonly ActivityEntity NoEvaluationActivity = new(
         Guid.Parse("444c4c52-0a68-4f4a-88f9-02f190b92232"),
         new DateTime(2023,10,10,10,10,10),
@@ -88,9 +89,7 @@ public static class ActivitySeeds
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ActivityEntity>().HasData(
-            NoEvaluationActivity,
-            NoEvaluationActivity1,
-            EvaluationActivity
+            NoEvaluationActivity with {Subject = null!, Evaluations = null!}
         );
     }
 }
