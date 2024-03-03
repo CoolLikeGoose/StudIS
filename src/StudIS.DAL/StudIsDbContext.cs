@@ -9,7 +9,7 @@ public class StudIsDbContext(DbContextOptions contextOptions, bool seedDemoData 
     public DbSet<EvaluationEntity> Evaluations => Set<EvaluationEntity>();
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<SubjectEntity> Subjects => Set<SubjectEntity>();
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -28,7 +28,7 @@ public class StudIsDbContext(DbContextOptions contextOptions, bool seedDemoData 
             .WithOne(i => i.Subject)
             .OnDelete(DeleteBehavior.Cascade);
         
-        //Student?
+        //Student
         modelBuilder.Entity<StudentEntity>()
             .HasMany<EvaluationEntity>()
             .WithOne(i => i.Student)
