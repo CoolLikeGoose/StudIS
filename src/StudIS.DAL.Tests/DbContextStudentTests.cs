@@ -8,15 +8,16 @@ namespace StudIS.DAL.Tests;
 public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBase(output)
 {
     [Fact]
-    public async Task TestingOfTests()
+    public async Task AddOne_Student()
     {
-        StudentEntity studentId = StudentSeeds.BasicStudent;
+        StudentEntity student = StudentSeeds.BasicStudent;
         
-        StudIsDbContextSUT.Students.Add(studentId);
+        StudIsDbContextSUT.Students.Add(student);
         await StudIsDbContextSUT.SaveChangesAsync();
 
-        await using StudIsDbContext dbxContext = await DbContextFactory.CreateDbContextAsync();
-        StudentEntity actualdbxContext= await dbxContext.Students.SingleAsync(i => i.Id == studentId.Id);
-        Assert.Equal(studentId.Id,actualdbxContext.Id);
+        await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
+        StudentEntity actualStudent= await dbContext.Students.SingleAsync(i => i.Id == student.Id);
+        Assert.Equal(student.Name,actualStudent.Name);
+        Assert.Equal(student.ImageUrl,actualStudent.ImageUrl);
     }
 }

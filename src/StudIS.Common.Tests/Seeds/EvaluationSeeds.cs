@@ -13,7 +13,7 @@ public static class EvaluationSeeds
     );
 
     public static readonly EvaluationEntity BasicEvaluation = new(
-        Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
+        Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
         "example description",
         ActivitySeeds.BasicActivity.Id,
         StudentSeeds.BasicStudent.Id);
