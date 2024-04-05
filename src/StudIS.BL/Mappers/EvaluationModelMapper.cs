@@ -3,7 +3,7 @@ using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Mappers;
 
-public class EvaluationModelMapper
+public class EvaluationModelMapper()
     : ModelMapperBase<EvaluationEntity, EvaluationListModel, EvaluationDetailModel>
 {
     public override EvaluationListModel MapToListModel(EvaluationEntity? entity)

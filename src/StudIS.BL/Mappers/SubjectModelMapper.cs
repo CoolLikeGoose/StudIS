@@ -3,7 +3,7 @@ using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Mappers;
 
-public class SubjectModelMapper 
+public class SubjectModelMapper(ActivityModelMapper activityModelMapper, StudentModelMapper studentModelMapper) 
     : ModelMapperBase<SubjectEntity, SubjectListModel, SubjectDetailModel>
 {
     public override SubjectListModel MapToListModel(SubjectEntity? entity)

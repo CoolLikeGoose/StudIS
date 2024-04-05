@@ -3,7 +3,7 @@ using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Mappers;
 
-public class ActivityModelMapper
+public class ActivityModelMapper(EvaluationModelMapper evaluationModelMapper)
     : ModelMapperBase<ActivityEntity, ActivityListModel, ActivityDetailModel>
 {
     public override ActivityListModel MapToListModel(ActivityEntity? entity)
@@ -15,8 +15,13 @@ public class ActivityModelMapper
     {
         throw new NotImplementedException();
     }
-
+    
     public override ActivityEntity MapToEntity(ActivityDetailModel model)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public  ActivityEntity MapToEntity(ActivityDetailModel model, Guid subjectId)
     {
         throw new NotImplementedException();
     }
