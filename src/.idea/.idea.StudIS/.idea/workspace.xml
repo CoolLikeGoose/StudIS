@@ -8,29 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6e367c2-cb95-4786-aa37-9f82c628d762" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/aws.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/efCoreCommonOptions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/efCoreDialogsState.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.BL/StudIS.BL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.BL/StudIS.BL.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/ActivitySeeds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/ActivitySeeds.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/EvaluationSeeds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/EvaluationSeeds.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/StudentSeeds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/StudentSeeds.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/SubjectSeeds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.Common.Tests/Seeds/SubjectSeeds.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StudIS/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextActivityTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextActivityTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextEvaluationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextEvaluationTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextStudentTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextStudentTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextSubjectTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.DAL.Tests/DbContextSubjectTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.DAL/Seeds/ActivitySeeds.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.DAL/Seeds/EvaluationSeeds.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.DAL/Seeds/StudentSeeds.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.DAL/Seeds/SubjectSeeds.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.DAL/StudIsDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.DAL/StudIsDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudIS.sln" beforeDir="false" afterPath="$PROJECT_DIR$/StudIS.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +22,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2efN8E9DrYac5Y845T8PAoM6oD0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -63,9 +46,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\thekr\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\thekr\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\thekr\\AppData\\Local\\Symbols\\src"
+      "/Users/daniilzverev/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
+      "/Users/daniilzverev/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
+      "/Users/daniilzverev/.local/share/Symbols/src"
     ]
   }
 }]]></component>
