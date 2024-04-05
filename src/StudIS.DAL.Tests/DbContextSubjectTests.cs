@@ -39,4 +39,39 @@ public class DbContextSubjectTests(ITestOutputHelper output) : DbContextTestsBas
         Assert.Equal(subject.Name,actualSubject.Name);
         Assert.Equal(subjectUpdated.Abbreviation,actualSubject.Abbreviation);
     }
+    [Fact]
+    public async Task Read_Subject_By_Id()
+    {
+        // Arrange
+        var subject = SubjectSeeds.BasicSubject;
+        StudIsDbContextSUT.Subjects.Add(subject);
+        await StudIsDbContextSUT.SaveChangesAsync();
+
+        // Act
+        await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+        var actualSubject = await dbContext.Subjects.FindAsync(subject.Id);
+
+        // Assert
+        Assert.NotNull(actualSubject);
+        Assert.Equal(subject.Name, actualSubject.Name);
+        Assert.Equal(subject.Abbreviation, actualSubject.Abbreviation);
+    }
+    [Fact]
+    public async Task Delete_Subject()
+    {
+        // Arrange
+        var subject = SubjectSeeds.BasicSubject;
+        StudIsDbContextSUT.Subjects.Add(subject);
+        await StudIsDbContextSUT.SaveChangesAsync();
+
+        // Act
+        StudIsDbContextSUT.Subjects.Remove(subject);
+        await StudIsDbContextSUT.SaveChangesAsync();
+
+        // Assert
+        await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+        var deletedSubject = await dbContext.Subjects.FindAsync(subject.Id);
+        Assert.Null(deletedSubject);
+    }
+    
 }
