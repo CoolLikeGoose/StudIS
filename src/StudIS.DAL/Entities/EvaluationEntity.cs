@@ -2,12 +2,13 @@ using System;
 
 namespace StudIS.DAL.Entities;
 
-public record EvaluationEntity(
-    Guid Id,
-    string? Description,
-    Guid ActivityId,
-    Guid StudentId) : IEntity
+public record EvaluationEntity : IEntity
 {
+    public required Guid Id { get; set; }
+    public required string? Description { get; set; }
+    public required Guid ActivityId { get; set; }
+    public required Guid StudentId { get; set; }
+    
     public ActivityEntity? Activity { get; init; }
     public StudentEntity? Student { get; init; }
 }

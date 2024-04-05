@@ -5,24 +5,25 @@ namespace StudIS.Common.Tests.Seeds;
 
 public static class ActivitySeeds
 {
-    public static readonly ActivityEntity EmptyActivity = new(
-        default,
-        default,
-        default,
-        default,
-        default,
-        default,
-        default
-    );
-
-    public static readonly ActivityEntity BasicActivity = new(
-        Guid.Parse("444c4c52-0a68-4f4a-88f9-02f190b92232"),
-        new DateTime(2023, 10, 10, 10, 10, 10),
-        new DateTime(2023, 11, 11, 11, 11, 11),
-        Place.D105,
-        ActivityType.Exam,
-        "example description",
-        SubjectSeeds.BasicSubject.Id);
+    //TODO: update this later
+    // public static readonly ActivityEntity EmptyActivity = new(
+    //     default,
+    //     default,
+    //     default,
+    //     default,
+    //     default,
+    //     default,
+    //     default
+    // );
+    //
+    // public static readonly ActivityEntity BasicActivity = new(
+    //     Guid.Parse("444c4c52-0a68-4f4a-88f9-02f190b92232"),
+    //     new DateTime(2023, 10, 10, 10, 10, 10),
+    //     new DateTime(2023, 11, 11, 11, 11, 11),
+    //     Place.D105,
+    //     ActivityType.Exam,
+    //     "example description",
+    //     SubjectSeeds.BasicSubject.Id);
     
     // public static readonly ActivityEntity NoEvaluationActivity = new(
     //     Guid.Parse("444c4c52-0a68-4f4a-88f9-02f190b92232"),
