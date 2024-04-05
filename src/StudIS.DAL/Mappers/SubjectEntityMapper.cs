@@ -1,6 +1,12 @@
-﻿namespace StudIS.DAL.Mappers;
+﻿using StudIS.DAL.Entities;
 
-public class SubjectEntityMapper
+namespace StudIS.DAL.Mappers;
+
+public class SubjectEntityMapper : IEntityMapper<SubjectEntity>
 {
-    
+    public void MapToExistingEntity(SubjectEntity existingEntity, SubjectEntity newEntity)
+    {
+        existingEntity.Abbreviation = newEntity.Abbreviation;
+        existingEntity.Name = newEntity.Name;
+    }
 }

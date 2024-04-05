@@ -16,5 +16,5 @@ public record ActivityEntity : IEntity
     public required Guid SubjectId { get; set; }
     
     public SubjectEntity? Subject { get; init; }
-    public ICollection<EvaluationEntity> Evaluations { get; set; } = new List<EvaluationEntity>();
+    public ICollection<EvaluationEntity> Evaluations { get; init; } = new List<EvaluationEntity>();
 }
