@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudIS.DAL.Entities;
-using StudIS.DAL.Seeds;
 
 namespace StudIS.DAL;
 

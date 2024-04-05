@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudIS.DAL.Seeds;
+using StudIS.Common.Tests.Seeds; 
 using StudIS.DAL.Entities;
 using Xunit.Abstractions;
 
@@ -19,5 +19,24 @@ public class DbContextSubjectTests(ITestOutputHelper output) : DbContextTestsBas
         SubjectEntity actualSubject= await dbContext.Subjects.SingleAsync(i => i.Id == subject.Id);
         Assert.Equal(subject.Name,actualSubject.Name);
         Assert.Equal(subject.Abbreviation,actualSubject.Abbreviation);
+    }
+
+    [Fact]
+    public async Task Update_subject()
+    {
+        SubjectEntity subject = SubjectSeeds.SubjectUpdateTest;
+    
+        SubjectEntity subjectUpdated = subject with
+        {
+            Abbreviation = subject.Abbreviation + "Update"
+        };
+
+        StudIsDbContextSUT.Subjects.Update(subjectUpdated);
+        await StudIsDbContextSUT.SaveChangesAsync();
+        
+        await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
+        SubjectEntity actualSubject = await dbContext.Subjects.SingleAsync(i => i.Id == subject.Id);
+        Assert.Equal(subject.Name,actualSubject.Name);
+        Assert.Equal(subjectUpdated.Abbreviation,actualSubject.Abbreviation);
     }
 }

@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.Common.Tests", "Stud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.BL", "StudIS.BL\StudIS.BL.csproj", "{BBA916AC-A1AC-4BB7-8077-E00FA264C906}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.BL.Tests", "StudIS.BL.Tests\StudIS.BL.Tests.csproj", "{3C535028-E87B-4065-9704-7EE75C2F267D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C535028-E87B-4065-9704-7EE75C2F267D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C535028-E87B-4065-9704-7EE75C2F267D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C535028-E87B-4065-9704-7EE75C2F267D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C535028-E87B-4065-9704-7EE75C2F267D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

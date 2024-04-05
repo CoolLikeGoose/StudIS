@@ -4,22 +4,19 @@ using Microsoft.EntityFrameworkCore;
 public static class SubjectSeeds
 {
     //TODO: update this later
-    // public static readonly SubjectEntity EmptySubject = new(
-    //     default,
-    //     default!,
-    //     default!
-    // );
-    //
-    // public static readonly SubjectEntity BasicSubject = new(
-    //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
-    //     "mathematic analysis",
-    //     "ima1");
-    
-    // public static readonly SubjectEntity NoActivitySubject = new(
-    //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
-    //     "mathematic analysis",
-    //     "ima1"
-    // )
+    public static readonly SubjectEntity BasicSubject = new SubjectEntity()
+    {
+        Id = Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
+        Name = "mathematics analysis",
+        Abbreviation = "ima1"
+    };
+
+    public static SubjectEntity SubjectUpdateTest = new SubjectEntity()
+    {
+        Id = Guid.Parse("15ed62ae-6ec5-4643-9dd8-4f6e5e0b0a0e"),
+        Name = "some shit",
+        Abbreviation = "SHT"
+    };
     // {
     //     Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent,StudentSeeds.OneSubjectStudent}
     // };
@@ -53,8 +50,8 @@ public static class SubjectSeeds
     // };
     public static void Seed(this ModelBuilder modelBuilder)
     {
-        // modelBuilder.Entity<SubjectEntity>().HasData(
-        //     BasicSubject with { Students = Array.Empty<StudentEntity>(), Activities = Array.Empty<ActivityEntity>()}
-        // );
+        modelBuilder.Entity<SubjectEntity>().HasData(
+            SubjectUpdateTest
+        );
     }
 }

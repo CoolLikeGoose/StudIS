@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudIS.DAL.Seeds;
+using StudIS.Common.Tests.Seeds; 
 using StudIS.DAL.Entities;
 using Xunit.Abstractions;
 
