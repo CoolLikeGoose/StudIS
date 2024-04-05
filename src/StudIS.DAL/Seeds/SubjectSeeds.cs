@@ -8,19 +8,12 @@ namespace StudIS.DAL.Seeds;
 public static class SubjectSeeds
 {
     //TODO: update this later
-    // public static readonly SubjectEntity EmptySubject = new(
-    //     default,
-    //     default!,
-    //     default!
-    // )
-    // {
-    //     
-    // };
-    // public static readonly SubjectEntity NoActivitySubject = new(
-    //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
-    //     "mathematic analysis",
-    //     "ima1"
-    // )
+    public static readonly SubjectEntity BasicSubject = new SubjectEntity()
+    {
+        Id = Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
+        Name = "mathematics analysis",
+        Abbreviation = "ima1"
+    };
     // {
     //     Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent,StudentSeeds.OneSubjectStudent}
     // };

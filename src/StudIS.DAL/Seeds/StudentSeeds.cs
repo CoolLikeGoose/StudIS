@@ -7,18 +7,22 @@ namespace StudIS.DAL.Seeds;
 public static class StudentSeeds
 {
     //TODO: update this later
-    // public static readonly StudentEntity EmptyStudent = new(
-    //     default,
-    //     default!,
-    //     default
-    // )
-    // {
-    //     
-    // };
-    // public static readonly StudentEntity NoSubjectStudent = new(
+    public static readonly StudentEntity BasicStudent = new StudentEntity()
+    {
+        Id = Guid.Parse("18b4e5b0-098f-4daa-889e-d0616d97cddf"),
+        Name = "Daniil",
+        ImageUrl = "https://examplepicture.example"
+    };
+    
+    // public static readonly StudentEntity BasicStudent = new(
+    //     Guid.Parse("307f3414-bd7f-430d-888e-24d9419394ee"),
+    //     "A",
+    //     "https://examplepicturdsade.example");
+    //
+    // public static readonly StudentEntity AddedStudent = new(
     //     Guid.Parse("18b4e5b0-098f-4daa-889e-d0616d97cddf"),
     //     "Daniil",
-    //     "https://examplepicture.example")
+    //     "https://examplepicture.example");
     // {
     //     
     // };

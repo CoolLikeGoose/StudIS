@@ -7,26 +7,14 @@ namespace StudIS.DAL.Seeds;
 public static class EvaluationSeeds
 {
     //TODO: update this later
-    // public static readonly EvaluationEntity EmptyEvaluation = new(
-    //     default,
-    //     default,
-    //     default,
-    //     default
-    // )
-    // {
-    //
-    // };
-    //
-    // public static readonly EvaluationEntity MultipleSubjectStudentEvaluation = new(
-    //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
-    //     "example description",
-    //     ActivitySeeds.EvaluationActivity.Id,
-    //     StudentSeeds.MultiipleSubjectsStudent.Id
-    // )
-    // {
-    //     Activity = ActivitySeeds.EvaluationActivity,
-    //     Student = StudentSeeds.MultiipleSubjectsStudent
-    // };
+    public static readonly EvaluationEntity BasicEvaluation = new EvaluationEntity()
+    {
+        Id = Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
+        Description = "example description",
+        ActivityId = ActivitySeeds.BasicActivity.Id,
+        StudentId = StudentSeeds.BasicStudent.Id
+    };
+    
     public static void Seed(this ModelBuilder modelBuilder)
     {
         // modelBuilder.Entity<EvaluationEntity>().HasData(
