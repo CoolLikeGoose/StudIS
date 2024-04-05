@@ -6,10 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
+    
     <ItemGroup>
-      <Folder Include="Facades\" />
-      <Folder Include="Models\" />
+      <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj" />
     </ItemGroup>
 
 </Project>
