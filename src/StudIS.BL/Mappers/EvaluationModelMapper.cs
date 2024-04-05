@@ -8,16 +8,50 @@ public class EvaluationModelMapper()
 {
     public override EvaluationListModel MapToListModel(EvaluationEntity? entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+        {
+            return EvaluationListModel.Empty;
+        }
+
+        return new EvaluationListModel()
+        {
+            Activity = entity.Activity,
+            ActivityId = entity.ActivityId,
+            Description = entity.Description,
+            Id = entity.Id,
+            StudentId = entity.StudentId,
+            Student = entity.Student
+        };
     }
 
-    public override EvaluationDetailModel MapToDetailModel(EvaluationEntity entity)
+    public override EvaluationDetailModel MapToDetailModel(EvaluationEntity? entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+        {
+            return EvaluationDetailModel.Empty;
+        }
+
+        return new EvaluationDetailModel()
+        {
+            Id = entity.Id,
+            Activity = entity.Activity,
+            ActivityId = entity.ActivityId,
+            Description = entity.Description,
+            Student = entity.Student,
+            StudentId = entity.StudentId
+        };
     }
 
     public override EvaluationEntity MapToEntity(EvaluationDetailModel model)
     {
-        throw new NotImplementedException();
+        return new EvaluationEntity()
+        {
+            Id = model.Id,
+            ActivityId = model.ActivityId,
+            Activity = model.Activity,
+            Description = model.Description,
+            StudentId = model.StudentId,
+            Student = model.Student
+        };
     }
 }
