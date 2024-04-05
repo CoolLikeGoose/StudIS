@@ -1,6 +1,9 @@
-﻿namespace StudIS.BL.Facades.Interfaces;
+﻿using StudIS.BL.Models;
+using StudIS.DAL.Entities;
 
-public interface IEvaluationFacade
+namespace StudIS.BL.Facades.Interfaces;
+
+public interface IEvaluationFacade : IFacade<EvaluationEntity, EvaluationListModel, EvaluationDetailModel>
 {
     
 }
