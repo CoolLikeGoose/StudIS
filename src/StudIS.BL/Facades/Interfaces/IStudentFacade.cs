@@ -1,6 +1,9 @@
-﻿namespace StudIS.BL.Facades.Interfaces;
+﻿using StudIS.BL.Models;
+using StudIS.DAL.Entities;
 
-public interface IStudentFacade
+namespace StudIS.BL.Facades.Interfaces;
+
+public interface IStudentFacade : IFacade<StudentEntity, StudentListModel, StudentDetailModel>
 {
     
 }
