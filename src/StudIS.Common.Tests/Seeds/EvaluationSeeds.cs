@@ -5,18 +5,19 @@ namespace StudIS.Common.Tests.Seeds;
 
 public static class EvaluationSeeds
 {
-    public static readonly EvaluationEntity EmptyEvaluation = new(
-        default,
-        default,
-        default,
-        default
-    );
-
-    public static readonly EvaluationEntity BasicEvaluation = new(
-        Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
-        "example description",
-        ActivitySeeds.BasicActivity.Id,
-        StudentSeeds.BasicStudent.Id);
+    //TODO: update this later
+    // public static readonly EvaluationEntity EmptyEvaluation = new(
+    //     default,
+    //     default,
+    //     default,
+    //     default
+    // );
+    //
+    // public static readonly EvaluationEntity BasicEvaluation = new(
+    //     Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
+    //     "example description",
+    //     ActivitySeeds.BasicActivity.Id,
+    //     StudentSeeds.BasicStudent.Id);
     
     // public static readonly EvaluationEntity MultipleSubjectStudentEvaluation = new(
     //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),

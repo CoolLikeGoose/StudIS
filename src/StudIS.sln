@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.DAL.Tests", "StudIS.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.Common.Tests", "StudIS.Common.Tests\StudIS.Common.Tests.csproj", "{1601A72F-6BC4-4114-A695-A71E0D7EB2B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudIS.BL", "StudIS.BL\StudIS.BL.csproj", "{BBA916AC-A1AC-4BB7-8077-E00FA264C906}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1601A72F-6BC4-4114-A695-A71E0D7EB2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1601A72F-6BC4-4114-A695-A71E0D7EB2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1601A72F-6BC4-4114-A695-A71E0D7EB2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA916AC-A1AC-4BB7-8077-E00FA264C906}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

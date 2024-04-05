@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudIS.Common.Tests.Seeds;
+using StudIS.DAL.Seeds;
 using StudIS.DAL.Entities;
 using Xunit.Abstractions;
 
@@ -16,7 +16,7 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
         StudIsDbContextSUT.Activities.Add(activity);
         StudIsDbContextSUT.Subjects.Add(subject);
         await StudIsDbContextSUT.SaveChangesAsync();
-
+        
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
         ActivityEntity actualActivity= await dbContext.Activities.SingleAsync(i => i.Id == activity.Id);
         Assert.Equal(activity.StartTime, actualActivity.StartTime);

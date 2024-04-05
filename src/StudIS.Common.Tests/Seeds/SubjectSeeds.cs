@@ -3,16 +3,17 @@ using StudIS.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 public static class SubjectSeeds
 {
-    public static readonly SubjectEntity EmptySubject = new(
-        default,
-        default!,
-        default!
-    );
-
-    public static readonly SubjectEntity BasicSubject = new(
-        Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
-        "mathematic analysis",
-        "ima1");
+    //TODO: update this later
+    // public static readonly SubjectEntity EmptySubject = new(
+    //     default,
+    //     default!,
+    //     default!
+    // );
+    //
+    // public static readonly SubjectEntity BasicSubject = new(
+    //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
+    //     "mathematic analysis",
+    //     "ima1");
     
     // public static readonly SubjectEntity NoActivitySubject = new(
     //     Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
