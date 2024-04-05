@@ -12,18 +12,30 @@ public class ActivityFacade(IUnitOfWorkFactory unitOfWorkFactory, ActivityModelM
     : FacadeBase<ActivityEntity, ActivityListModel, ActivityDetailModel, ActivityEntityMapper>
         (unitOfWorkFactory, activityModelMapper), IActivityFacade
 {
-    //TODO maybe add save for ListModel 
-    public async Task SaveAsync(ActivityDetailModel activityDetailModel, Guid subjectId)
-    {
-        ActivityEntity entity = activityModelMapper.MapToEntity(activityDetailModel, subjectId);
-
-        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-        IRepository<ActivityEntity> repository = unitOfWork.GetRepository<ActivityEntity, ActivityEntityMapper>();
-
-        if (await repository.ExistsAsync(entity))
-        {
-            await repository.UpdateAsync(entity);
-            await unitOfWork.CommitAsync();
-        }
-    }
+    //Method for updating existing activity by subject ID
+    // public async Task SaveAsync(ActivityListModel activityListModel, Guid subjectId)
+    // {
+    //     ActivityEntity entity = activityModelMapper.MapToEntity(activityListModel, subjectId);
+    //
+    //     await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+    //     IRepository<ActivityEntity> repository = unitOfWork.GetRepository<ActivityEntity, ActivityEntityMapper>();
+    //
+    //     if (await repository.ExistsAsync(entity))
+    //     {
+    //         await repository.UpdateAsync(entity);
+    //         await unitOfWork.CommitAsync();
+    //     }
+    // }
+    
+    //Method for adding new activity by subject ID
+    // public async Task SaveAsync(ActivityDetailModel activityDetailModel, Guid subjectId)
+    // {
+    //     ActivityEntity entity = activityModelMapper.MapToEntity(activityDetailModel, subjectId);
+    //
+    //     await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+    //     IRepository<ActivityEntity> repository = unitOfWork.GetRepository<ActivityEntity, ActivityEntityMapper>();
+    //
+    //     repository.Insert(entity);
+    //     await unitOfWork.CommitAsync();
+    // }
 }
