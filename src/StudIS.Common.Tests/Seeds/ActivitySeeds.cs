@@ -17,21 +17,16 @@ public static class ActivitySeeds
         SubjectId = SubjectSeeds.BasicSubject.Id
     };
     
-    // public static readonly ActivityEntity EvaluationActivity = new(
-    //     Guid.Parse("ec3d3915-7667-4cd9-b39e-0f98210707d0"),
-    //     new DateTime(2023,11,11,11,11,11),
-    //     new DateTime(2023,12,12,12,12,12),
-    //     Place.D105,
-    //     ActivityType.Exam,
-    //     "example description",
-    //     SubjectSeeds.MultipleActivitySubject.Id
-    // )
-    // {
-    //     
-    //     
-    //     Subject = SubjectSeeds.MultipleActivitySubject,
-    //     Evaluations = new List<EvaluationEntity>(){EvaluationSeeds.MultipleSubjectStudentEvaluation}
-    // };
+    public static readonly ActivityEntity StandardInDbActivity = new ActivityEntity()
+    {
+        Id = Guid.Parse("d40b7f6a-a653-43e2-b02c-61b34bba7561"),
+        StartTime = new DateTime(2023, 10, 10, 10, 10, 10),
+        EndTime = new DateTime(2023, 11, 11, 11, 11, 11),
+        Room = Place.D105,
+        ActivityType = ActivityType.Exam,
+        Description = "EXAM description",
+        SubjectId = SubjectSeeds.StandardInDbSubject.Id
+    };
     //
     // public static readonly ActivityEntity NoEvaluationActivity1 = new(
     //     Guid.Parse("278b9b40-e08b-4f0e-a317-e7952cd178ec"),
@@ -73,8 +68,8 @@ public static class ActivitySeeds
     // };
     public static void Seed(this ModelBuilder modelBuilder)
     {
-        // modelBuilder.Entity<ActivityEntity>().HasData(
-        //     NoEvaluationActivity with {Subject = null!, Evaluations = null!}
-        // );
+        modelBuilder.Entity<ActivityEntity>().HasData(
+            StandardInDbActivity
+        );
     }
 }

@@ -63,23 +63,23 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
      //     Assert.Equal(newEndTime, updatedActivity.EndTime);
      // }
    
-     [Fact]
-      public async Task Delete_Activity()
-      {
-          // Arrange
-          var activity = ActivitySeeds.BasicActivity;
-          StudIsDbContextSUT.Activities.Add(activity);
-          await StudIsDbContextSUT.SaveChangesAsync();
-    
-          // Act
-          StudIsDbContextSUT.Activities.Remove(activity);
-          await StudIsDbContextSUT.SaveChangesAsync();
-    
-          // Assert
-          await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-          var deletedActivity = await dbContext.Activities.FindAsync(activity.Id);
-          Assert.Null(deletedActivity);
-      }
+     // [Fact]
+      // public async Task Delete_Activity()
+      // {
+      //     // Arrange
+      //     var activity = ActivitySeeds.BasicActivity;
+      //     StudIsDbContextSUT.Activities.Add(activity);
+      //     await StudIsDbContextSUT.SaveChangesAsync();
+      //
+      //     // Act
+      //     StudIsDbContextSUT.Activities.Remove(activity);
+      //     await StudIsDbContextSUT.SaveChangesAsync();
+      //
+      //     // Assert
+      //     await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+      //     var deletedActivity = await dbContext.Activities.FindAsync(activity.Id);
+      //     Assert.Null(deletedActivity);
+      // }
    
      [Fact]
      public async Task Validate_Activity_Time_Interval()

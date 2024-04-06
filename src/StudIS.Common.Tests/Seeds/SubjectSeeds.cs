@@ -14,22 +14,16 @@ public static class SubjectSeeds
     public static SubjectEntity SubjectUpdateTest = new SubjectEntity()
     {
         Id = Guid.Parse("15ed62ae-6ec5-4643-9dd8-4f6e5e0b0a0e"),
-        Name = "some shit",
-        Abbreviation = "SHT"
+        Name = "mathematic analysis 2",
+        Abbreviation = "ima2"
     };
-    // {
-    //     Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent,StudentSeeds.OneSubjectStudent}
-    // };
-    //
-    // public static readonly SubjectEntity OneActivitySubject = new(
-    //     Guid.Parse("c78d79bc-74a1-4b7d-90c3-45b833f3e6f1"),
-    //     "mathematic analysis 2",
-    //     "ima2"
-    // )
-    // {
-    //     Students = new List<StudentEntity>(){StudentSeeds.MultiipleSubjectsStudent},
-    //     Activities = new List<ActivityEntity>(){ActivitySeeds.NoEvaluationActivity}
-    // };
+    
+    public static SubjectEntity StandardInDbSubject = new SubjectEntity()
+    {
+        Id = Guid.Parse("668299f7-8a85-48eb-90ba-4a033757bc72"),
+        Name = "database system",
+        Abbreviation = "ids"
+    };
     // public static readonly SubjectEntity MultipleActivitySubject = new(
     //     Guid.Parse("89848ab3-669a-469e-b7cd-60d689c26723"),
     //     "database system",
@@ -51,7 +45,8 @@ public static class SubjectSeeds
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
-            SubjectUpdateTest
+            SubjectUpdateTest,
+            StandardInDbSubject
         );
     }
 }

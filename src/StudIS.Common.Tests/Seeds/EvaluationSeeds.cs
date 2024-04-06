@@ -14,10 +14,18 @@ public static class EvaluationSeeds
         StudentId = StudentSeeds.BasicStudent.Id
     };
     
+    public static readonly EvaluationEntity StandardInDbEvaluation = new EvaluationEntity()
+    {
+        Id = Guid.Parse("fda29883-79e8-44cb-bc1c-570efe779cfa"),
+        Description = "example description",
+        ActivityId = ActivitySeeds.StandardInDbActivity.Id,
+        StudentId = StudentSeeds.StandardInDbStudent.Id
+    };
+    
     public static void Seed(this ModelBuilder modelBuilder)
     {
-        // modelBuilder.Entity<EvaluationEntity>().HasData(
-        //     MultipleSubjectStudentEvaluation
-        // );
+        modelBuilder.Entity<EvaluationEntity>().HasData(
+            StandardInDbEvaluation
+        );
     }
 }
