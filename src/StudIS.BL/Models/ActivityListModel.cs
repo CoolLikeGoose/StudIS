@@ -4,7 +4,6 @@ namespace StudIS.BL.Models;
 
 public record ActivityListModel : ModelBase
 {
-    public required Guid Id { get; set; }
     public required DateTime StartTime { get; set; }
     public required DateTime EndTime { get; set; }
     public required Place Room { get; set; }

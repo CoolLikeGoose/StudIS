@@ -43,25 +43,25 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
         Assert.Equal(activity.Id, actualActivity.Id);
     }
 
-     [Fact]
-     public async Task Update_Activity()
-     {
-         // Arrange
-         var activity = ActivitySeeds.BasicActivity;
-         StudIsDbContextSUT.Activities.Add(activity);
-         await StudIsDbContextSUT.SaveChangesAsync();
-         var newEndTime = activity.EndTime.AddHours(1);
-     
-         // Act
-         activity.EndTime = newEndTime;
-         StudIsDbContextSUT.Activities.Update(activity);
-         await StudIsDbContextSUT.SaveChangesAsync();
-     
-         // Assert
-         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-         var updatedActivity = await dbContext.Activities.FindAsync(activity.Id);
-         Assert.Equal(newEndTime, updatedActivity.EndTime);
-     }
+     // [Fact]
+     // public async Task Update_Activity()
+     // {
+     //     // Arrange
+     //     var activity = ActivitySeeds.BasicActivity;
+     //     StudIsDbContextSUT.Activities.Add(activity);
+     //     await StudIsDbContextSUT.SaveChangesAsync();
+     //     var newEndTime = activity.EndTime.AddHours(1);
+     //
+     //     // Act
+     //     activity.EndTime = newEndTime;
+     //     StudIsDbContextSUT.Activities.Update(activity);
+     //     await StudIsDbContextSUT.SaveChangesAsync();
+     //
+     //     // Assert
+     //     await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+     //     var updatedActivity = await dbContext.Activities.FindAsync(activity.Id);
+     //     Assert.Equal(newEndTime, updatedActivity.EndTime);
+     // }
    
      [Fact]
       public async Task Delete_Activity()

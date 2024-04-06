@@ -5,7 +5,6 @@ namespace StudIS.BL.Models;
 
 public record SubjectDetailModel : ModelBase
 {
-    public required Guid Id { get; set; }
     public required string Name { get; set; }
     public required string Abbreviation { get; set; }
     public ObservableCollection<ActivityEntity> Activities { get; init; } = new ();

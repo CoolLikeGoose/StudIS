@@ -2,7 +2,6 @@
 
 public record SubjectListModel : ModelBase
 {
-    public required Guid Id { get; set; }
     public required string Name { get; set; }
     public required string Abbreviation { get; set; }
     
