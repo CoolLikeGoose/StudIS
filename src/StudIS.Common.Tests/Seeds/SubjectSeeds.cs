@@ -24,6 +24,13 @@ public static class SubjectSeeds
         Name = "database system",
         Abbreviation = "ids"
     };
+    
+    public static SubjectEntity SubjectEmpty = new SubjectEntity()
+    {
+        Id = Guid.Parse("0e4b9e16-02e8-4e71-b4c0-2253669ab8e2"),
+        Name = string.Empty,
+        Abbreviation = string.Empty
+    };
     // public static readonly SubjectEntity MultipleActivitySubject = new(
     //     Guid.Parse("89848ab3-669a-469e-b7cd-60d689c26723"),
     //     "database system",
@@ -46,7 +53,8 @@ public static class SubjectSeeds
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
             SubjectUpdateTest,
-            StandardInDbSubject
+            StandardInDbSubject,
+            SubjectEmpty
         );
     }
 }

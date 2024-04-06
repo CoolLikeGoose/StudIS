@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudIS.DAL.Entities;
 using StudIS.Common.Enums;
+using Xunit.Sdk;
+
 namespace StudIS.Common.Tests.Seeds;
 
 public static class ActivitySeeds
@@ -27,6 +29,8 @@ public static class ActivitySeeds
         Description = "EXAM description",
         SubjectId = SubjectSeeds.StandardInDbSubject.Id
     };
+    
+    
     //
     // public static readonly ActivityEntity NoEvaluationActivity1 = new(
     //     Guid.Parse("278b9b40-e08b-4f0e-a317-e7952cd178ec"),

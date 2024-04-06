@@ -1,7 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using StudIS.BL.Facades;
 using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
 using StudIS.Common.Tests;
+using StudIS.Common.Tests.Seeds;
 using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Tests;
@@ -18,59 +20,50 @@ public class SubjectFacadeTest : FacadeTestBase
     [Fact]
     public async Task CreateEntity()
     {
-        SubjectDetailModel s = new SubjectDetailModel()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Math",
-            Abbreviation = "IMA"
-        };
+        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.BasicSubject);
 
-        await _subjectFacadeSUT.SaveAsync(s);
+        var savedSubject  = await _subjectFacadeSUT.SaveAsync(s);
+
+        Assert.NotNull(savedSubject);
+        Assert.Equal(s.Id, savedSubject.Id);
+        Assert.Equal("mathematics analysis", savedSubject.Name);
+        Assert.Equal("ima1", savedSubject.Abbreviation);
     }
     
     [Fact]
     public async Task DeleteEntity()
     {
-        SubjectDetailModel s = new SubjectDetailModel()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Math",
-            Abbreviation = "IMA"
-        };
+        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.BasicSubject);
 
-        await _subjectFacadeSUT.SaveAsync(s);
+        var savedSubject = await _subjectFacadeSUT.SaveAsync(s);
+        Assert.NotNull(savedSubject);
+        
         await _subjectFacadeSUT.DeleteAsync(s.Id);
+        var fetchedSubject = await _subjectFacadeSUT.GetAsync(s.Id);
+        Assert.Null(fetchedSubject);
     }
     
     [Fact]
     public async Task UpdateGetEntity()
     {
-        SubjectDetailModel s = new SubjectDetailModel()
+        var initialSubject = SubjectModelMapper.MapToDetailModel(SubjectSeeds.BasicSubject);
+        var updatedSubject = initialSubject with
         {
-            Id = Guid.NewGuid(),
-            Name = "Math",
-            Abbreviation = "IMA"
+            Name = "Updated " + initialSubject.Name,
         };
-        await _subjectFacadeSUT.SaveAsync(s);
-        SubjectDetailModel sUpdated = s with
-        {
-            Name = "Logika",
-        };
-        await _subjectFacadeSUT.SaveAsync(sUpdated);
-        SubjectDetailModel actualSubject = await _subjectFacadeSUT.GetAsync(sUpdated.Id);
-        Assert.Equal(s.Abbreviation, actualSubject.Abbreviation);
-        Assert.NotEqual(s.Name,actualSubject.Name);
+        await _subjectFacadeSUT.SaveAsync(updatedSubject);
+        
+        var actualSubject = await _subjectFacadeSUT.GetAsync(updatedSubject.Id);
+        
+        Assert.Equal(updatedSubject.Name, actualSubject.Name);
+        Assert.Equal(initialSubject.Abbreviation, actualSubject.Abbreviation);
+
     }
     
     [Fact]
     public async Task DeleteNonExistingEntity()
     {
-        SubjectDetailModel s = new()
-        {
-            Id = Guid.NewGuid(),
-            Name = string.Empty,
-            Abbreviation = string.Empty
-        };
+        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.SubjectEmpty);
 
         await _subjectFacadeSUT.SaveAsync(s);
         await _subjectFacadeSUT.DeleteAsync(s.Id);

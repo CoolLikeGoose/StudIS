@@ -3,6 +3,7 @@ using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
 using StudIS.Common.Enums;
 using StudIS.Common.Tests;
+using StudIS.Common.Tests.Seeds;
 using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Tests;
@@ -17,20 +18,42 @@ public class ActivityFacadeTest : FacadeTestBase
         _activityFacadeSUT = new ActivityFacade(UnitOfWorkFactory, ActivityModelMapper);
     }
     
-    // [Fact]
-    // public async Task CreateEntity()
-    // {
-    //     ActivityDetailModel s = new ActivityDetailModel()
-    //     {
-    //         Id = Guid.NewGuid(),
-    //         StartTime = DateTime.Today,
-    //         EndTime = DateTime.Today,
-    //         Room = Place.D105,
-    //         ActivityType = ActivityType.Exam,
-    //         Description = "Example Description",
-    //         SubjectId = Guid.NewGuid()
-    //     };
-    //
-    //     await _activityFacadeSUT.SaveAsync(s);
-    // }
+    [Fact]
+    public async Task CreateEntity()
+    {
+        var activityToCreate  = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity);
+        
+        var savedActivity = await _activityFacadeSUT.SaveAsync(activityToCreate);
+        
+        Assert.NotNull(savedActivity);
+        Assert.Equal(ActivitySeeds.StandardInDbActivity.Description, savedActivity.Description);
+    }
+    [Fact]
+    public async Task DeleteActivity()
+    {
+        var activityToDelete = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity);
+        
+        var preDeleteCheck = await _activityFacadeSUT.GetAsync(activityToDelete.Id);
+        Assert.NotNull(preDeleteCheck);
+
+        await _activityFacadeSUT.DeleteAsync(activityToDelete.Id);
+        
+        var postDeleteCheck = await _activityFacadeSUT.GetAsync(activityToDelete.Id);
+        Assert.Null(postDeleteCheck);
+    }
+    [Fact]
+    public async Task UpdateActivity()
+    {
+        var activityToUpdate = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity);
+
+        var updatedActivity = activityToUpdate with
+        {
+            Description = "Updated Activity Description"
+        };
+
+        await _activityFacadeSUT.SaveAsync(updatedActivity);
+
+        var actualActivity = await _activityFacadeSUT.GetAsync(activityToUpdate.Id);
+        Assert.Equal("Updated Activity Description", actualActivity.Description);
+    }
 }

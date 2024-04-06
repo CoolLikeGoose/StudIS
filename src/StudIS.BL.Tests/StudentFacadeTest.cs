@@ -2,6 +2,7 @@ using StudIS.BL.Facades;
 using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
 using StudIS.Common.Tests;
+using StudIS.Common.Tests.Seeds;
 using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Tests;
@@ -18,61 +19,44 @@ public class StudentFacadeTest : FacadeTestBase
     [Fact]
     public async Task CreateEntity()
     {
-        StudentDetailModel s = new StudentDetailModel()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Bogdan",
-            ImageUrl = "https://shorturl.at/ALMZ4"
-        };
+        var studentToCreate = StudentModelMapper.MapToDetailModel(StudentSeeds.StandardInDbStudent);
+        
+        await _studentFacadeSUT.SaveAsync(studentToCreate);
 
-        await _studentFacadeSUT.SaveAsync(s);
+        Assert.NotNull(studentToCreate);
+        Assert.Equal("Nikola", studentToCreate.Name);
     }
+
     
     [Fact]
     public async Task DeleteEntity()
     {
-        StudentDetailModel s = new StudentDetailModel()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Bogdan",
-            ImageUrl = "https://shorturl.at/ALMZ4"
-        };
+        
+        await _studentFacadeSUT.DeleteAsync(StudentSeeds.StandardInDbStudent.Id);
 
-        await _studentFacadeSUT.SaveAsync(s);
-        await _studentFacadeSUT.DeleteAsync(s.Id);
-
+        var actualStudent = await _studentFacadeSUT.GetAsync(StudentSeeds.StandardInDbStudent.Id);
+        Assert.Null(actualStudent);
     }
+
     
     [Fact]
     public async Task UpdateGetEntity()
     {
-        StudentDetailModel s = new StudentDetailModel()
-        {
-            Id = Guid.NewGuid(),
-            Name = "Bogdan",
-            ImageUrl = "https://shorturl.at/ALMZ4"
-        };
-        await _studentFacadeSUT.SaveAsync(s);
-        StudentDetailModel sUpdated = s with
-        {
-            Name = "Daniil",
-        };
-        await _studentFacadeSUT.SaveAsync(sUpdated);
-        StudentDetailModel actualStudent = await _studentFacadeSUT.GetAsync(sUpdated.Id);
-        Assert.Equal(s.ImageUrl,actualStudent.ImageUrl);
-        Assert.NotEqual(s.Name,actualStudent.Name);
-
+        var existingStudent = StudentModelMapper.MapToDetailModel(StudentSeeds.StandardInDbStudent);
+        Assert.NotNull(existingStudent);
+        existingStudent.Name = "Updated Daniil";
+        
+        await _studentFacadeSUT.SaveAsync(existingStudent);
+        var updatedStudent = await _studentFacadeSUT.GetAsync(existingStudent.Id);
+        
+        Assert.Equal("Updated Daniil", updatedStudent.Name);
+        Assert.Equal(StudentSeeds.BasicStudent.ImageUrl, updatedStudent.ImageUrl);
     }
     
     [Fact]
     public async Task DeleteNonExistingEntity()
     {
-        StudentDetailModel s = new()
-        {
-            Id = Guid.NewGuid(),
-            Name = string.Empty,
-            ImageUrl = string.Empty
-        };
+        StudentDetailModel s = StudentModelMapper.MapToDetailModel(StudentSeeds.StudentEmpty);
 
         await _studentFacadeSUT.SaveAsync(s);
         await _studentFacadeSUT.DeleteAsync(s.Id);

@@ -18,11 +18,18 @@ public static class StudentSeeds
         Name = "Nikola",
         ImageUrl = "https://examplepicture.example"
     };
+    public static StudentEntity StudentEmpty = new StudentEntity()
+    {
+        Id = Guid.Parse("c4b3795a-f6ba-49c8-b011-be212ec6a1e8"),
+        Name = String.Empty,
+        ImageUrl = String.Empty
+    };
     
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<StudentEntity>().HasData(
-            StandardInDbStudent
+            StandardInDbStudent,
+            StudentEmpty
         );
     }
 }

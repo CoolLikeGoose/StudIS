@@ -22,6 +22,7 @@ public static class EvaluationSeeds
         StudentId = StudentSeeds.StandardInDbStudent.Id
     };
     
+    
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<EvaluationEntity>().HasData(

@@ -18,8 +18,8 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
         StudentEntity actualStudent= await dbContext.Students.SingleAsync(i => i.Id == student.Id);
-        DeepAssert.Equal(student.Name,actualStudent.Name);
-        DeepAssert.Equal(student.ImageUrl,actualStudent.ImageUrl);
+        Assert.Equal(student.Name,actualStudent.Name);
+        Assert.Equal(student.ImageUrl,actualStudent.ImageUrl);
     }
     [Fact]
     public async Task Read_Student_By_Id()
