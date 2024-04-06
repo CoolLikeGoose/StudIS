@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StudIS.Common.Tests;
 using StudIS.Common.Tests.Seeds; 
 using StudIS.DAL.Entities;
 using Xunit.Abstractions;
@@ -17,8 +18,8 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
         StudentEntity actualStudent= await dbContext.Students.SingleAsync(i => i.Id == student.Id);
-        Assert.Equal(student.Name,actualStudent.Name);
-        Assert.Equal(student.ImageUrl,actualStudent.ImageUrl);
+        DeepAssert.Equal(student.Name,actualStudent.Name);
+        DeepAssert.Equal(student.ImageUrl,actualStudent.ImageUrl);
     }
     [Fact]
     public async Task Read_Student_By_Id()
