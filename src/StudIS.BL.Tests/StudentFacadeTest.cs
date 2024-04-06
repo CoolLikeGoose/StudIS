@@ -44,7 +44,7 @@ public class StudentFacadeTest : FacadeTestBase
     }
     
     [Fact]
-    public async Task UpdateEntity()
+    public async Task UpdateGetEntity()
     {
         StudentDetailModel s = new StudentDetailModel()
         {
@@ -52,15 +52,41 @@ public class StudentFacadeTest : FacadeTestBase
             Name = "Bogdan",
             ImageUrl = "https://shorturl.at/ALMZ4"
         };
-        StudentDetailModel StratingStudent = await _studentFacadeSUT.SaveAsync(s);
+        await _studentFacadeSUT.SaveAsync(s);
         StudentDetailModel sUpdated = s with
         {
             Name = "Daniil",
         };
-        StudentDetailModel UpdatedStudent = await _studentFacadeSUT.SaveAsync(sUpdated);
+        await _studentFacadeSUT.SaveAsync(sUpdated);
         StudentDetailModel actualStudent = await _studentFacadeSUT.GetAsync(sUpdated.Id);
         Assert.Equal(s.ImageUrl,actualStudent.ImageUrl);
         Assert.NotEqual(s.Name,actualStudent.Name);
 
+    }
+    
+    [Fact]
+    public async Task DeleteNonExistingEntity()
+    {
+        StudentDetailModel s = new()
+        {
+            Id = Guid.NewGuid(),
+            Name = string.Empty,
+            ImageUrl = string.Empty
+        };
+
+        await _studentFacadeSUT.SaveAsync(s);
+        await _studentFacadeSUT.DeleteAsync(s.Id);
+        StudentDetailModel actualStudent = await _studentFacadeSUT.GetAsync(s.Id);
+        Assert.Null(actualStudent);
+
+    }
+    
+    [Fact]
+    public async Task GetByNonExistingIdEntity()
+    {
+        Guid Id = Guid.Empty;
+        
+        StudentDetailModel actualStudent = await _studentFacadeSUT.GetAsync(Id);
+        Assert.Null(actualStudent);
     }
 }
