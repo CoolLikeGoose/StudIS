@@ -69,7 +69,6 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
           StudIsDbContextSUT.Activities.Remove(ActivitySeeds.DeleteTestInDbActivity);
           await StudIsDbContextSUT.SaveChangesAsync();
      
-          // Assert
           await using var dbContext = await DbContextFactory.CreateDbContextAsync();
           var deletedActivity = await dbContext.Activities.FindAsync(ActivitySeeds.DeleteTestInDbActivity.Id);
           Assert.Null(deletedActivity);
