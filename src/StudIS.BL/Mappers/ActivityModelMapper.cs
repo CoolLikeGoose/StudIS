@@ -61,14 +61,4 @@ public class ActivityModelMapper()
             Subject = model.Subject
         };
     }
-    
-    public  ActivityEntity MapToEntity(ActivityListModel model, Guid subjectId)
-    {
-        throw new NotImplementedException();
-    }
-    
-    public  ActivityEntity MapToEntity(ActivityDetailModel model, Guid subjectId)
-    {
-        throw new NotImplementedException();
-    }
 }

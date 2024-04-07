@@ -5,7 +5,6 @@ namespace StudIS.Common.Tests.Seeds;
 
 public static class EvaluationSeeds
 {
-    //TODO: update this later
     public static readonly EvaluationEntity BasicEvaluation = new EvaluationEntity()
     {
         Id = Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
