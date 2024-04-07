@@ -10,7 +10,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CompareNETObjects" Version="4.83.0" />
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="xunit" Version="2.5.3"/>
@@ -22,8 +21,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\StudIS.BL\StudIS.BL.csproj" />
+      <ProjectReference Include="..\StudIS.Common.Tests\StudIS.Common.Tests.csproj" />
+      <ProjectReference Include="..\StudIS.Common\StudIS.Common.csproj" />
       <ProjectReference Include="..\StudIS.DAL\StudIS.DAL.csproj" />
     </ItemGroup>
-
 
 </Project>

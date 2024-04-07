@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using StudIS.DAL.Entities;
+﻿using StudIS.DAL.Entities;
 
-namespace StudIS.BL.Facades;
+namespace StudIS.BL.Facades.Interfaces;
 
 public interface IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
