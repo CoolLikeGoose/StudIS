@@ -83,7 +83,7 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         {
             Id = Guid.NewGuid(),
             Name = "John Doe",
-            ImageUrl = "http://example.com/john-doe.jpg"
+            ImageUrl = new Uri("http://example.com/john-doe.jpg")
         };
 
         // Act
@@ -93,7 +93,7 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
         var actualStudent = await dbContext.Students.FindAsync(student.Id);
-        Assert.Equal("http://example.com/john-doe.jpg", actualStudent.ImageUrl);
+        Assert.True(actualStudent.ImageUrl == new Uri("http://example.com/john-doe.jpg"));
     }
 
     [Fact]
@@ -104,20 +104,20 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         {
             Id = Guid.NewGuid(),
             Name = "John Doe",
-            ImageUrl = "http://example.com/john-doe.jpg"
+            ImageUrl = new Uri("http://example.com/john-doe.jpg")
         };
         StudIsDbContextSUT.Students.Add(student);
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Act
-        student.ImageUrl = "http://example.com/john-doe-updated.jpg";
+        student.ImageUrl = new Uri("http://example.com/john-doe-updated.jpg");
         StudIsDbContextSUT.Students.Update(student);
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
         var updatedStudent = await dbContext.Students.FindAsync(student.Id);
-        Assert.Equal("http://example.com/john-doe-updated.jpg", updatedStudent.ImageUrl);
+        Assert.True(updatedStudent.ImageUrl == new Uri("http://example.com/john-doe-updated.jpg"));
     }
 
     [Fact]

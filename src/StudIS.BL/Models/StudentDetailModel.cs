@@ -6,7 +6,7 @@ namespace StudIS.BL.Models;
 public record StudentDetailModel : ModelBase
 {
     public required string Name { get; set; }
-    public required string? ImageUrl { get; set; }
+    public required Uri? ImageUrl { get; set; }
     
     public ObservableCollection<SubjectEntity> Subjects { get; init; } = new ();
 
@@ -14,7 +14,7 @@ public record StudentDetailModel : ModelBase
     {
         Id = Guid.NewGuid(),
         Name = string.Empty,
-        ImageUrl = string.Empty
+        ImageUrl = new Uri("example.example")
     };
 
 }
