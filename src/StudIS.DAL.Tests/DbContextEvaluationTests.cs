@@ -28,26 +28,25 @@ public class DbContextEvaluationTests(ITestOutputHelper output) : DbContextTests
         Assert.Equal(evaluation.ActivityId,actualEvaluation.ActivityId);
         Assert.Equal(evaluation.StudentId,actualEvaluation.StudentId);
     }
-    //TODO
-    // [Fact]
-    // public async Task Read_Evaluation_With_Related_Entities()
-    // {
-    //     
-    //     var evaluation = EvaluationSeeds.BasicEvaluation;
-    //
-    //     // Act
-    //     await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-    //     var actualEvaluation = await dbContext.Evaluations
-    //         .Include(e => e.Activity)
-    //         .Include(e => e.Student)
-    //         .SingleOrDefaultAsync(i => i.Id == evaluation.Id); 
-    //
-    //     // Assert
-    //     //Assert.NotNull(actualEvaluation);
-    //     Assert.Equal(evaluation.Description, actualEvaluation.Description);
-    //     Assert.NotNull(actualEvaluation.Activity);
-    //     Assert.NotNull(actualEvaluation.Student);
-    // }
+    
+     [Fact]
+     public async Task Read_Evaluation_With_Related_Entities()
+     {
+         // Act
+         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+         var actualEvaluation = await dbContext.Evaluations
+             .Include(e => e.Activity)
+             .Include(e => e.Student)
+             .SingleOrDefaultAsync(i => i.Id == EvaluationSeeds.StandardInDbEvaluation.Id); 
+    
+         // Assert
+         //Assert.NotNull(actualEvaluation);
+         // Assert.Equal(evaluation.Description, actualEvaluation.Description);
+         Assert.NotNull(actualEvaluation.Activity);
+         Assert.Equal(actualEvaluation.ActivityId, EvaluationSeeds.StandardInDbEvaluation.ActivityId);
+         Assert.NotNull(actualEvaluation.Student);
+         Assert.Equal(actualEvaluation.StudentId, EvaluationSeeds.StandardInDbEvaluation.StudentId);
+     }
     [Fact]
     public async Task Update_Evaluation()
     {
@@ -68,22 +67,17 @@ public class DbContextEvaluationTests(ITestOutputHelper output) : DbContextTests
         Assert.NotNull(updatedEvaluation);
         Assert.Equal(updatedDescription, updatedEvaluation.Description);
     }
-    //TODO
-    // [Fact]
-    // public async Task Delete_Evaluation()
-    // {
-    //     // Arrange
-    //     var evaluation = EvaluationSeeds.BasicEvaluation;
-    //     StudIsDbContextSUT.Evaluations.Add(evaluation);
-    //     await StudIsDbContextSUT.SaveChangesAsync();
-    //
-    //     // Act
-    //     StudIsDbContextSUT.Evaluations.Remove(evaluation);
-    //     await StudIsDbContextSUT.SaveChangesAsync();
-    //
-    //     // Assert
-    //     await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-    //     var deletedEvaluation = await dbContext.Evaluations.FindAsync(evaluation.Id);
-    //     Assert.Null(deletedEvaluation);
-    // }
+    
+    [Fact]
+    public async Task Delete_Evaluation()
+    {
+        // Act
+        StudIsDbContextSUT.Evaluations.Remove(EvaluationSeeds.DeleteTestInDbEval);
+        await StudIsDbContextSUT.SaveChangesAsync();
+    
+        // Assert
+        await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+        var deletedEvaluation = await dbContext.Evaluations.FindAsync(EvaluationSeeds.DeleteTestInDbEval.Id);
+        Assert.Null(deletedEvaluation);
+    }
 }

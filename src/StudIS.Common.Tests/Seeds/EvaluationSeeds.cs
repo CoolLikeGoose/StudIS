@@ -21,11 +21,20 @@ public static class EvaluationSeeds
         StudentId = StudentSeeds.StandardInDbStudent.Id
     };
     
+    public static readonly EvaluationEntity DeleteTestInDbEval = new EvaluationEntity()
+    {
+        Id = Guid.Parse("014aa0d1-2145-44cb-9244-139a7fdc6fba"),
+        Description = "example description",
+        ActivityId = ActivitySeeds.StandardInDbActivity.Id,
+        StudentId = StudentSeeds.StandardInDbStudent.Id
+    };
+    
     
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<EvaluationEntity>().HasData(
-            StandardInDbEvaluation
+            StandardInDbEvaluation,
+            DeleteTestInDbEval
         );
     }
 }

@@ -43,43 +43,37 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
         Assert.Equal(activity.Id, actualActivity.Id);
     }
 
-     // [Fact]
-     // public async Task Update_Activity()
-     // {
-     //     // Arrange
-     //     var activity = ActivitySeeds.BasicActivity;
-     //     StudIsDbContextSUT.Activities.Add(activity);
-     //     await StudIsDbContextSUT.SaveChangesAsync();
-     //     var newEndTime = activity.EndTime.AddHours(1);
-     //
-     //     // Act
-     //     activity.EndTime = newEndTime;
-     //     StudIsDbContextSUT.Activities.Update(activity);
-     //     await StudIsDbContextSUT.SaveChangesAsync();
-     //
-     //     // Assert
-     //     await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-     //     var updatedActivity = await dbContext.Activities.FindAsync(activity.Id);
-     //     Assert.Equal(newEndTime, updatedActivity.EndTime);
-     // }
-     //
-     // [Fact]
-     //  public async Task Delete_Activity()
-     //  {
-     //      // Arrange
-     //      var activity = ActivitySeeds.BasicActivity;
-     //      StudIsDbContextSUT.Activities.Add(activity);
-     //      await StudIsDbContextSUT.SaveChangesAsync();
-     //
-     //      // Act
-     //      StudIsDbContextSUT.Activities.Remove(activity);
-     //      await StudIsDbContextSUT.SaveChangesAsync();
-     //
-     //      // Assert
-     //      await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-     //      var deletedActivity = await dbContext.Activities.FindAsync(activity.Id);
-     //      Assert.Null(deletedActivity);
-     //  }
+     [Fact]
+     public async Task Update_Activity()
+     {
+         ActivityEntity activity = ActivitySeeds.StandardInDbActivity;
+         ActivityEntity updActivity = activity with
+         {
+             Description = "New Description"
+         };
+         
+         StudIsDbContextSUT.Activities.Update(updActivity);
+         await StudIsDbContextSUT.SaveChangesAsync();
+     
+         // Assert
+         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+         var actualActivity = await dbContext.Activities.FindAsync(activity.Id);
+         Assert.NotNull(actualActivity);
+         Assert.Equal(updActivity.Description, actualActivity.Description);
+     }
+     
+     [Fact]
+      public async Task Delete_Activity()
+      {
+          // Act
+          StudIsDbContextSUT.Activities.Remove(ActivitySeeds.DeleteTestInDbActivity);
+          await StudIsDbContextSUT.SaveChangesAsync();
+     
+          // Assert
+          await using var dbContext = await DbContextFactory.CreateDbContextAsync();
+          var deletedActivity = await dbContext.Activities.FindAsync(ActivitySeeds.DeleteTestInDbActivity.Id);
+          Assert.Null(deletedActivity);
+      }
    
      [Fact]
      public async Task Validate_Activity_Time_Interval()
@@ -89,7 +83,7 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
          {
              Id = Guid.NewGuid(),
              StartTime = DateTime.Now,
-             EndTime = DateTime.Now.AddHours(-1), // Некорректный временной интервал
+             EndTime = DateTime.Now.AddHours(-1),
              Room = Place.D105,
              ActivityType = ActivityType.Exam,
              Description = "A test activity with invalid time interval.",

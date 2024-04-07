@@ -29,10 +29,22 @@ public static class ActivitySeeds
         SubjectId = SubjectSeeds.StandardInDbSubject.Id
     };
     
+    public static readonly ActivityEntity DeleteTestInDbActivity = new ActivityEntity()
+    {
+        Id = Guid.Parse("1c8902d9-4d11-47cf-883f-5ba0374a9a10"),
+        StartTime = new DateTime(2023, 10, 10, 10, 10, 10),
+        EndTime = new DateTime(2023, 11, 11, 11, 11, 11),
+        Room = Place.Laboratory,
+        ActivityType = ActivityType.Exercise,
+        Description = "Lab description",
+        SubjectId = SubjectSeeds.StandardInDbSubject.Id
+    };
+    
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ActivityEntity>().HasData(
-            StandardInDbActivity
+            StandardInDbActivity,
+            DeleteTestInDbActivity
         );
     }
 }
