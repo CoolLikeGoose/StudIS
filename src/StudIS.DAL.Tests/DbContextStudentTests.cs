@@ -123,23 +123,12 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
     [Fact]
     public async Task Delete_Student_And_Image_Url_Removed()
     {
-        // Arrange
-        var student = new StudentEntity
-        {
-            Id = Guid.NewGuid(),
-            Name = "John Doe",
-            ImageUrl = "http://example.com/john-doe.jpg"
-        };
-        StudIsDbContextSUT.Students.Add(student);
-        await StudIsDbContextSUT.SaveChangesAsync();
-
-        // Act
-        StudIsDbContextSUT.Students.Remove(student);
+        StudIsDbContextSUT.Students.Remove(StudentSeeds.StandardInDbStudent);
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-        var deletedStudent = await dbContext.Students.FindAsync(student.Id);
+        var deletedStudent = await dbContext.Students.FindAsync(StudentSeeds.StandardInDbStudent.Id);
         Assert.Null(deletedStudent);
     }
 }
