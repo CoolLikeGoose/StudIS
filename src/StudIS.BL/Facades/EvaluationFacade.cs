@@ -1,4 +1,5 @@
-﻿using StudIS.BL.Facades.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Mappers;
 using StudIS.BL.Models;
 using StudIS.DAL.Entities;
@@ -11,5 +12,16 @@ public class EvaluationFacade(IUnitOfWorkFactory unitOfWorkFactory, EvaluationMo
     : FacadeBase<EvaluationEntity, EvaluationListModel, EvaluationDetailModel, EvaluationEntityMapper>
     (unitOfWorkFactory, evaluationModelMapper), IEvaluationFacade
 {
-    
+    public async Task<IEnumerable<EvaluationListModel>> GetByStudent(Guid studentId)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+        List<EvaluationEntity> entities = await unitOfWork
+            .GetRepository<EvaluationEntity, EvaluationEntityMapper>()
+            .Get()
+            .Where(e => e.StudentId == studentId)
+            .ToListAsync()
+            .ConfigureAwait(false);
+
+        return ModelMapper.MapToListModel(entities);
+    }
 }

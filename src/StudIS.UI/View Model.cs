@@ -20,9 +20,8 @@ public class MainViewModel
         return await _studentFacade.GetAsync();
     }
 
-    public async Task <IEnumerable<EvaluationListModel>> GetEvaluationsForStudent(int studentId)
-    {   
-        //TODO добавь хуйни
-        return await _evaluationFacade.GetEvaluationsByStudentId(studentId);
+    public async Task <IEnumerable<EvaluationListModel>> GetEvaluationsForStudent(Guid studentId)
+    { 
+        return await _evaluationFacade.GetByStudent(studentId);
     }
 }
