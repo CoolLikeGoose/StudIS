@@ -1,5 +1,6 @@
 ﻿using StudIS.BL.Models;
 using StudIS.DAL.Entities;
+using StudIS.DAL.Mappers;
 
 namespace StudIS.BL.Mappers;
 
@@ -15,12 +16,12 @@ public class EvaluationModelMapper()
 
         return new EvaluationListModel()
         {
-            Activity = entity.Activity,
+            Activity = new ActivityModelMapper().MapToListModel(entity.Activity),
             ActivityId = entity.ActivityId,
             Description = entity.Description,
             Id = entity.Id,
             StudentId = entity.StudentId,
-            Student = entity.Student
+            Student = new StudentModelMapper().MapToListModel(entity.Student)
         };
     }
 
@@ -34,10 +35,10 @@ public class EvaluationModelMapper()
         return new EvaluationDetailModel()
         {
             Id = entity.Id,
-            Activity = entity.Activity,
+            Activity = new ActivityModelMapper().MapToListModel(entity.Activity),
             ActivityId = entity.ActivityId,
             Description = entity.Description,
-            Student = entity.Student,
+            Student = new StudentModelMapper().MapToListModel(entity.Student),
             StudentId = entity.StudentId
         };
     }
@@ -48,10 +49,8 @@ public class EvaluationModelMapper()
         {
             Id = model.Id,
             ActivityId = model.ActivityId,
-            Activity = model.Activity,
             Description = model.Description,
-            StudentId = model.StudentId,
-            Student = model.Student
+            StudentId = model.StudentId
         };
     }
 }

@@ -27,12 +27,13 @@ public class StudentModelMapper()
             return StudentDetailModel.Empty;
         }
 
+        SubjectModelMapper modelMapper = new SubjectModelMapper();
         return new StudentDetailModel()
         {
             Id = entity.Id,
             ImageUrl = entity.ImageUrl,
             Name = entity.Name,
-            //Subject = SubjectModelMapper.Map//TODO
+            Subjects = entity.Subjects.Select(e => modelMapper.MapToListModel(e)).ToList()
         };
     }
 
@@ -42,8 +43,7 @@ public class StudentModelMapper()
         {
             Id = model.Id,
             ImageUrl = model.ImageUrl,
-            Name = model.Name,
-            //Subject = SubjectModelMapper.Map//TODO
+            Name = model.Name
         };
     }
 }

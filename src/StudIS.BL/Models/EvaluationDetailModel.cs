@@ -1,8 +1,8 @@
-﻿using StudIS.DAL.Entities;
+using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Models;
 
-public record EvaluationListModel : ModelBase
+public record EvaluationDetailModel : ModelBase
 {
     public required string? Description { get; set; }
     public required Guid ActivityId { get; set; }
@@ -11,7 +11,7 @@ public record EvaluationListModel : ModelBase
     public ActivityListModel? Activity { get; init; }
     public StudentListModel? Student { get; init; }
     
-    public static EvaluationListModel Empty => new()
+    public static EvaluationDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),
         Description = string.Empty,
