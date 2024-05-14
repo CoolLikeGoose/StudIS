@@ -5,11 +5,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StudIS.APP"
     Shell.FlyoutBehavior="Disabled"
-    Title="StudIS.APP">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    Title="StudIS">
+    
+    <TabBar>
+        <Tab Title="Main">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="Students">
+            <ShellContent
+                Title="Students"
+                ContentTemplate="{DataTemplate local:StudentsPage}"
+                Route="StudentsPage" />
+        </Tab>
+        <Tab Title="Subjects">
+            <ShellContent
+                Title="Subjects"
+                ContentTemplate="{DataTemplate local:SubjectsPage}"
+                Route="SubjectsPage" />
+        </Tab>
+        <Tab Title="Activities">
+            <ShellContent
+                Title="Activities"
+                ContentTemplate="{DataTemplate local:ActivitiesPage}"
+                Route="ActivitiesPage" />
+        </Tab>
+    </TabBar>
 
 </Shell>
