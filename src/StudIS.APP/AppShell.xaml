@@ -15,25 +15,25 @@
             <ShellContent
                 Title="Home"
                 ContentTemplate="{DataTemplate local:MainPage}"
-                Route="MainPage" />
+                Route="Main" />
         </Tab>
         <Tab Title="Students">
             <ShellContent
                 Title="Students"
                 ContentTemplate="{DataTemplate st:StudentListView}"
-                Route="StudentsPage" />
+                Route="students" />
         </Tab>
         <Tab Title="Subjects">
             <ShellContent
                 Title="Subjects"
                 ContentTemplate="{DataTemplate su:SubjectsListView}"
-                Route="SubjectsPage" />
+                Route="subjects" />
         </Tab>
         <Tab Title="Activities">
             <ShellContent
                 Title="Activities"
                 ContentTemplate="{DataTemplate a:ActivitiesListView}"
-                Route="ActivitiesPage" />
+                Route="activities" />
         </Tab>
     </TabBar>
 
