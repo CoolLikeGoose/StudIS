@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudIS.APP;
+namespace StudIS.APP.Views.Activities;
 
-public partial class SubjectsPage : ContentPage
+public partial class ActivitiesListView : ContentPage
 {
-    public SubjectsPage()
+    public ActivitiesListView()
     {
         InitializeComponent();
     }

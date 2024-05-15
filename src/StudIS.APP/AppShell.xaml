@@ -4,6 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StudIS.APP"
+    xmlns:st="clr-namespace:StudIS.APP.Views.Student"
+    xmlns:su="clr-namespace:StudIS.APP.Views.Subjects"
+    xmlns:a="clr-namespace:StudIS.APP.Views.Activities"
     Shell.FlyoutBehavior="Disabled"
     Title="StudIS">
     
@@ -17,19 +20,19 @@
         <Tab Title="Students">
             <ShellContent
                 Title="Students"
-                ContentTemplate="{DataTemplate local:StudentsPage}"
+                ContentTemplate="{DataTemplate st:StudentListView}"
                 Route="StudentsPage" />
         </Tab>
         <Tab Title="Subjects">
             <ShellContent
                 Title="Subjects"
-                ContentTemplate="{DataTemplate local:SubjectsPage}"
+                ContentTemplate="{DataTemplate su:SubjectsListView}"
                 Route="SubjectsPage" />
         </Tab>
         <Tab Title="Activities">
             <ShellContent
                 Title="Activities"
-                ContentTemplate="{DataTemplate local:ActivitiesPage}"
+                ContentTemplate="{DataTemplate a:ActivitiesListView}"
                 Route="ActivitiesPage" />
         </Tab>
     </TabBar>

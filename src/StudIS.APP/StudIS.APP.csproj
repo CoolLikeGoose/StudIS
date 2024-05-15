@@ -70,12 +70,6 @@
 
 
     <ItemGroup>
-      <Folder Include="Views\" />
-    </ItemGroup>
-
-
-
-    <ItemGroup>
       <MauiXaml Update="Pages\ActivitiesPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -96,7 +90,16 @@
       <Compile Update="Pages\SubjectsPage.xaml.cs">
         <DependentUpon>SubjectsPage.xaml</DependentUpon>
       </Compile>
+
+
+
     </ItemGroup>
+
+
+
+
+
+
 
 
 </Project>
