@@ -1,16 +1,15 @@
-﻿using StudIS.DAL.Entities;
+using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Models;
 
 public record EvaluationDetailModel : ModelBase
 {
-    //TODO in our programm there is no Detailed Evaluation needed ,however this could be useful
     public required string? Description { get; set; }
     public required Guid ActivityId { get; set; }
     public required Guid StudentId { get; set; }
     
-    public ActivityEntity? Activity { get; init; }
-    public StudentEntity? Student { get; init; }
+    public ActivityListModel? Activity { get; init; }
+    public StudentListModel? Student { get; init; }
     
     public static EvaluationDetailModel Empty => new()
     {

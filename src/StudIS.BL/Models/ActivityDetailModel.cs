@@ -12,8 +12,8 @@ public record ActivityDetailModel : ModelBase
     public required string? Description { get; set; }
     public required Guid SubjectId { get; set; }
     
-    public SubjectEntity? Subject { get; init; }
-    public ICollection<EvaluationEntity> Evaluations { get; init; } = new List<EvaluationEntity>();
+    public SubjectListModel? Subject { get; init; }
+    public ICollection<EvaluationListModel> Evaluations { get; init; } = new List<EvaluationListModel>();
     
     public static ActivityDetailModel Empty => new()
     {

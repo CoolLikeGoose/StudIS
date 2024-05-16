@@ -28,13 +28,15 @@ public class SubjectModelMapper()
             return SubjectDetailModel.Empty;
         }
 
+        StudentModelMapper studentModelMapper = new StudentModelMapper();
+        ActivityModelMapper activityModelMapper = new ActivityModelMapper();
         return new SubjectDetailModel()
         {
             Id = entity.Id,
             Abbreviation = entity.Abbreviation,
             Name = entity.Name,
-            //Student = StudentModelMapper.Map//TODO
-            //Activity = ActivityModelMapper.Map//TODO
+            Students = entity.Students.Select(e => studentModelMapper.MapToListModel(e)).ToList(),
+            Activities = entity.Activities.Select(e => activityModelMapper.MapToListModel(e)).ToList()
         };
     }
 
@@ -44,9 +46,7 @@ public class SubjectModelMapper()
         {
             Id = model.Id,
             Abbreviation = model.Abbreviation,
-            Name = model.Name,
-            //Student = StudentModelMapper.Map//TODO
-            //Activity = ActivityModelMapper.Map//TODO
+            Name = model.Name
         };
     }
 }

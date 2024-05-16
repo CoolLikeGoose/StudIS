@@ -10,13 +10,5 @@ public class StudIsTestingDbContext(DbContextOptions contextOptions, bool seedTe
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        if (seedTestingData)
-        {
-            ActivitySeeds.Seed(modelBuilder);
-            EvaluationSeeds.Seed(modelBuilder);
-            StudentSeeds.Seed(modelBuilder);
-            SubjectSeeds.Seed(modelBuilder);
-        }
     }
 }

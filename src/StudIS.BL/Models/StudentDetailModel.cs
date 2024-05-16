@@ -8,7 +8,7 @@ public record StudentDetailModel : ModelBase
     public required string Name { get; set; }
     public required Uri? ImageUrl { get; set; }
     
-    public ObservableCollection<SubjectEntity> Subjects { get; init; } = new ();
+    public ICollection<SubjectListModel> Subjects { get; init; } = new List<SubjectListModel>();
 
     public static StudentDetailModel Empty => new()
     {

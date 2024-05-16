@@ -32,6 +32,7 @@ public class ActivityModelMapper()
             return ActivityDetailModel.Empty;
         }
 
+        EvaluationModelMapper modelMapper = new EvaluationModelMapper();
         return new ActivityDetailModel()
         {
             Id = entity.Id,
@@ -41,8 +42,8 @@ public class ActivityModelMapper()
             Room = entity.Room,
             SubjectId = entity.SubjectId,
             ActivityType = entity.ActivityType,
-            Subject = entity.Subject,
-            //Evaluations = EvaluationModelMapper.Map//TODO
+            Subject = new SubjectModelMapper().MapToListModel(entity.Subject),
+            Evaluations = entity.Evaluations.Select(e => modelMapper.MapToListModel(e)).ToList()
         };
     }
     
@@ -54,11 +55,9 @@ public class ActivityModelMapper()
             Description = model.Description,
             StartTime = model.StartTime,
             EndTime = model.EndTime,
-            //Evaluations = EvaluationModelMapper.Map//TODO
             Id = model.Id,
             Room = model.Room,
             SubjectId = model.SubjectId,
-            Subject = model.Subject
         };
     }
 }

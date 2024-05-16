@@ -8,8 +8,8 @@ public record EvaluationListModel : ModelBase
     public required Guid ActivityId { get; set; }
     public required Guid StudentId { get; set; }
     
-    public ActivityEntity? Activity { get; init; }
-    public StudentEntity? Student { get; init; }
+    public ActivityListModel? Activity { get; init; }
+    public StudentListModel? Student { get; init; }
     
     public static EvaluationListModel Empty => new()
     {
