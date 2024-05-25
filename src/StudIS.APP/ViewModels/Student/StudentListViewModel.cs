@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
 using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
 
@@ -8,9 +9,10 @@ public partial class StudentListViewModel (IStudentFacade studentFacade): IViewM
 {
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
 
-    private void GoToDetail()
+    [RelayCommand]
+    private async Task GoToCreateAsync()
     {
-        // Shell.Current.GoToAsync("");
+        throw new NotImplementedException();
     }
 
     public async Task LoadDataAsync()

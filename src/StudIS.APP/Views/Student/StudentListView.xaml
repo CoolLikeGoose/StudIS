@@ -9,19 +9,19 @@
              x:Name="StudentListViewRoot">
     <StackLayout>
         <!-- Add Student Button -->
-        <Button Text="Add Student" Clicked="OnAddStudentClicked" Margin="10"/>
+        <Button Text="Add Student" Margin="10"/>
 
         <!-- Search Bar -->
         <StackLayout Orientation="Horizontal" Margin="10">
             <Entry Placeholder="Enter search query" x:Name="searchEntry" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Search" Clicked="OnSearchClicked"/>
+            <Button Text="Search"/>
         </StackLayout>
 
         <!-- Sorting Section -->
         <StackLayout Orientation="Horizontal" Margin="10">
             <Label Text="Sort By:" VerticalOptions="Center"/>
             <Picker x:Name="sortPicker" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Sort" Clicked="OnSortClicked"/>
+            <Button Text="Sort"/>
         </StackLayout>
 
         <!-- Students List -->

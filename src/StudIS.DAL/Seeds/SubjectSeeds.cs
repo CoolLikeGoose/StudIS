@@ -37,9 +37,9 @@ public static class SubjectSeeds
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
-            SubjectUpdateTest,
-            StandardInDbSubject,
-            SubjectEmpty
+            SubjectUpdateTest with { Activities = null!, Students = null! },
+            StandardInDbSubject with { Activities = null!, Students = null! },
+            SubjectEmpty with { Activities = null!, Students = null! }
         );
     }
 }

@@ -43,8 +43,8 @@ public static class ActivitySeeds
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ActivityEntity>().HasData(
-            StandardInDbActivity,
-            DeleteTestInDbActivity
+            StandardInDbActivity with { Subject = null, Evaluations = null!},
+            DeleteTestInDbActivity with { Subject = null, Evaluations = null!}
         );
     }
 }

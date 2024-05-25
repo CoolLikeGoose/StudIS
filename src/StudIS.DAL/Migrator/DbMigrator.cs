@@ -13,8 +13,10 @@ public class DbMigrator(IDbContextFactory<StudIsDbContext> dbContextFactory, DAL
         await using StudIsDbContext dbContext = await dbContextFactory.CreateDbContextAsync(cancellationToken);
 
         if (options.RecreateDatabaseOnStartup)
+        {
             await dbContext.Database.EnsureDeletedAsync(cancellationToken);
-
+        }
+            
         await dbContext.Database.EnsureCreatedAsync(cancellationToken);
     }
 }

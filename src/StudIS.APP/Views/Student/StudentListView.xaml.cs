@@ -19,22 +19,7 @@ public partial class StudentListView : ContentPage
 
         InitializeComponent();
     }
-
-    private void OnAddStudentClicked(object? sender, EventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void OnSearchClicked(object? sender, EventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void OnSortClicked(object? sender, EventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     protected override async void OnAppearing()
     {
         await ViewModel.LoadDataAsync();

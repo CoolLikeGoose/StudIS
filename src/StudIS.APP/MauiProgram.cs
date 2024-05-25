@@ -32,8 +32,8 @@ public static class MauiProgram
             {
                 DatabaseDirectory = FileSystem.AppDataDirectory,
                 DatabaseName = "StudIS.db",
-                RecreateDatabaseOnStartup = false,
-                SeedDemoData = false
+                RecreateDatabaseOnStartup = true,
+                SeedDemoData = true
             })
             .AddAppServices()
             .AddBlServices();

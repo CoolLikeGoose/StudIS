@@ -34,8 +34,8 @@ public static class EvaluationSeeds
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<EvaluationEntity>().HasData(
-            StandardInDbEvaluation,
-            DeleteTestInDbEval
+            StandardInDbEvaluation with { Activity = null, Student = null},
+            DeleteTestInDbEval with { Activity = null, Student = null}
         );
     }
 }
