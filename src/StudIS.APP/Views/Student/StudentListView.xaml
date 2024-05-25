@@ -14,14 +14,14 @@
 
         <!-- Search Bar -->
         <StackLayout Orientation="Horizontal" Margin="10">
-            <Entry Placeholder="Enter search query" x:Name="searchEntry" HorizontalOptions="FillAndExpand"/>
+            <Entry Placeholder="Enter search query" x:Name="SearchEntry" HorizontalOptions="FillAndExpand"/>
             <Button Text="Search"/>
         </StackLayout>
 
         <!-- Sorting Section -->
         <StackLayout Orientation="Horizontal" Margin="10">
             <Label Text="Sort By:" VerticalOptions="Center"/>
-            <Picker x:Name="sortPicker" HorizontalOptions="FillAndExpand"/>
+            <Picker x:Name="SortPicker" HorizontalOptions="FillAndExpand"/>
             <Button Text="Sort"/>
         </StackLayout>
         

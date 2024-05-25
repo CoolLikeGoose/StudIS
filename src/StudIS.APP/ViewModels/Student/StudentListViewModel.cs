@@ -5,21 +5,13 @@ using System.Collections.ObjectModel;
 
 namespace StudIS.APP.ViewModels.Student
 {
-    public partial class StudentListViewModel : IViewModel
+    public partial class StudentListViewModel(IStudentFacade studentFacade) : IViewModel
     {
-        private readonly IStudentFacade _studentFacade;
-
-        public StudentListViewModel(IStudentFacade studentFacade)
-        {
-            _studentFacade = studentFacade;
-            Students = new ObservableCollection<StudentListModel>();
-        }
-
-        public ObservableCollection<StudentListModel> Students { get; }
+        public ObservableCollection<StudentListModel> Students { get; } = new();
 
         public async Task LoadDataAsync()
         {
-            IEnumerable<StudentListModel> students = await _studentFacade.GetAsync();
+            IEnumerable<StudentListModel> students = await studentFacade.GetAsync();
             Students.Clear();
             foreach (StudentListModel student in students)
             {
@@ -28,7 +20,7 @@ namespace StudIS.APP.ViewModels.Student
         }
 
         [RelayCommand]
-        private async Task GoToCreateAsync()
+        private Task GoToCreateAsync()
         {
             throw new NotImplementedException();
         }

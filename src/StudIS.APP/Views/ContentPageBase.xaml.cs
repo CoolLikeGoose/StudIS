@@ -4,7 +4,7 @@ namespace StudIS.APP.Views;
 
 public partial class ContentPageBase
 {
-    protected IViewModel ViewModel { get; }
+    private IViewModel ViewModel { get; }
     
     public ContentPageBase(IViewModel viewModel)
     {
