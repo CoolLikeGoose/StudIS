@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudIS.APP.Views.Activities;
 
-public partial class ActivitiesListView : ContentPage
+public partial class ActivitiesListView
 {
     public ActivitiesListView()
     {

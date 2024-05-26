@@ -12,7 +12,8 @@
         <!-- Add Student Button -->
         <Button 
             Text="Add Student"
-            Margin="10"/>
+            Margin="10"
+            Command="{Binding GoToCreateCommand}"/>
 
         <!-- Search Bar -->
         <StackLayout Orientation="Horizontal" Margin="10">
@@ -46,7 +47,8 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{Binding Source={x:Reference StudentListViewRoot},
-                                Path=BindingContext.GoToDetailCommand}"/>
+                                Path=BindingContext.GoToDetailCommand}"
+                                CommandParameter="{Binding Id}"/>
                         </Frame.GestureRecognizers>
                         <StackLayout>
                             <Label Text="Test"></Label>

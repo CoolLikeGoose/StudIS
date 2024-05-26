@@ -2,7 +2,6 @@ using CommunityToolkit.Mvvm.Input;
 using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace StudIS.APP.ViewModels.Student
 {
@@ -23,13 +22,13 @@ namespace StudIS.APP.ViewModels.Student
         [RelayCommand]
         private async Task GoToCreateAsync()
         {
-            // await Shell.Current.GoToAsync("/create");
+            await Shell.Current.GoToAsync("edit");
         }
 
         [RelayCommand]
-        public async Task GoToDetailAsync()
+        public async Task GoToDetailAsync(Guid id)
         {
-            await Shell.Current.GoToAsync("detail");
+            await Shell.Current.GoToAsync("detail", new Dictionary<string, object>(){{"Id", id}});
         }
     }
 }
