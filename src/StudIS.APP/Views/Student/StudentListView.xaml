@@ -10,7 +10,9 @@
              x:Name="StudentListViewRoot">
     <StackLayout>
         <!-- Add Student Button -->
-        <Button Text="Add Student" Margin="10"/>
+        <Button 
+            Text="Add Student"
+            Margin="10"/>
 
         <!-- Search Bar -->
         <StackLayout Orientation="Horizontal" Margin="10">
@@ -41,6 +43,11 @@
                            CornerRadius="10"
                            WidthRequest="320" HeightRequest="240"
                            IsClippedToBounds="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference StudentListViewRoot},
+                                Path=BindingContext.GoToDetailCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout>
                             <Label Text="Test"></Label>
                             <Label Text="{Binding Name}" FontSize="Medium"/>

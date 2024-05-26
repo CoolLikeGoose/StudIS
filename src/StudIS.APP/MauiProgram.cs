@@ -1,9 +1,6 @@
-﻿using System.Diagnostics;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using StudIS.APP.Views.Student;
 using StudIS.BL;
-using StudIS.BL.Facades;
-using StudIS.BL.Facades.Interfaces;
 using StudIS.DAL;
 using StudIS.DAL.Migrator;
 using StudIS.DAL.Options;
@@ -27,6 +24,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
+        // Services
         builder.Services
             .AddDalServices(new DALOptions()
             {
@@ -40,7 +38,11 @@ public static class MauiProgram
         
         var app = builder.Build();
         
+        // Migration
         app.Services.GetRequiredService<IDbMigrator>().Migrate();
+        
+        // Routing
+        Routing.RegisterRoute("//students/detail", typeof(StudentDetailView));
         
         return app;
     }
