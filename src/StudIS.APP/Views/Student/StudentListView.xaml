@@ -18,7 +18,7 @@
         <!-- Search Bar -->
         <StackLayout Orientation="Horizontal" Margin="10">
             <Entry Placeholder="Enter search query" x:Name="SearchEntry" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Search"/>
+            <Button Text="Search" Command="{Binding SearchCommand}"/>
         </StackLayout>
 
         <!-- Sorting Section -->

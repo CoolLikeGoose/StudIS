@@ -30,5 +30,16 @@ namespace StudIS.APP.ViewModels.Student
         {
             await Shell.Current.GoToAsync("detail", new Dictionary<string, object>(){{"Id", id}});
         }
+
+        [RelayCommand]
+        public async Task SearchAsync(Guid id)
+        {
+            IEnumerable<StudentListModel> students = await studentFacade.GetByName("Nikola");
+            Students.Clear();
+            foreach (StudentListModel student in students)
+            {
+                Students.Add(student);
+            }
+        }
     }
 }

@@ -6,7 +6,6 @@ using StudIS.BL.Models;
 
 namespace StudIS.APP.ViewModels.Student;
 
-// [QueryProperty(nameof(Id), "Id")]
 public partial class StudentDetailViewModel(IStudentFacade studentFacade) : IViewModel, IQueryAttributable, INotifyPropertyChanged
 {
     private Guid Id { get; set; }
