@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StudIS.APP.ViewModels.Student;
+using StudIS.APP.ViewModels.Activity;
+using StudIS.APP.Views.Activities;
 using StudIS.APP.Views.Student;
 using StudIS.BL;
 using StudIS.DAL;
@@ -45,6 +47,7 @@ public static class MauiProgram
         // Routing
         Routing.RegisterRoute("//students/detail", typeof(StudentDetailView));
         Routing.RegisterRoute("//students/edit", typeof(StudentEditView));
+        Routing.RegisterRoute("//activities/detail", typeof(ActivityDetailView));
         
         return app;
     }

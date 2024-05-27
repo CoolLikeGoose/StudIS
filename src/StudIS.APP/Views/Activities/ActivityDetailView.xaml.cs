@@ -2,9 +2,9 @@
 
 namespace StudIS.APP.Views.Activities;
 
-public partial class ActivitiesListView
+public partial class ActivityDetailView
 {
-    public ActivitiesListView(ActivityListViewModel viewModel) : base(viewModel)
+    public ActivityDetailView(ActivityDetailViewModel viewModel) : base(viewModel)
     {
         InitializeComponent();
     } 
