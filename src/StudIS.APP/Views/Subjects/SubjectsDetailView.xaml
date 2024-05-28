@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:vm="clr-namespace:StudIS.APP.ViewModels.Subjects"
+                       xmlns:views="clr-namespace:StudIS.APP.Views"
+                       x:Class="StudIS.APP.Views.Subjects.SubjectsDetailView"
+                       x:DataType="vm:SubjectsDetailViewModel"
+                       x:Name="SubjectsDetailViewRoot">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Subject Information Section -->
+            <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="LightGray" />
+                    <StackLayout Orientation="Vertical" Margin="10,0,0,0" HorizontalOptions="FillAndExpand">
+                        <Label Text="{Binding Subject.Name}" FontSize="Large" FontAttributes="Bold" TextColor="Red"/>
+                        <Label Text="{Binding Subject.Abbreviation}" FontSize="Medium" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
+                        <Button Text="Delete" Margin="0,0,5,0"/>
+                        <Button Text="Edit" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Enrolled Students Section -->
+            <Label Text="Enrolled Students" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10"/>
+            <Button Text="Add" HorizontalOptions="End" />
+
+            <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="▼" Grid.Column="0" VerticalOptions="Center"/>
+                        <Label Text="Student Name" Grid.Column="1" VerticalOptions="Center"/>
+                        <Label Text="Student Surname" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" Grid.Column="3" VerticalOptions="Center">
+                            <Button Text="Details" Margin="0,0,5,0"/>
+                            <Button Text="Remove"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <!-- Activities Section -->
+                    <Frame BorderColor="Black" Padding="10" Margin="10,0,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Activity Type/Tag" Grid.Column="0" VerticalOptions="Center"/>
+                            <Label Text="Activity Name" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label Text="Timestamp" Grid.Column="2" VerticalOptions="Center"/>
+                            <Label Text="Grade Value" Grid.Column="3" VerticalOptions="Center"/>
+                            <Label Text="Note" Grid.Column="4" VerticalOptions="Center"/>
+                            <Button Text="Details" Grid.Column="5" VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Example of another activity entry -->
+                    <Frame BorderColor="Black" Padding="10" Margin="10,0,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Activity Type/Tag" Grid.Column="0" VerticalOptions="Center"/>
+                            <Label Text="Activity Name" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label Text="Timestamp" Grid.Column="2" VerticalOptions="Center"/>
+                            <Label Text="Grade Value" Grid.Column="3" VerticalOptions="Center"/>
+                            <Label Text="Note" Grid.Column="4" VerticalOptions="Center"/>
+                            <Button Text="Details" Grid.Column="5" VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</views:ContentPageBase>

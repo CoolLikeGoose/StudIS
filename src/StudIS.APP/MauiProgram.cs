@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using StudIS.APP.ViewModels.Student;
 using StudIS.APP.ViewModels.Activity;
+using StudIS.APP.ViewModels.Subjects;
 using StudIS.APP.Views.Activities;
 using StudIS.APP.Views.Student;
+using StudIS.APP.Views.Subjects;
 using StudIS.BL;
 using StudIS.DAL;
 using StudIS.DAL.Migrator;
@@ -22,14 +24,14 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
-        
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
         // Services
         builder.Services
-            .AddDalServices(new DALOptions()
+            .AddDalServices(new DALOptions
             {
                 DatabaseDirectory = FileSystem.AppDataDirectory,
                 DatabaseName = "StudIS.db",
@@ -38,16 +40,18 @@ public static class MauiProgram
             })
             .AddAppServices()
             .AddBlServices();
-        
+
         var app = builder.Build();
-        
+
         // Migration
         app.Services.GetRequiredService<IDbMigrator>().Migrate();
-        
+
         // Routing
         Routing.RegisterRoute("//students/detail", typeof(StudentDetailView));
         Routing.RegisterRoute("//students/edit", typeof(StudentEditView));
         Routing.RegisterRoute("//activities/detail", typeof(ActivityDetailView));
+        Routing.RegisterRoute("//subjects/detail", typeof(SubjectsDetailView));
+        Routing.RegisterRoute("//subjects/edit", typeof(SubjectsEditView));
         
         return app;
     }
