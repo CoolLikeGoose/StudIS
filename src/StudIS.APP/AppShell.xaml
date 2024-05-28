@@ -36,5 +36,4 @@
                 Route="activities" />
         </Tab>
     </TabBar>
-
 </Shell>

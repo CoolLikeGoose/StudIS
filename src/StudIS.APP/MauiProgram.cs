@@ -50,6 +50,7 @@ public static class MauiProgram
         Routing.RegisterRoute("//students/detail", typeof(StudentDetailView));
         Routing.RegisterRoute("//students/edit", typeof(StudentEditView));
         Routing.RegisterRoute("//activities/detail", typeof(ActivityDetailView));
+        Routing.RegisterRoute("//activities/edit", typeof(ActivityEditView));  
         Routing.RegisterRoute("//subjects/detail", typeof(SubjectsDetailView));
         Routing.RegisterRoute("//subjects/edit", typeof(SubjectsEditView));
         
