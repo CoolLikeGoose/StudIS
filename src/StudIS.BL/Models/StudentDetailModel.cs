@@ -5,7 +5,8 @@ namespace StudIS.BL.Models;
 
 public record StudentDetailModel : ModelBase
 {
-    public required string Name { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
     public required string? ImageUrl { get; set; }
     
     public ICollection<SubjectListModel> Subjects { get; init; } = new List<SubjectListModel>();
@@ -13,7 +14,8 @@ public record StudentDetailModel : ModelBase
     public static StudentDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),
-        Name = string.Empty,
+        FirstName = string.Empty,
+        LastName = string.Empty,
         ImageUrl = string.Empty
     };
 

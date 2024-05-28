@@ -16,7 +16,8 @@ public class StudentModelMapper()
         return new StudentListModel()
         {
             Id = entity.Id,
-            Name = entity.Name
+            FirstName = entity.FirstName,
+            LastName = entity.LastName
         };
     }
 
@@ -32,7 +33,8 @@ public class StudentModelMapper()
         {
             Id = entity.Id,
             ImageUrl = entity.ImageUrl,
-            Name = entity.Name,
+            FirstName = entity.FirstName,
+            LastName = entity.LastName,
             Subjects = entity.Subjects.Select(e => modelMapper.MapToListModel(e)).ToList()
         };
     }
@@ -43,7 +45,8 @@ public class StudentModelMapper()
         {
             Id = model.Id,
             ImageUrl = model.ImageUrl,
-            Name = model.Name
+            FirstName = model.LastName,
+            LastName = model.LastName
         };
     }
 }
