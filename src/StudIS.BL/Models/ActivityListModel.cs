@@ -8,6 +8,8 @@ public record ActivityListModel : ModelBase
     public required DateTime EndTime { get; set; }
     public required Place Room { get; set; }
     public required string? Description { get; set; }
+    
+    public required ActivityType ActivityType { get; set; }
     public required Guid SubjectId { get; set; }
     public static ActivityListModel Empty => new()
     {
@@ -16,6 +18,7 @@ public record ActivityListModel : ModelBase
         EndTime = DateTime.Now,
         Room = Place.Other,
         Description = string.Empty,
-        SubjectId = Guid.NewGuid()
+        SubjectId = Guid.NewGuid(),
+        ActivityType = ActivityType.Exercise
     };
 }

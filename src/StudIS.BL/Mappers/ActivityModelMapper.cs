@@ -20,7 +20,8 @@ public class ActivityModelMapper()
             StartTime = entity.StartTime,
             EndTime = entity.EndTime,
             Room = entity.Room,
-            SubjectId = entity.SubjectId
+            SubjectId = entity.SubjectId,
+            ActivityType = entity.ActivityType,
         };
 
     }

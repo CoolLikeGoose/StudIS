@@ -3,21 +3,22 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:vm="clr-namespace:StudIS.APP.ViewModels.Activity"
                        xmlns:views="clr-namespace:StudIS.APP.Views"
+                       xmlns:models="clr-namespace:StudIS.BL.Models;assembly=StudIS.BL"
                        x:Class="StudIS.APP.Views.Activities.ActivitiesListView"
                        x:DataType="vm:ActivityListViewModel"
                        x:Name="ActivityListPageRoot">
-<ScrollView>
+    <ScrollView>
         <StackLayout Padding="10">
             <!-- Header Section -->
             <Label Text="Activities" FontSize="Large" FontAttributes="Bold" Margin="0,10,0,10" />
 
             <!-- Add Activity Button -->
-            <Button Text="Add Activity" HorizontalOptions="End" Command="{Binding GoToCreateAsyncCommand}" />
+            <Button Text="Add Activity" HorizontalOptions="End" Command="{Binding GoToCreateCommand}" />
 
             <!-- Activities List -->
             <CollectionView ItemsSource="{Binding Activities}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:ActivityListModel">
                         <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
                             <StackLayout>
                                 <Grid>
@@ -27,14 +28,20 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding ActivityType}" Grid.Column="0" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Description}" Grid.Column="1" VerticalOptions="Center"/>
-                                    <Label Text="{Binding StartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="2" VerticalOptions="Center"/>
-                                    <Label Text="{Binding EndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="3" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Room}" Grid.Column="4" VerticalOptions="Center"/>
-                                    <Button Text="Details" Grid.Column="5" VerticalOptions="Center" Command="{Binding Path=BindingContext.GoToDetailAsyncCommand, Source={x:Reference ActivityListPageRoot}}" CommandParameter="{Binding Id}"/>
+                                    <Label Grid.Column="0" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding ActivityType}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding Description}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding StartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="1" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding EndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="2" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Room}" Grid.Column="3" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                    <Button Text="Details" Grid.Column="4" VerticalOptions="Center" Command="{Binding Path=BindingContext.GoToDetailCommand, Source={x:Reference ActivityListPageRoot}}" CommandParameter="{Binding Id}" Margin="10,0,0,0"/>
                                 </Grid>
                             </StackLayout>
                         </Frame>
