@@ -44,7 +44,7 @@
                 <Entry Grid.Row="1" Grid.Column="3" Placeholder="Subject"/>
 
                 <Button Text="Search" Grid.Row="2" Grid.Column="0" WidthRequest="100" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference ActivityListPageRoot}}"/>
-                <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Search" Text="{Binding SearchTerm}"/>
+                <!-- <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Search" Text="{Binding searchTerm}"/> -->
                 <Picker Grid.Row="2" Grid.Column="3">
                     <Picker.ItemsSource>
                         <!-- Binding to your sorting options -->

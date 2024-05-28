@@ -9,15 +9,6 @@
              x:DataType="vm:StudentListViewModel"
              x:Name="StudentListViewRoot">
     <StackLayout>
-        <!-- Add Student Button -->
-        
-
-        <!-- Search Bar -->
-        <StackLayout Orientation="Horizontal" Margin="10">
-            
-        </StackLayout>
-
-        <!-- Sorting Section -->
         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="1*, 4*, 1*" >
             <Button 
                 Grid.Row="0"
@@ -31,8 +22,10 @@
                 Grid.Column="1"
                 Margin="10"
                 Placeholder="Enter search query" 
+                Text="{Binding SearchQuery}"
                 x:Name="SearchEntry" 
                 HorizontalOptions="FillAndExpand"/>
+            
             <Button 
                 Grid.Row="0"
                 Grid.Column="2"
@@ -42,10 +35,19 @@
 
             <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10">
                 <Label Text="Sort By:" VerticalOptions="Center"/>
-                <Picker x:Name="SortPicker" HorizontalOptions="FillAndExpand"/>
+                <Picker 
+                    x:Name="SortPicker" 
+                    ItemsSource="{Binding SortOptions}"
+                    SelectedItem="{Binding SortOption}"
+                    HorizontalOptions="FillAndExpand"/>
                 
             </StackLayout>
-            <Button Grid.Row="1" Grid.Column="2" Text="Sort" Margin="10"/>
+            <Button 
+                Grid.Row="1" 
+                Grid.Column="2" 
+                Text="Sort" 
+                Margin="10"
+                Command="{Binding SortCommand}"/>
         </Grid>
         
         
@@ -53,25 +55,26 @@
         <CollectionView ItemsSource="{Binding Students}" 
                         VerticalOptions="FillAndExpand" Margin="10">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Horizontal"
+                <GridItemsLayout Orientation="Vertical"
                                  HorizontalItemSpacing="10" VerticalItemSpacing="10"
-                                 Span="2" />
+                                 Span="3" />
             </CollectionView.ItemsLayout>
             
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:StudentListModel">
                     <Frame Padding="0"
                            CornerRadius="10"
-                           WidthRequest="320" HeightRequest="240"
+                           WidthRequest="320" HeightRequest="140"
                            IsClippedToBounds="True">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{Binding Source={x:Reference StudentListViewRoot},
-                                Path=BindingContext.GoToDetailCommand}"
+                                Path= BindingContext.GoToDetailCommand}"
                                 CommandParameter="{Binding Id}"/>
                         </Frame.GestureRecognizers>
-                        <StackLayout>
+                        <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Padding="10,10,10,10">
                                 <Label Text="{Binding FirstName}" FontSize="Medium"/>
+                                <Label Text="{Binding LastName}" FontSize="Medium"/>
                         </StackLayout>
                     </Frame>
                 </DataTemplate>

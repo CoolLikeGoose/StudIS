@@ -48,13 +48,13 @@ namespace StudIS.APP.ViewModels.Activity
         [RelayCommand]
         public async Task SearchAsync()
         {
-            if (string.IsNullOrWhiteSpace(SearchTerm))
+            if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 await LoadDataAsync();
                 return;
             }
 
-            IEnumerable<ActivityListModel> activities = await _activityFacade.GetByName(SearchTerm);
+            IEnumerable<ActivityListModel> activities = await _activityFacade.GetByName(searchTerm);
             Activities.Clear();
             foreach (ActivityListModel activity in activities)
             {

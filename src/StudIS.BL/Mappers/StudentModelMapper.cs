@@ -45,7 +45,7 @@ public class StudentModelMapper()
         {
             Id = model.Id,
             ImageUrl = model.ImageUrl,
-            FirstName = model.LastName,
+            FirstName = model.FirstName,
             LastName = model.LastName
         };
     }
