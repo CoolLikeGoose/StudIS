@@ -18,7 +18,7 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
         StudentEntity actualStudent= await dbContext.Students.SingleAsync(i => i.Id == student.Id);
-        Assert.Equal(student.Name,actualStudent.Name);
+        Assert.Equal(student.FirstName,actualStudent.FirstName);
         Assert.Equal(student.ImageUrl,actualStudent.ImageUrl);
     }
     [Fact]
@@ -47,14 +47,14 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Act
-        student.Name = "Updated Name";
+        student.FirstName = "Updated Name";
         StudIsDbContextSUT.Students.Update(student);
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
         var updatedStudent = await dbContext.Students.FindAsync(student.Id);
-        Assert.Equal("Updated Name", updatedStudent.Name);
+        Assert.Equal("Updated Name", updatedStudent.FirstName);
     }
 
     [Fact]
@@ -82,7 +82,8 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         var student = new StudentEntity
         {
             Id = Guid.NewGuid(),
-            Name = "John Doe",
+            FirstName = "John",
+            LastName = "Doe",
             ImageUrl = "http://example.com/john-doe.jpg"
         };
 
@@ -103,7 +104,8 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
         var student = new StudentEntity
         {
             Id = Guid.NewGuid(),
-            Name = "John Doe",
+            FirstName = "John",
+            LastName = "Doe",
             ImageUrl = "http://example.com/john-doe.jpg"
         };
         StudIsDbContextSUT.Students.Add(student);

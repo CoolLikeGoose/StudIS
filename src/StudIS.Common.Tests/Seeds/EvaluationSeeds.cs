@@ -9,6 +9,7 @@ public static class EvaluationSeeds
     {
         Id = Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
         Description = "example description",
+        Grade = 10,
         ActivityId = ActivitySeeds.BasicActivity.Id,
         StudentId = StudentSeeds.BasicStudent.Id
     };
@@ -17,6 +18,7 @@ public static class EvaluationSeeds
     {
         Id = Guid.Parse("fda29883-79e8-44cb-bc1c-570efe779cfa"),
         Description = "example description",
+        Grade = 10,
         ActivityId = ActivitySeeds.StandardInDbActivity.Id,
         StudentId = StudentSeeds.StandardInDbStudent.Id
     };
@@ -25,6 +27,7 @@ public static class EvaluationSeeds
     {
         Id = Guid.Parse("014aa0d1-2145-44cb-9244-139a7fdc6fba"),
         Description = "example description",
+        Grade = 10,
         ActivityId = ActivitySeeds.StandardInDbActivity.Id,
         StudentId = StudentSeeds.StandardInDbStudent.Id
     };

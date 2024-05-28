@@ -6,40 +6,33 @@ namespace StudIS.DAL.Seeds;
 
 public static class SubjectSeeds
 {
-    public static readonly SubjectEntity BasicSubject = new SubjectEntity()
+    public static readonly SubjectEntity StandardInDbSubject1 = new SubjectEntity()
     {
-        Id = Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
+        Id = Guid.NewGuid(),
         Name = "mathematics analysis",
         Abbreviation = "ima1"
     };
 
-    public static SubjectEntity SubjectUpdateTest = new SubjectEntity()
+    public static SubjectEntity StandardInDbSubject2 = new SubjectEntity()
     {
-        Id = Guid.Parse("15ed62ae-6ec5-4643-9dd8-4f6e5e0b0a0e"),
+        Id = Guid.NewGuid(),
         Name = "mathematic analysis 2",
         Abbreviation = "ima2"
     };
     
-    public static SubjectEntity StandardInDbSubject = new SubjectEntity()
+    public static SubjectEntity StandardInDbSubject3 = new SubjectEntity()
     {
-        Id = Guid.Parse("668299f7-8a85-48eb-90ba-4a033757bc72"),
+        Id = Guid.NewGuid(),
         Name = "database system",
         Abbreviation = "ids"
-    };
-    
-    public static SubjectEntity SubjectEmpty = new SubjectEntity()
-    {
-        Id = Guid.Parse("0e4b9e16-02e8-4e71-b4c0-2253669ab8e2"),
-        Name = string.Empty,
-        Abbreviation = string.Empty
     };
     
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
-            SubjectUpdateTest with { Activities = null!, Students = null! },
-            StandardInDbSubject with { Activities = null!, Students = null! },
-            SubjectEmpty with { Activities = null!, Students = null! }
+            StandardInDbSubject1 with { Activities = null!, Students = null! },
+            StandardInDbSubject2 with { Activities = null!, Students = null! },
+            StandardInDbSubject3 with { Activities = null!, Students = null! }
         );
     }
 }

@@ -71,7 +71,7 @@
                                 CommandParameter="{Binding Id}"/>
                         </Frame.GestureRecognizers>
                         <StackLayout>
-                                <Label Text="{Binding Name}" FontSize="Medium"/>
+                                <Label Text="{Binding FirstName}" FontSize="Medium"/>
                         </StackLayout>
                     </Frame>
                 </DataTemplate>

@@ -18,7 +18,8 @@ public class StudentFacade(IUnitOfWorkFactory unitOfWorkFactory, StudentModelMap
         List<StudentEntity> entities = await unitOfWork
             .GetRepository<StudentEntity, StudentEntityMapper>()
             .Get()
-            .Where(e => e.Name.Contains(studentName))
+            .Where(e => (e.FirstName+" "+e.LastName).Contains(studentName) 
+                        || (e.LastName+" "+e.FirstName).Contains(studentName))
             .ToListAsync()
             .ConfigureAwait(false);
 

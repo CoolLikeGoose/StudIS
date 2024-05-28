@@ -24,7 +24,7 @@ public class StudentFacadeTest : FacadeTestBase
         await _studentFacadeSUT.SaveAsync(studentToCreate);
 
         Assert.NotNull(studentToCreate);
-        Assert.Equal("Nikola", studentToCreate.Name);
+        Assert.Equal("Nikola", studentToCreate.FirstName);
     }
 
     
@@ -44,12 +44,12 @@ public class StudentFacadeTest : FacadeTestBase
     {
         var existingStudent = StudentModelMapper.MapToDetailModel(StudentSeeds.StandardInDbStudent);
         Assert.NotNull(existingStudent);
-        existingStudent.Name = "Updated Daniil";
+        existingStudent.FirstName = "Updated Daniil";
         
         await _studentFacadeSUT.SaveAsync(existingStudent);
         var updatedStudent = await _studentFacadeSUT.GetAsync(existingStudent.Id);
         
-        Assert.Equal("Updated Daniil", updatedStudent.Name);
+        Assert.Equal("Updated Daniil", updatedStudent.FirstName);
         Assert.Equal(StudentSeeds.BasicStudent.ImageUrl, updatedStudent.ImageUrl);
     }
     

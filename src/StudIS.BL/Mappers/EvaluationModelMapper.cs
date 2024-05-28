@@ -19,6 +19,7 @@ public class EvaluationModelMapper()
             Activity = new ActivityModelMapper().MapToListModel(entity.Activity),
             ActivityId = entity.ActivityId,
             Description = entity.Description,
+            Grade = entity.Grade,
             Id = entity.Id,
             StudentId = entity.StudentId,
             Student = new StudentModelMapper().MapToListModel(entity.Student)
@@ -36,6 +37,7 @@ public class EvaluationModelMapper()
         {
             Id = entity.Id,
             Activity = new ActivityModelMapper().MapToListModel(entity.Activity),
+            Grade = entity.Grade,
             ActivityId = entity.ActivityId,
             Description = entity.Description,
             Student = new StudentModelMapper().MapToListModel(entity.Student),
@@ -50,6 +52,7 @@ public class EvaluationModelMapper()
             Id = model.Id,
             ActivityId = model.ActivityId,
             Description = model.Description,
+            Grade = model.Grade,
             StudentId = model.StudentId
         };
     }
