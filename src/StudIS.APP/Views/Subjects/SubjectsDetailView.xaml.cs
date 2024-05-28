@@ -2,9 +2,9 @@
 
 namespace StudIS.APP.Views.Subjects;
 
-public partial class SubjectsListView
+public partial class SubjectsDetailView
 {
-    public SubjectsListView(SubjectsListViewModel listViewModel) : base(listViewModel)
+    public SubjectsDetailView(SubjectsDetailViewModel viewModel) : base(viewModel)
     {
         InitializeComponent();
     }
