@@ -10,13 +10,50 @@
     <ScrollView>
         <StackLayout Padding="10">
             <!-- Header Section -->
-            <Label Text="Activities" FontSize="Large" FontAttributes="Bold" Margin="0,10,0,10" />
+            <Label Text="Activities" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,20" />
 
             <!-- Add Activity Button -->
-            <Button Text="Add Activity" HorizontalOptions="End" Command="{Binding GoToCreateCommand}" />
+            <Button Text="Add Activity" HorizontalOptions="End" Command="{Binding GoToCreateCommand}" Margin="0,0,0,20"/>
+
+            <!-- Filter Section -->
+            <Grid ColumnSpacing="10" RowSpacing="10" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Start Date" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="End Date" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="Activity Type" Grid.Row="0" Grid.Column="2"/>
+                <Label Text="Subject" Grid.Row="0" Grid.Column="3"/>
+
+                <Entry Grid.Row="1" Grid.Column="0" Placeholder="Start Date"/>
+                <Entry Grid.Row="1" Grid.Column="1" Placeholder="End Date"/>
+                <Picker Grid.Row="1" Grid.Column="2">
+                    <Picker.ItemsSource>
+                        <!-- Binding to your activity types -->
+                    </Picker.ItemsSource>
+                </Picker>
+                <Entry Grid.Row="1" Grid.Column="3" Placeholder="Subject"/>
+
+                <Button Text="Search" Grid.Row="2" Grid.Column="0" WidthRequest="100" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference ActivityListPageRoot}}"/>
+                <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Search" Text="{Binding SearchTerm}"/>
+                <Picker Grid.Row="2" Grid.Column="3">
+                    <Picker.ItemsSource>
+                        <!-- Binding to your sorting options -->
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
 
             <!-- Activities List -->
-            <CollectionView ItemsSource="{Binding Activities}">
+            <CollectionView ItemsSource="{Binding Activities}" Margin="0,20,0,0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ActivityListModel">
                         <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
