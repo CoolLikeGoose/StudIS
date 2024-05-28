@@ -21,4 +21,6 @@ public record ActivityListModel : ModelBase
         SubjectId = Guid.NewGuid(),
         ActivityType = ActivityType.Exercise
     };
+
+    
 }

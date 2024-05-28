@@ -15,41 +15,31 @@
             <!-- Add Activity Button -->
             <Button Text="Add Activity" HorizontalOptions="End" Command="{Binding GoToCreateCommand}" Margin="0,0,0,20"/>
 
-            <!-- Filter Section -->
+            <!-- Sort Section -->
             <Grid ColumnSpacing="10" RowSpacing="10" Padding="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Text="Start Date" Grid.Row="0" Grid.Column="0"/>
-                <Label Text="End Date" Grid.Row="0" Grid.Column="1"/>
-                <Label Text="Activity Type" Grid.Row="0" Grid.Column="2"/>
-                <Label Text="Subject" Grid.Row="0" Grid.Column="3"/>
-
-                <Entry Grid.Row="1" Grid.Column="0" Placeholder="Start Date"/>
-                <Entry Grid.Row="1" Grid.Column="1" Placeholder="End Date"/>
-                <Picker Grid.Row="1" Grid.Column="2">
+                <Picker Grid.Row="0" Grid.Column="0" SelectedItem="{Binding SortOption}">
                     <Picker.ItemsSource>
-                        <!-- Binding to your activity types -->
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Start Date (Earliest First)</x:String>
+                            <x:String>Start Date (Latest First)</x:String>
+                            <x:String>End Date (Earliest First)</x:String>
+                            <x:String>End Date (Latest First)</x:String>
+                            <x:String>Activity Type (A-Z)</x:String>
+                            <x:String>Activity Type (Z-A)</x:String>
+                            <x:String>Subject (A-Z)</x:String>
+                            <x:String>Subject (Z-A)</x:String>
+                        </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Entry Grid.Row="1" Grid.Column="3" Placeholder="Subject"/>
-
-                <Button Text="Search" Grid.Row="2" Grid.Column="0" WidthRequest="100" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, Source={x:Reference ActivityListPageRoot}}"/>
-                <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Search" Text="{Binding SearchTerm}"/>
-                <Picker Grid.Row="2" Grid.Column="3">
-                    <Picker.ItemsSource>
-                        <!-- Binding to your sorting options -->
-                    </Picker.ItemsSource>
-                </Picker>
+                <Button Text="Sort" Grid.Row="0" Grid.Column="1" WidthRequest="100" Command="{Binding SortActivitiesCommand}"/>
             </Grid>
 
             <!-- Activities List -->
