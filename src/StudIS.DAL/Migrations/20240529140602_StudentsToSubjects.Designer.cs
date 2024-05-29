@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudIS.DAL;
 
@@ -10,9 +11,11 @@ using StudIS.DAL;
 namespace StudIS.DAL.Migrations
 {
     [DbContext(typeof(StudIsDbContext))]
-    partial class StudIsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240529140602_StudentsToSubjects")]
+    partial class StudentsToSubjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0-preview.1.24081.2");

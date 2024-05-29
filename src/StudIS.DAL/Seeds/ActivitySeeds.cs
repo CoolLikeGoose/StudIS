@@ -9,7 +9,7 @@ public static class ActivitySeeds
 {
     public static readonly ActivityEntity StandardInDbActivity1 = new ActivityEntity()
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.Parse("39c32acc-2d69-4be0-a412-44f0a738e84b"),
         StartTime = new DateTime(2023, 10, 10, 10, 10, 10),
         EndTime = new DateTime(2023, 11, 11, 11, 11, 11),
         Room = Place.D105,
@@ -22,7 +22,7 @@ public static class ActivitySeeds
     
     public static readonly ActivityEntity StandardInDbActivity2 = new ActivityEntity()
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.Parse("0b5bb150-3fb7-4e8d-bb48-945c0c376700"),
         StartTime = new DateTime(2023, 10, 10, 10, 10, 10),
         EndTime = new DateTime(2023, 11, 11, 11, 11, 11),
         Room = Place.D105,
@@ -30,12 +30,12 @@ public static class ActivitySeeds
         Description = "EXAM description",
         SubjectId = SubjectSeeds.StandardInDbSubject2.Id,
         
-        Subject = SubjectSeeds.StandardInDbSubject1
+        Subject = SubjectSeeds.StandardInDbSubject2
     };
     
     public static readonly ActivityEntity StandardInDbActivity3 = new ActivityEntity()
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.Parse("a8e31b76-150e-496c-9579-718b9a5be9f3"),
         StartTime = new DateTime(2023, 10, 10, 10, 10, 10),
         EndTime = new DateTime(2023, 11, 11, 11, 11, 11),
         Room = Place.Laboratory,
