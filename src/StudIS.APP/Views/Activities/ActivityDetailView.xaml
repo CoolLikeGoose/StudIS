@@ -7,8 +7,10 @@
                        x:Class="StudIS.APP.Views.Activities.ActivityDetailView"
                        x:DataType="vm:ActivityDetailViewModel"
                        x:Name="ActivityDetailPageRoot">
+
     <ScrollView>
         <StackLayout Padding="10">
+
             <!-- Activity Information Section -->
             <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
@@ -18,8 +20,8 @@
                         <Label Text="{Binding Activity.Description}" FontSize="Medium" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
-                        <Button Text="Delete" Margin="0,0,5,0"/>
-                        <Button Text="Edit"/>
+                        <Button Text="Delete" Command="{Binding DeleteCommand}" Margin="0,0,5,0"/>
+                        <Button Text="Edit" Command="{Binding EditCommand}"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>
@@ -29,13 +31,13 @@
             <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
                 <StackLayout>
                     <Label Text="Start Time" />
-                    <DatePicker Date="{Binding Activity.StartTime}" />
+                    <Label Text="{Binding Activity.StartTime}" />
                     <Label Text="End Time" />
-                    <DatePicker Date="{Binding Activity.EndTime}" />
+                    <Label Text="{Binding Activity.EndTime}" />
                     <Label Text="Room" />
-                    <Entry Text="{Binding Activity.Room}" />
+                    <Label Text="{Binding Activity.Room}" />
                     <Label Text="Activity Type" />
-                    <Entry Text="{Binding Activity.ActivityType}" />
+                    <Label Text="{Binding Activity.ActivityType}" />
                 </StackLayout>
             </Frame>
 
@@ -74,4 +76,5 @@
             </CollectionView>
         </StackLayout>
     </ScrollView>
+
 </views:ContentPageBase>

@@ -3,6 +3,7 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:views="clr-namespace:StudIS.APP.Views"
                        xmlns:vm="clr-namespace:StudIS.APP.ViewModels.Activity"
+                       xmlns:models="clr-namespace:StudIS.BL.Models;assembly=StudIS.BL"
                        x:Class="StudIS.APP.Views.Activities.ActivityEditView"
                        x:DataType="vm:ActivityEditViewModel"
                        x:Name="ActivityEditViewRoot">
@@ -23,12 +24,20 @@
             <!-- Start Time -->
             <Label Text="Start Time" Margin="0,10,0,0" />
             <DatePicker Date="{Binding Activity.StartTime}" />
-            <TimePicker Time="{Binding Activity.StartTime, Mode=TwoWay, Converter={StaticResource DateTimeToTimeSpanConverter}}" />
+            <TimePicker Time="{Binding Activity.StartTime, Mode=TwoWay}" />
 
             <!-- End Time -->
             <Label Text="End Time" Margin="0,10,0,0" />
             <DatePicker Date="{Binding Activity.EndTime}" />
-            <TimePicker Time="{Binding Activity.EndTime, Mode=TwoWay, Converter={StaticResource DateTimeToTimeSpanConverter}}" />
+            <TimePicker Time="{Binding Activity.EndTime, Mode=TwoWay}" />
+
+            <!-- Room -->
+            <Label Text="Room" Margin="0,10,0,0" />
+            <Picker Title="Room" SelectedItem="{Binding Activity.Room}" ItemsSource="{Binding Rooms}" />
+
+            <!-- Subject -->
+            <Label Text="Subject" Margin="0,10,0,0" />
+            <Picker Title="Subject" SelectedItem="{Binding Activity.SubjectId}" ItemsSource="{Binding Subjects}" ItemDisplayBinding="{Binding Name}" />
 
             <!-- Save and Cancel Buttons -->
             <StackLayout Orientation="Horizontal" Margin="20,10,20,0">

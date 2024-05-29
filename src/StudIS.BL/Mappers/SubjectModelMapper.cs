@@ -1,4 +1,5 @@
-﻿using StudIS.BL.Models;
+﻿using System.Collections.ObjectModel;
+using StudIS.BL.Models;
 using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Mappers;
@@ -28,15 +29,17 @@ public class SubjectModelMapper()
             return SubjectDetailModel.Empty;
         }
 
-        StudentModelMapper studentModelMapper = new StudentModelMapper();
+        StudentSubjectsModelMapper studentSubjectsModelMapper = new StudentSubjectsModelMapper();
         ActivityModelMapper activityModelMapper = new ActivityModelMapper();
         return new SubjectDetailModel()
         {
             Id = entity.Id,
             Abbreviation = entity.Abbreviation,
             Name = entity.Name,
-            Students = entity.Students.Select(e => studentModelMapper.MapToListModel(e)).ToList(),
-            Activities = entity.Activities.Select(e => activityModelMapper.MapToListModel(e)).ToList()
+            Students = new ObservableCollection<StudentSubjectsListModel>
+                (entity.Students.Select(e => studentSubjectsModelMapper.MapToListModel(e)).ToList()),
+            Activities = new ObservableCollection<ActivityListModel>
+                (entity.Activities.Select(e => activityModelMapper.MapToListModel(e)).ToList())
         };
     }
 

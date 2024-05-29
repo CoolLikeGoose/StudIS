@@ -44,6 +44,17 @@ namespace StudIS.APP.ViewModels.Activity
             Id = (Guid)query["Id"];
             await LoadDataAsync();
         }
+        [RelayCommand]
+        private async Task DeleteAsync()
+        {
+            await _activityFacade.DeleteAsync(Id);
+            await Shell.Current.GoToAsync("..");
+        }
+        [RelayCommand]
+        private async Task EditAsync()
+        {
+            await Shell.Current.GoToAsync("edit", new Dictionary<string, object> { { "Id", Id } });
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

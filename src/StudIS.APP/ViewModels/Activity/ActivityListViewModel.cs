@@ -29,6 +29,7 @@ namespace StudIS.APP.ViewModels.Activity
                 "Subject (A-Z)",
                 "Subject (Z-A)"
             };
+            SortOption = SortOptions.First();
         }
 
         public ObservableCollection<ActivityListModel> Activities { get; }

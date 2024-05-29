@@ -24,4 +24,18 @@ public class SubjectFacade(IUnitOfWorkFactory unitOfWorkFactory, SubjectModelMap
 
         return ModelMapper.MapToListModel(entities);
     }
+
+    public override async Task<SubjectDetailModel?> GetAsync(Guid id)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+
+        SubjectEntity? entity = await unitOfWork
+            .GetRepository<SubjectEntity, SubjectEntityMapper>()
+            .Get()
+            .Include(e => e.Activities)
+            .SingleOrDefaultAsync(e => e.Id == id)
+            .ConfigureAwait(false);
+
+        return entity is null ? null : ModelMapper.MapToDetailModel(entity);
+    }
 }
