@@ -4,7 +4,7 @@ namespace StudIS.APP.Views.Activities;
 
 public partial class ActivityEditView
 {
-    public ActivityEditView(ActivityDetailViewModel viewModel) : base(viewModel)
+    public ActivityEditView(ActivityEditViewModel viewModel) : base(viewModel)
     {
         InitializeComponent();
     } 

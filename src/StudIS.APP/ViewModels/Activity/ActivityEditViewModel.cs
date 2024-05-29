@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,14 +13,17 @@ namespace StudIS.APP.ViewModels.Activity
     public partial class ActivityEditViewModel : ObservableObject, IViewModel, IQueryAttributable
     {
         private readonly IActivityFacade _activityFacade;
+        private readonly ISubjectFacade _subjectFacade;
         private Guid _activityId;
 
-        public ActivityEditViewModel() : this(null) { }
-
-        public ActivityEditViewModel(IActivityFacade activityFacade)
+        public ActivityEditViewModel(IActivityFacade activityFacade, ISubjectFacade subjectFacade)
         {
             _activityFacade = activityFacade;
+            _subjectFacade = subjectFacade;
             ActivityTypes = Enum.GetValues(typeof(ActivityType)).Cast<ActivityType>().ToList();
+            Rooms = Enum.GetValues(typeof(Place)).Cast<Place>().ToList();
+            Subjects = new List<SubjectListModel>();
+            LoadSubjects();
         }
 
         private ActivityDetailModel _activity;
@@ -31,6 +34,13 @@ namespace StudIS.APP.ViewModels.Activity
         }
 
         public List<ActivityType> ActivityTypes { get; }
+        public List<Place> Rooms { get; }
+        public List<SubjectListModel> Subjects { get; private set; }
+
+        private async void LoadSubjects()
+        {
+            Subjects = (await _subjectFacade.GetByName(string.Empty)).ToList();
+        }
 
         public async Task LoadDataAsync()
         {
@@ -47,8 +57,13 @@ namespace StudIS.APP.ViewModels.Activity
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now.AddHours(1),
                     Room = Place.Laboratory,
-                    SubjectId = default
+                    SubjectId = Subjects.FirstOrDefault()?.Id ?? Guid.Empty
                 };
+            }
+
+            if (Activity.SubjectId == default && Subjects.Any())
+            {
+                Activity.SubjectId = Subjects.First().Id;
             }
         }
 

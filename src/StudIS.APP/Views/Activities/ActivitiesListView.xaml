@@ -25,21 +25,21 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- <Picker Grid.Row="0" Grid.Column="0" SelectedItem="{Binding SortOption}"> -->
-                <!--     <Picker.ItemsSource> -->
-                <!--         <x:Array Type="{x:Type x:String}"> -->
-                <!--             <x:String>Start Date (Earliest First)</x:String> -->
-                <!--             <x:String>Start Date (Latest First)</x:String> -->
-                <!--             <x:String>End Date (Earliest First)</x:String> -->
-                <!--             <x:String>End Date (Latest First)</x:String> -->
-                <!--             <x:String>Activity Type (A-Z)</x:String> -->
-                <!--             <x:String>Activity Type (Z-A)</x:String> -->
-                <!--             <x:String>Subject (A-Z)</x:String> -->
-                <!--             <x:String>Subject (Z-A)</x:String> -->
-                <!--         </x:Array> -->
-                <!--     </Picker.ItemsSource> -->
-                <!-- </Picker> -->
-                <!-- <Button Text="Sort" Grid.Row="0" Grid.Column="1" WidthRequest="100" Command="{Binding SortActivitiesCommand}"/> -->
+                <Picker Grid.Row="0" Grid.Column="0" SelectedItem="{Binding SortOption}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Start Date (Earliest First)</x:String>
+                            <x:String>Start Date (Latest First)</x:String>
+                            <x:String>End Date (Earliest First)</x:String>
+                            <x:String>End Date (Latest First)</x:String>
+                            <x:String>Activity Type (A-Z)</x:String>
+                            <x:String>Activity Type (Z-A)</x:String>
+                            <x:String>Subject (A-Z)</x:String>
+                            <x:String>Subject (Z-A)</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Sort" Grid.Row="0" Grid.Column="1" WidthRequest="100" Command="{Binding SortActivitiesCommand}"/>
             </Grid>
 
             <!-- Activities List -->
@@ -68,7 +68,8 @@
                                     <Label Text="{Binding StartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="1" VerticalOptions="Center" Margin="10,0,0,0"/>
                                     <Label Text="{Binding EndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="2" VerticalOptions="Center" Margin="10,0,0,0"/>
                                     <Label Text="{Binding Room}" Grid.Column="3" VerticalOptions="Center" Margin="10,0,0,0"/>
-                                    <Button Text="Details" Grid.Column="4" VerticalOptions="Center" Command="{Binding Path=BindingContext.GoToDetailCommand, Source={x:Reference ActivityListPageRoot}}" CommandParameter="{Binding Id}" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding SubjectId}" Grid.Column="4" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                    <Button Text="Details" Grid.Column="5" VerticalOptions="Center" Command="{Binding Path=BindingContext.GoToDetailCommand, Source={x:Reference ActivityListPageRoot}}" CommandParameter="{Binding Id}" Margin="10,0,0,0"/>
                                 </Grid>
                             </StackLayout>
                         </Frame>

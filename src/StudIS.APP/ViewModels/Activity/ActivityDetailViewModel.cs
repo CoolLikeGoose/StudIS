@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
 
@@ -30,6 +31,17 @@ namespace StudIS.APP.ViewModels.Activity
         {
             Id = (Guid)query["Id"];
             await LoadDataAsync();
+        }
+        [RelayCommand]
+        private async Task DeleteAsync()
+        {
+            await _activityFacade.DeleteAsync(Id);
+            await Shell.Current.GoToAsync("..");
+        }
+        [RelayCommand]
+        private async Task EditAsync()
+        {
+            await Shell.Current.GoToAsync("edit", new Dictionary<string, object> { { "Id", Id } });
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
