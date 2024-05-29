@@ -1,5 +1,5 @@
-﻿using StudIS.Common.Enums;
-using StudIS.DAL.Entities;
+﻿using System.Collections.ObjectModel;
+using StudIS.Common.Enums;
 
 namespace StudIS.BL.Models;
 
@@ -13,7 +13,7 @@ public record ActivityDetailModel : ModelBase
     public required Guid SubjectId { get; set; }
     
     public SubjectListModel? Subject { get; init; }
-    public ICollection<EvaluationListModel> Evaluations { get; init; } = new List<EvaluationListModel>();
+    public ObservableCollection<EvaluationListModel> Evaluations { get; init; } = new ObservableCollection<EvaluationListModel>();
     
     public static ActivityDetailModel Empty => new()
     {

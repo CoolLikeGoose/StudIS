@@ -57,10 +57,11 @@ namespace StudIS.BL.Facades
                 query = query.Where(e => e.ActivityType.ToString() == selectedActivityType);
             }
 
-            if (!string.IsNullOrWhiteSpace(subject))
-            {
-                query = query.Where(e => e.Subject.Contains(subject));
-            }
+            //TODO: закоментил немного
+            // if (!string.IsNullOrWhiteSpace(subject))
+            // {
+            //     query = query.Where(e => e.Subject.Contains(subject));
+            // }
 
             List<ActivityEntity> entities = await query.ToListAsync().ConfigureAwait(false);
             return ModelMapper.MapToListModel(entities);
