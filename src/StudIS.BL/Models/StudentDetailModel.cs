@@ -9,7 +9,7 @@ public record StudentDetailModel : ModelBase
     public required string LastName { get; set; }
     public required string? ImageUrl { get; set; }
     
-    public ICollection<SubjectListModel> Subjects { get; init; } = new List<SubjectListModel>();
+    public ObservableCollection<StudentSubjectsListModel> Subjects { get; init; } = new ObservableCollection<StudentSubjectsListModel>();
 
     public static StudentDetailModel Empty => new()
     {

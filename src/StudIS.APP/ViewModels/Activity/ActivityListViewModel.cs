@@ -74,64 +74,64 @@ namespace StudIS.APP.ViewModels.Activity
         {
             await Shell.Current.GoToAsync("detail", new Dictionary<string, object> { { "Id", id } });
         }
-
-        [RelayCommand]
-        public async Task SearchAsync()
-        {
-            IEnumerable<ActivityListModel> activities;
-
-            if (string.IsNullOrWhiteSpace(SearchTerm) && StartDate == default && EndDate == default && string.IsNullOrWhiteSpace(SelectedActivityType) && string.IsNullOrWhiteSpace(Subject))
-            {
-                activities = await _activityFacade.GetAsync();
-            }
-            else
-            {
-                activities = await _activityFacade.FilterAsync(SearchTerm, StartDate, EndDate, SelectedActivityType, Subject);
-            }
-
-            Activities.Clear();
-            foreach (ActivityListModel activity in activities)
-            {
-                Activities.Add(activity);
-            }
-        }
-
-        [RelayCommand]
-        public void SortActivities()
-        {
-            var sortedActivities = Activities.ToList();
-            switch (SortOption)
-            {
-                case "Start Date (Earliest First)":
-                    sortedActivities = Activities.OrderBy(a => a.StartTime).ToList();
-                    break;
-                case "Start Date (Latest First)":
-                    sortedActivities = Activities.OrderByDescending(a => a.StartTime).ToList();
-                    break;
-                case "End Date (Earliest First)":
-                    sortedActivities = Activities.OrderBy(a => a.EndTime).ToList();
-                    break;
-                case "End Date (Latest First)":
-                    sortedActivities = Activities.OrderByDescending(a => a.EndTime).ToList();
-                    break;
-                case "Activity Type (A-Z)":
-                    sortedActivities = Activities.OrderBy(a => a.ActivityType).ToList();
-                    break;
-                case "Activity Type (Z-A)":
-                    sortedActivities = Activities.OrderByDescending(a => a.ActivityType).ToList();
-                    break;
-                case "Subject (A-Z)":
-                    sortedActivities = Activities.OrderBy(a => a.SubjectId).ToList();
-                    break;
-                case "Subject (Z-A)":
-                    sortedActivities = Activities.OrderByDescending(a => a.SubjectId).ToList();
-                    break;
-            }
-            Activities.Clear();
-            foreach (var activity in sortedActivities)
-            {
-                Activities.Add(activity);
-            }
-        }
+        
+        // [RelayCommand]
+        // public async Task SearchAsync()
+        // {
+        //     IEnumerable<ActivityListModel> activities;
+        //
+        //     if (string.IsNullOrWhiteSpace(SearchTerm) && StartDate == default && EndDate == default && string.IsNullOrWhiteSpace(SelectedActivityType) && string.IsNullOrWhiteSpace(Subject))
+        //     {
+        //         activities = await _activityFacade.GetAsync();
+        //     }
+        //     else
+        //     {
+        //         activities = await _activityFacade.FilterAsync(SearchTerm, StartDate, EndDate, SelectedActivityType, Subject);
+        //     }
+        //
+        //     Activities.Clear();
+        //     foreach (ActivityListModel activity in activities)
+        //     {
+        //         Activities.Add(activity);
+        //     }
+        // }
+        //
+        // [RelayCommand]
+        // public void SortActivities()
+        // {
+        //     var sortedActivities = Activities.ToList();
+        //     switch (SortOption)
+        //     {
+        //         case "Start Date (Earliest First)":
+        //             sortedActivities = Activities.OrderBy(a => a.StartTime).ToList();
+        //             break;
+        //         case "Start Date (Latest First)":
+        //             sortedActivities = Activities.OrderByDescending(a => a.StartTime).ToList();
+        //             break;
+        //         case "End Date (Earliest First)":
+        //             sortedActivities = Activities.OrderBy(a => a.EndTime).ToList();
+        //             break;
+        //         case "End Date (Latest First)":
+        //             sortedActivities = Activities.OrderByDescending(a => a.EndTime).ToList();
+        //             break;
+        //         case "Activity Type (A-Z)":
+        //             sortedActivities = Activities.OrderBy(a => a.ActivityType).ToList();
+        //             break;
+        //         case "Activity Type (Z-A)":
+        //             sortedActivities = Activities.OrderByDescending(a => a.ActivityType).ToList();
+        //             break;
+        //         case "Subject (A-Z)":
+        //             sortedActivities = Activities.OrderBy(a => a.SubjectId).ToList();
+        //             break;
+        //         case "Subject (Z-A)":
+        //             sortedActivities = Activities.OrderByDescending(a => a.SubjectId).ToList();
+        //             break;
+        //     }
+        //     Activities.Clear();
+        //     foreach (var activity in sortedActivities)
+        //     {
+        //         Activities.Add(activity);
+        //     }
+        // }
     }
 }

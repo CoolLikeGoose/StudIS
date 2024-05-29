@@ -1,4 +1,5 @@
-﻿using StudIS.BL.Models;
+﻿using System.Collections.ObjectModel;
+using StudIS.BL.Models;
 using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Mappers;
@@ -21,7 +22,7 @@ public class ActivityModelMapper()
             EndTime = entity.EndTime,
             Room = entity.Room,
             SubjectId = entity.SubjectId,
-            ActivityType = entity.ActivityType,
+            ActivityType = entity.ActivityType
         };
 
     }
@@ -44,7 +45,8 @@ public class ActivityModelMapper()
             SubjectId = entity.SubjectId,
             ActivityType = entity.ActivityType,
             Subject = new SubjectModelMapper().MapToListModel(entity.Subject),
-            Evaluations = entity.Evaluations.Select(e => modelMapper.MapToListModel(e)).ToList()
+            Evaluations = new ObservableCollection<EvaluationListModel>
+                (entity.Evaluations.Select(e => modelMapper.MapToListModel(e)).ToList())
         };
     }
     

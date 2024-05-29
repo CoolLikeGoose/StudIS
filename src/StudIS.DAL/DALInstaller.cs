@@ -36,6 +36,7 @@ public static class DalInstaller
         services.AddSingleton<EvaluationEntityMapper>();
         services.AddSingleton<StudentEntityMapper>();
         services.AddSingleton<SubjectEntityMapper>();
+        services.AddSingleton<StudentsToSubjectsMapper>();
 
         return services;
     }
