@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StudIS.BL.Facades.Interfaces;
 using StudIS.BL.Models;
+using System.Collections.ObjectModel;
 
 namespace StudIS.APP.ViewModels.Subjects;
 
@@ -24,15 +25,26 @@ public partial class SubjectsDetailViewModel : ObservableObject, IViewModel, IQu
         set => SetProperty(ref _subject, value);
     }
 
+    public ObservableCollection<ActivityListModel> Activities { get; } = new();
+
     public async Task LoadDataAsync()
     {
         Subject = await _subjectFacade.GetAsync(Id);
-        OnPropertyChanged("Subject");
+        OnPropertyChanged(nameof(Subject));
+
+        Activities.Clear();
+        foreach (var activity in Subject.Activities)
+        {
+            Activities.Add(activity);
+        }
     }
 
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        Id = (Guid)query["Id"];
+        if (query.ContainsKey("Id"))
+        {
+            Id = (Guid)query["Id"];
+        }
         await LoadDataAsync();
     }
 
@@ -47,6 +59,18 @@ public partial class SubjectsDetailViewModel : ObservableObject, IViewModel, IQu
     private async Task EditAsync()
     {
         await Shell.Current.GoToAsync("edit", new Dictionary<string, object> { { "Id", Id } });
+    }
+
+    [RelayCommand]
+    private async Task GoToActivityDetailAsync(Guid id)
+    {
+        await Shell.Current.GoToAsync("//activities/detail", new Dictionary<string, object> { { "Id", id } });
+    }
+
+    [RelayCommand]
+    private async Task GoToCreateActivityAsync()
+    {
+        await Shell.Current.GoToAsync("//activities/edit");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

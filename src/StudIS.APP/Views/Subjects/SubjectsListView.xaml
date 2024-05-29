@@ -7,40 +7,59 @@
                        x:Class="StudIS.APP.Views.Subjects.SubjectsListView"
                        x:DataType="vm:SubjectsListViewModel"
                        x:Name="SubjectsListViewRoot">
-    <StackLayout>
-        <!-- Add Subject Button -->
-        <Button 
-            Text="Add Subject"
-            Margin="10"
-            Command="{Binding GoToCreateCommand}"/>
+    <StackLayout Padding="20" Spacing="15">
+        <!-- Add and Refresh Buttons -->
+        <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
+            <Button 
+                Text="Add Subject"
+                Command="{Binding GoToCreateCommand}"
+                Style="{StaticResource ActionButtonStyle}" />
+
+            <Button 
+                Text="Refresh"
+                Command="{Binding RefreshCommand}"
+                Style="{StaticResource ActionButtonStyle}" />
+        </HorizontalStackLayout>
 
         <!-- Search Bar -->
-        <StackLayout Orientation="Horizontal" Margin="10">
-            <Entry Placeholder="Enter search query" Text="{Binding SearchQuery}" x:Name="SearchEntry" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Search" Command="{Binding SearchCommand}"/>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Entry Placeholder="Enter search query" 
+                   Text="{Binding SearchQuery}" 
+                   x:Name="SearchEntry" 
+                   HorizontalOptions="FillAndExpand" 
+                   Style="{StaticResource SearchEntryStyle}" />
+            <Button Text="Search" 
+                    Command="{Binding SearchCommand}" 
+                    Style="{StaticResource ActionButtonStyle}" />
         </StackLayout>
 
         <!-- Sorting Section -->
-        <StackLayout Orientation="Horizontal" Margin="10">
+        <StackLayout Orientation="Horizontal" Spacing="10">
             <Label Text="Sort By:" VerticalOptions="Center"/>
-            <Picker x:Name="SortPicker" ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SortOption}" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Sort" Command="{Binding SortCommand}"/>
+            <Picker x:Name="SortPicker" 
+                    ItemsSource="{Binding SortOptions}" 
+                    SelectedItem="{Binding SortOption}" 
+                    HorizontalOptions="FillAndExpand" />
+            <Button Text="Sort" 
+                    Command="{Binding SortCommand}" 
+                    Style="{StaticResource ActionButtonStyle}" />
         </StackLayout>
 
         <!-- Subjects List -->
         <CollectionView ItemsSource="{Binding Subjects}" 
-                        VerticalOptions="FillAndExpand" Margin="10">
+                        VerticalOptions="FillAndExpand">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal"
-                                 HorizontalItemSpacing="10" VerticalItemSpacing="10"
+                                 HorizontalItemSpacing="10" 
+                                 VerticalItemSpacing="10"
                                  Span="2" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:SubjectListModel">
-                    <Frame Padding="0"
+                    <Frame Padding="10"
                            CornerRadius="10"
-                           WidthRequest="320" HeightRequest="240"
+                           Margin="5"
                            IsClippedToBounds="True">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer

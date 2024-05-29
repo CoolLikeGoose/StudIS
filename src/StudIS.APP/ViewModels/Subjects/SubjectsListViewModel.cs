@@ -66,7 +66,6 @@ namespace StudIS.APP.ViewModels.Subjects
         [RelayCommand]
         public async Task SearchAsync()
         {
-            Debug.WriteLine("Slon");
             IEnumerable<SubjectListModel> subjects = await _subjectFacade.GetByName(SearchQuery); // Use the search query
             Debug.WriteLine("Here are subjects " + subjects.Count());
             Subjects.Clear();
@@ -114,6 +113,13 @@ namespace StudIS.APP.ViewModels.Subjects
                 Debug.WriteLine("Here is subject Name " + subject.Name);
                 Subjects.Add(subject);
             }
+        }
+
+        [RelayCommand]
+        public async Task RefreshAsync()
+        {
+            Debug.WriteLine("Refreshing data...");
+            await LoadDataAsync();
         }
     }
 }
