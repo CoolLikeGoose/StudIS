@@ -26,19 +26,17 @@ public class StudentFacade(IUnitOfWorkFactory unitOfWorkFactory, StudentModelMap
         return ModelMapper.MapToListModel(entities);
     }
 
-    // public override async Task<StudentDetailModel?> GetAsync(Guid id)
-    // {
-    //     await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
-    //
-    //     IQueryable<StudentEntity> query = unitOfWork.GetRepository<StudentEntity, StudentEntityMapper>().Get();
-    //     // query.Include($"{nameof(StudentEntity.Subjects)}.{nameof()}")
-    //
-    //     StudentEntity? entity = await unitOfWork
-    //         .GetRepository<StudentEntity, StudentEntityMapper>()
-    //         .Get()
-    //         .SingleOrDefaultAsync(e => e.Id == id)
-    //         .ConfigureAwait(false);
-    //
-    //     return entity is null ? null : ModelMapper.MapToDetailModel(entity);
-    // }
+    public override async Task<StudentDetailModel?> GetAsync(Guid id)
+    {
+        await using IUnitOfWork unitOfWork = UnitOfWorkFactory.Create();
+    
+        IQueryable<StudentEntity> query = unitOfWork.GetRepository<StudentEntity, StudentEntityMapper>().Get();
+        query.Include($"{nameof(StudentEntity.Subjects)}.{nameof(StudentsToSubjectsEntity.Subject)}");
+
+        StudentEntity? entity = await query
+            .SingleOrDefaultAsync(e => e.Id == id)
+            .ConfigureAwait(false);
+    
+        return entity is null ? null : ModelMapper.MapToDetailModel(entity);
+    }
 }
