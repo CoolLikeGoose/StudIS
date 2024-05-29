@@ -17,6 +17,7 @@ namespace StudIS.APP.ViewModels.Activity
         private readonly IActivityFacade _activityFacade;
         private readonly IEvaluationFacade _evaluationFacade;
         private readonly IStudentFacade _studentFacade;
+        private readonly ISubjectFacade _subjectFacade;
         private Guid Id { get; set; }
         public ActivityDetailModel? Activity { get; set; }
         public ObservableCollection<EvaluationListModel> Evaluations { get; } = new();

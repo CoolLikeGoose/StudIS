@@ -67,11 +67,9 @@ namespace StudIS.APP.ViewModels.Subjects
         public async Task SearchAsync()
         {
             IEnumerable<SubjectListModel> subjects = await _subjectFacade.GetByName(SearchQuery); // Use the search query
-            Debug.WriteLine("Here are subjects " + subjects.Count());
             Subjects.Clear();
             foreach (SubjectListModel subject in subjects)
             {
-                Debug.WriteLine("Here is subject Name " + subject.Name);
                 Subjects.Add(subject);
             }
         }
@@ -80,7 +78,6 @@ namespace StudIS.APP.ViewModels.Subjects
         public async Task SortAsync()
         {
             IEnumerable<SubjectListModel> sortedSubjects;
-            Debug.WriteLine("Here are subjects before " + Subjects.Count);
 
             // Sort the subjects based on the selected sort option
             if (SortOption == "Name (A-Z)")
@@ -104,13 +101,11 @@ namespace StudIS.APP.ViewModels.Subjects
                 sortedSubjects = Subjects.ToList(); // Default case, no sorting
             }
 
-            Debug.WriteLine("Here are subjects after sorting " + sortedSubjects.Count());
 
             // Update the Subjects collection with the sorted subjects
             Subjects.Clear();
             foreach (SubjectListModel subject in sortedSubjects)
             {
-                Debug.WriteLine("Here is subject Name " + subject.Name);
                 Subjects.Add(subject);
             }
         }
@@ -118,7 +113,6 @@ namespace StudIS.APP.ViewModels.Subjects
         [RelayCommand]
         public async Task RefreshAsync()
         {
-            Debug.WriteLine("Refreshing data...");
             await LoadDataAsync();
         }
     }
