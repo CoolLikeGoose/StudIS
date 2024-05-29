@@ -10,7 +10,7 @@ public record EvaluationListModel : ModelBase
     public required Guid StudentId { get; set; }
     
     public ActivityListModel? Activity { get; init; }
-    public StudentListModel? Student { get; init; }
+    public StudentListModel? Student { get; set; }
     
     public static EvaluationListModel Empty => new()
     {

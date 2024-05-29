@@ -3,6 +3,7 @@ using StudIS.APP.ViewModels.Student;
 using StudIS.APP.ViewModels.Activity;
 using StudIS.APP.ViewModels.Subjects;
 using StudIS.APP.Views.Activities;
+using StudIS.APP.Views.Evaluations;
 using StudIS.APP.Views.Student;
 using StudIS.APP.Views.Subjects;
 using StudIS.BL;
@@ -53,7 +54,8 @@ public static class MauiProgram
         Routing.RegisterRoute("//activities/edit", typeof(ActivityEditView));  
         Routing.RegisterRoute("//subjects/detail", typeof(SubjectsDetailView));
         Routing.RegisterRoute("//subjects/edit", typeof(SubjectsEditView));
-        
+        Routing.RegisterRoute("//evaluations/edit", typeof(EvaluationEditView));
+
         return app;
     }
 }

@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StudIS.BL.Facades;
 using StudIS.BL.Facades.Interfaces;
+using StudIS.BL.Mappers;
 using StudIS.BL.Models;
 
 namespace StudIS.APP.ViewModels.Activity
@@ -15,15 +16,16 @@ namespace StudIS.APP.ViewModels.Activity
     {
         private readonly IActivityFacade _activityFacade;
         private readonly IEvaluationFacade _evaluationFacade;
+        private readonly IStudentFacade _studentFacade;
         private Guid Id { get; set; }
-    
         public ActivityDetailModel? Activity { get; set; }
         public ObservableCollection<EvaluationListModel> Evaluations{ get; } = new();
         
-        public ActivityDetailViewModel(IActivityFacade activityFacade, IEvaluationFacade evaluationFacade)
+        public ActivityDetailViewModel(IActivityFacade activityFacade, IEvaluationFacade evaluationFacade, IStudentFacade studentFacade)
         {
             _activityFacade = activityFacade;
             _evaluationFacade = evaluationFacade;
+            _studentFacade = studentFacade;
         }
 
 
@@ -35,6 +37,8 @@ namespace StudIS.APP.ViewModels.Activity
             Evaluations.Clear();
             foreach (EvaluationListModel evaluation in evaluations)
             {
+                var test = await _studentFacade.GetAsync(evaluation.StudentId);
+                evaluation.Student = new StudentModelMapper().MapToListModel(test);
                 Evaluations.Add(evaluation);
             }
         }
@@ -64,15 +68,16 @@ namespace StudIS.APP.ViewModels.Activity
         }
 
         [RelayCommand]
-        private async Task GoToCreateAsync()
+        private async Task EditEvaluationAsync(Guid evaluationId)
         {
-            await Shell.Current.GoToAsync("edit");
+            await Shell.Current.GoToAsync("//evaluations/edit", new Dictionary<string, object> { { "Id", evaluationId }});
         }
 
         [RelayCommand]
-        private async Task GoToDeleteAsync()
+        private async Task DeleteEvaluationAsync(Guid id)
         {
-            await Shell.Current.GoToAsync("delete");
+            await _evaluationFacade.DeleteAsync(id);
+            await LoadDataAsync();
         }
     }
 }

@@ -21,6 +21,20 @@ public class StudentModelMapper()
             LastName = entity.LastName
         };
     }
+    public StudentListModel MapToListModel(StudentDetailModel? entity)
+    {
+        if (entity == null)
+        {
+            return StudentListModel.Empty;
+        }
+
+        return new StudentListModel()
+        {
+            Id = entity.Id,
+            FirstName = entity.FirstName,
+            LastName = entity.LastName
+        };
+    }
 
     public override StudentDetailModel MapToDetailModel(StudentEntity? entity)
     {
