@@ -15,12 +15,24 @@ namespace StudIS.APP.ViewModels.Evaluation
     public partial class EvaluationEditViewModel : ObservableObject, IViewModel, IQueryAttributable
     {
         private readonly IEvaluationFacade _evaluationFacade;
+        private readonly IStudentFacade _studentFacade;
         private Guid _evaluationId;
-        private Guid _studentId;
         private Guid _activityId;
-        public EvaluationEditViewModel(IEvaluationFacade evaluationFacade)
+        public List<StudentListModel> StudentsForChoice { get; set; }= new ();
+        private StudentListModel _selectedStudentListModel;
+        public StudentListModel SelectedStudentListModel
+        {
+            get => _selectedStudentListModel;
+            set
+            {
+                SetProperty(ref _selectedStudentListModel, value);
+                OnPropertyChanged();
+            }
+        }
+        public EvaluationEditViewModel(IEvaluationFacade evaluationFacade, IStudentFacade studentFacade)
         {
             _evaluationFacade = evaluationFacade;
+            _studentFacade = studentFacade;
         }
 
         private EvaluationDetailModel _evaluation;
@@ -38,12 +50,14 @@ namespace StudIS.APP.ViewModels.Evaluation
             }
             else
             {
+                StudentsForChoice = (await _studentFacade.GetAsync()).ToList();
+                OnPropertyChanged("StudentsForChoice");
                 Evaluation = new EvaluationDetailModel
                 {
                     Description = "Default Description",
                     Grade = 0,
                     ActivityId = _activityId,
-                    StudentId = _studentId
+                    StudentId = Guid.Empty
                 };
             }
         }
@@ -54,13 +68,9 @@ namespace StudIS.APP.ViewModels.Evaluation
             {
                 _evaluationId = (Guid)query["Id"];
             }
-            if (query.ContainsKey("ActivityId"))
+            if (query.ContainsKey("activityId"))
             {
-                _activityId = (Guid)query["ActivityId"];
-            }
-            if (query.ContainsKey("StudentId"))
-            {
-                _studentId = (Guid)query["StudentId"];
+                _activityId = (Guid)query["activityId"];
             }
             await LoadDataAsync();
         }
@@ -68,6 +78,11 @@ namespace StudIS.APP.ViewModels.Evaluation
         [RelayCommand]
         private async Task SaveAsync()
         {
+            if (SelectedStudentListModel == null)
+            {
+                return;
+            }
+            Evaluation.StudentId = SelectedStudentListModel.Id;
             await _evaluationFacade.SaveAsync(Evaluation);
             await Shell.Current.GoToAsync("..");
         }

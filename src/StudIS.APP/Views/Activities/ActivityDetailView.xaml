@@ -49,7 +49,7 @@
 
             <!-- Evaluations Section -->
             <Label Text="Evaluations" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10"/>
-            <Button Text="Add Evaluation" HorizontalOptions="End" />
+            <Button Text="Add Evaluation" HorizontalOptions="End" Command="{Binding AddEvaluationCommand}" />
 
             <CollectionView ItemsSource="{Binding Evaluations}" Margin="0,10,0,0">
                 <CollectionView.ItemsLayout>

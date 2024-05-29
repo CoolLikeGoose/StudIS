@@ -88,5 +88,11 @@ namespace StudIS.APP.ViewModels.Activity
             await _evaluationFacade.DeleteAsync(id);
             await LoadDataAsync();
         }
+
+        [RelayCommand]
+        private async Task AddEvaluationAsync()
+        {
+            await Shell.Current.GoToAsync("//evaluations/edit", new Dictionary<string, object> { { "activityId", Id } });
+        }
     }
 }

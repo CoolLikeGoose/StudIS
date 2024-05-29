@@ -12,7 +12,7 @@
         <StackLayout Padding="10">
             <!-- Header Section -->
             <Label Text="Edit Evaluation" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,20" />
-
+            <Picker Title="Student" SelectedItem="{Binding SelectedStudentListModel}" ItemsSource="{Binding StudentsForChoice}" />
             <!-- Evaluation Description -->
             <Label Text="Description" />
             <Entry Text="{Binding Evaluation.Description}" Placeholder="Enter evaluation description" />
