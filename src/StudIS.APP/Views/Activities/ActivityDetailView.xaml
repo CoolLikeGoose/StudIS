@@ -3,6 +3,7 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:vm="clr-namespace:StudIS.APP.ViewModels.Activity"
                        xmlns:views="clr-namespace:StudIS.APP.Views"
+                       xmlns:models="clr-namespace:StudIS.BL.Models;assembly=StudIS.BL"
                        x:Class="StudIS.APP.Views.Activities.ActivityDetailView"
                        x:DataType="vm:ActivityDetailViewModel"
                        x:Name="ActivityDetailPageRoot">
@@ -42,26 +43,35 @@
             <Label Text="Evaluations" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10"/>
             <Button Text="Add Evaluation" HorizontalOptions="End" />
 
-            <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
-                <StackLayout>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Activity.ActivityType}" Grid.Column="0" VerticalOptions="Center"/>
-                        <Label Text="{Binding Activity.Description}" Grid.Column="1" VerticalOptions="Center"/>
-                        <Label Text="{Binding Activity.StartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="2" VerticalOptions="Center"/>
-                        <Label Text="{Binding Activity.EndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="3" VerticalOptions="Center"/>
-                        <Label Text="{Binding Activity.Room}" Grid.Column="4" VerticalOptions="Center"/>
-                        <Button Text="Details" Grid.Column="5" VerticalOptions="Center"/>
-                    </Grid>
-                </StackLayout>
-            </Frame>
+            <CollectionView ItemsSource="{Binding Evaluations}" Margin="0,10,0,0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="7" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:EvaluationListModel">
+                        <Frame BorderColor="Black" Padding="10" Margin="0,20,0,0" CornerRadius="10" BackgroundColor="Black">
+                            <Grid RowSpacing="10" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Start">
+                                    <Label Text="Student" VerticalOptions="Center" Margin="5" BackgroundColor="Gray" Padding="5" />
+                                    <Button Text="Detail" VerticalOptions="Center" Margin="5,0,0,0" BackgroundColor="#007BFF" TextColor="White" CornerRadius="5" />
+                                    <Label Text="{Binding Grade}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" Margin="25" BackgroundColor="MediumPurple" Padding="5" />
+                                </StackLayout>
+                                <Label Text="{Binding Description}" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Start" Margin="5" BackgroundColor="Gray" Padding="5" />
+                                <Button Text="Edit" Grid.Column="4" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="#28a745" TextColor="White" CornerRadius="5" Command="{Binding Path=BindingContext.GoToCreateCommand, Source={x:Reference ActivityDetailPageRoot}}" CommandParameter="{Binding .}" />
+                                <Button Text="Delete" Grid.Column="5" VerticalOptions="Center" HorizontalOptions="Center" Margin="5" BackgroundColor="#dc3545" TextColor="White" CornerRadius="5" Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference ActivityDetailPageRoot}}" CommandParameter="{Binding .}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ScrollView>
 </views:ContentPageBase>
