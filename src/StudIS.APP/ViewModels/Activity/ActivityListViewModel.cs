@@ -13,11 +13,13 @@ namespace StudIS.APP.ViewModels.Activity
     public partial class ActivityListViewModel : ObservableObject, IViewModel
     {
         private readonly IActivityFacade _activityFacade;
+        private readonly ISubjectFacade _subjectFacade;
 
-        public ActivityListViewModel(IActivityFacade activityFacade)
+        public ActivityListViewModel(IActivityFacade activityFacade, ISubjectFacade subjectFacade)
         {
             _activityFacade = activityFacade;
-            Activities = new ObservableCollection<ActivityListModel>();
+            _subjectFacade = subjectFacade;
+            Activities = new ObservableCollection<ActivityWithSubjectName>();
             SortOptions = new ObservableCollection<string>
             {
                 "Start Date (Earliest First)",
@@ -32,7 +34,7 @@ namespace StudIS.APP.ViewModels.Activity
             SortOption = SortOptions.First();
         }
 
-        public ObservableCollection<ActivityListModel> Activities { get; }
+        public ObservableCollection<ActivityWithSubjectName> Activities { get; }
 
         [ObservableProperty]
         private string searchTerm;
@@ -60,7 +62,12 @@ namespace StudIS.APP.ViewModels.Activity
             Activities.Clear();
             foreach (ActivityListModel activity in activities)
             {
-                Activities.Add(activity);
+                var subject = await _subjectFacade.GetAsync(activity.SubjectId);
+                Activities.Add(new ActivityWithSubjectName
+                {
+                    Activity = activity,
+                    SubjectName = subject.Name
+                });
             }
         }
 
@@ -93,7 +100,12 @@ namespace StudIS.APP.ViewModels.Activity
             Activities.Clear();
             foreach (ActivityListModel activity in activities)
             {
-                Activities.Add(activity);
+                var subject = await _subjectFacade.GetAsync(activity.SubjectId);
+                Activities.Add(new ActivityWithSubjectName
+                {
+                    Activity = activity,
+                    SubjectName = subject.Name
+                });
             }
         }
 
@@ -104,28 +116,28 @@ namespace StudIS.APP.ViewModels.Activity
             switch (SortOption)
             {
                 case "Start Date (Earliest First)":
-                    sortedActivities = Activities.OrderBy(a => a.StartTime).ToList();
+                    sortedActivities = Activities.OrderBy(a => a.Activity.StartTime).ToList();
                     break;
                 case "Start Date (Latest First)":
-                    sortedActivities = Activities.OrderByDescending(a => a.StartTime).ToList();
+                    sortedActivities = Activities.OrderByDescending(a => a.Activity.StartTime).ToList();
                     break;
                 case "End Date (Earliest First)":
-                    sortedActivities = Activities.OrderBy(a => a.EndTime).ToList();
+                    sortedActivities = Activities.OrderBy(a => a.Activity.EndTime).ToList();
                     break;
                 case "End Date (Latest First)":
-                    sortedActivities = Activities.OrderByDescending(a => a.EndTime).ToList();
+                    sortedActivities = Activities.OrderByDescending(a => a.Activity.EndTime).ToList();
                     break;
                 case "Activity Type (A-Z)":
-                    sortedActivities = Activities.OrderBy(a => a.ActivityType).ToList();
+                    sortedActivities = Activities.OrderBy(a => a.Activity.ActivityType).ToList();
                     break;
                 case "Activity Type (Z-A)":
-                    sortedActivities = Activities.OrderByDescending(a => a.ActivityType).ToList();
+                    sortedActivities = Activities.OrderByDescending(a => a.Activity.ActivityType).ToList();
                     break;
                 case "Subject (A-Z)":
-                    sortedActivities = Activities.OrderBy(a => a.SubjectId).ToList();
+                    sortedActivities = Activities.OrderBy(a => a.SubjectName).ToList();
                     break;
                 case "Subject (Z-A)":
-                    sortedActivities = Activities.OrderByDescending(a => a.SubjectId).ToList();
+                    sortedActivities = Activities.OrderByDescending(a => a.SubjectName).ToList();
                     break;
             }
             Activities.Clear();
@@ -134,5 +146,17 @@ namespace StudIS.APP.ViewModels.Activity
                 Activities.Add(activity);
             }
         }
+
+        [RelayCommand]
+        public async Task RefreshAsync()
+        {
+            await LoadDataAsync();
+        }
+    }
+
+    public class ActivityWithSubjectName
+    {
+        public ActivityListModel Activity { get; set; }
+        public string SubjectName { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace StudIS.BL.Facades
 
             return ModelMapper.MapToListModel(entities);
         }
+        
+        
 
         public async Task<IEnumerable<ActivityListModel>> FilterAsync(string searchTerm, DateTime startDate, DateTime endDate, string selectedActivityType, string subject)
         {
