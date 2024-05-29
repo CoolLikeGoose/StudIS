@@ -41,6 +41,12 @@
                 </StackLayout>
             </Frame>
 
+            <!-- Subject Names Section -->
+            <Label Text="Subjects" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10"/>
+            <Frame BorderColor="Black" Padding="10" Margin="0,5,0,0">
+                <Label Text="{Binding SubjectName}" FontSize="Medium" />
+            </Frame>
+
             <!-- Evaluations Section -->
             <Label Text="Evaluations" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10"/>
             <Button Text="Add Evaluation" HorizontalOptions="End" />

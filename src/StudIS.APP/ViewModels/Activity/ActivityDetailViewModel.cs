@@ -15,28 +15,35 @@ namespace StudIS.APP.ViewModels.Activity
     {
         private readonly IActivityFacade _activityFacade;
         private readonly IEvaluationFacade _evaluationFacade;
+        private readonly ISubjectFacade _subjectFacade; // Add the subject facade
         private Guid Id { get; set; }
     
         public ActivityDetailModel? Activity { get; set; }
-        public ObservableCollection<EvaluationListModel> Evaluations{ get; } = new();
+        public ObservableCollection<EvaluationListModel> Evaluations { get; } = new();
+        public string SubjectName { get; set; } = " "; // Collection to store subject names
         
-        public ActivityDetailViewModel(IActivityFacade activityFacade, IEvaluationFacade evaluationFacade)
+        public ActivityDetailViewModel(IActivityFacade activityFacade, IEvaluationFacade evaluationFacade, ISubjectFacade subjectFacade)
         {
             _activityFacade = activityFacade;
             _evaluationFacade = evaluationFacade;
+            _subjectFacade = subjectFacade; // Initialize the subject facade
         }
-
 
         public async Task LoadDataAsync()
         {
             Activity = await _activityFacade.GetAsync(Id);
             OnPropertyChanged(nameof(Activity));
+
             IEnumerable<EvaluationListModel> evaluations = await _evaluationFacade.GetAsync();
             Evaluations.Clear();
             foreach (EvaluationListModel evaluation in evaluations)
             {
                 Evaluations.Add(evaluation);
             }
+
+            var subject = await _subjectFacade.GetAsync(Activity.SubjectId);
+            SubjectName = subject.Name;
+            OnPropertyChanged(nameof(SubjectName));
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -44,12 +51,14 @@ namespace StudIS.APP.ViewModels.Activity
             Id = (Guid)query["Id"];
             await LoadDataAsync();
         }
+
         [RelayCommand]
         private async Task DeleteAsync()
         {
             await _activityFacade.DeleteAsync(Id);
             await Shell.Current.GoToAsync("..");
         }
+
         [RelayCommand]
         private async Task EditAsync()
         {

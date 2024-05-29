@@ -45,31 +45,35 @@
             <!-- Activities List -->
             <CollectionView ItemsSource="{Binding Activities}" Margin="0,20,0,0">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:ActivityListModel">
+                    <DataTemplate x:DataType="vm:ActivityWithSubjectName">
                         <Frame BorderColor="Black" Padding="10" Margin="0,10,0,0">
                             <StackLayout>
-                                <Grid>
+                                <Grid ColumnSpacing="10" RowSpacing="10">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" VerticalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding ActivityType}" />
+                                                <Span Text="{Binding Activity.ActivityType}" />
                                                 <Span Text=" " />
-                                                <Span Text="{Binding Description}" />
+                                                <Span Text="{Binding Activity.Description}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label Text="{Binding StartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="1" VerticalOptions="Center" Margin="10,0,0,0"/>
-                                    <Label Text="{Binding EndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Column="2" VerticalOptions="Center" Margin="10,0,0,0"/>
-                                    <Label Text="{Binding Room}" Grid.Column="3" VerticalOptions="Center" Margin="10,0,0,0"/>
-                                    <Label Text="{Binding SubjectId}" Grid.Column="4" VerticalOptions="Center" Margin="10,0,0,0"/>
-                                    <Button Text="Details" Grid.Column="5" VerticalOptions="Center" Command="{Binding Path=BindingContext.GoToDetailCommand, Source={x:Reference ActivityListPageRoot}}" CommandParameter="{Binding Id}" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Activity.StartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Activity.EndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Activity.Room}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding SubjectName}" Grid.Row="1" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0"/>
+                                    <Button Text="Details" Grid.Row="1" Grid.Column="4" VerticalOptions="Center" Command="{Binding Path=BindingContext.GoToDetailCommand, Source={x:Reference ActivityListPageRoot}}" CommandParameter="{Binding Activity.Id}" Margin="10,0,0,0"/>
                                 </Grid>
                             </StackLayout>
                         </Frame>
