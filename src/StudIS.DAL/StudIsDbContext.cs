@@ -10,6 +10,7 @@ public class StudIsDbContext(DbContextOptions contextOptions, bool seedDemoData 
     public DbSet<EvaluationEntity> Evaluations => Set<EvaluationEntity>();
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<SubjectEntity> Subjects => Set<SubjectEntity>();
+    public DbSet<StudentsToSubjectsEntity> StudentsToSubjects => Set<StudentsToSubjectsEntity>(); 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -28,10 +29,20 @@ public class StudIsDbContext(DbContextOptions contextOptions, bool seedDemoData 
             .HasMany(i => i.Activities)
             .WithOne(i => i.Subject)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<SubjectEntity>()
+            .HasMany(i => i.Students)
+            .WithOne(i => i.Subject)
+            .OnDelete(DeleteBehavior.Cascade);
         
         //Student
         modelBuilder.Entity<StudentEntity>()
             .HasMany<EvaluationEntity>()
+            .WithOne(i => i.Student)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<StudentEntity>()
+            .HasMany(i => i.Subjects)
             .WithOne(i => i.Student)
             .OnDelete(DeleteBehavior.Cascade);
         
@@ -41,6 +52,7 @@ public class StudIsDbContext(DbContextOptions contextOptions, bool seedDemoData 
             EvaluationSeeds.Seed(modelBuilder);
             StudentSeeds.Seed(modelBuilder);
             SubjectSeeds.Seed(modelBuilder);
+            StudentsToSubjectsSeeds.Seed(modelBuilder);
         }
     }
 }

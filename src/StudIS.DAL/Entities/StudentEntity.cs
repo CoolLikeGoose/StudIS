@@ -10,5 +10,5 @@ public record StudentEntity : IEntity
     public required string LastName { get; set; }
     public required string? ImageUrl { get; set; }
     
-    public ICollection<SubjectEntity> Subjects { get; init; } = new List<SubjectEntity>();
+    public ICollection<StudentsToSubjectsEntity> Subjects { get; init; } = new List<StudentsToSubjectsEntity>();
 }
