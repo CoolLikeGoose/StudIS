@@ -18,7 +18,7 @@
             <Entry Text="{Binding Activity.Description}" Placeholder="Enter activity description" />
 
             <!-- Activity Type -->
-            <Label Text="Activity Type" Margin="0,10,0,0" />
+            <!--<Label Text="Activity Type" Margin="0,10,0,0" /> -->
             <Picker Title="Activity Type" SelectedItem="{Binding Activity.ActivityType}" ItemsSource="{Binding ActivityTypes}" />
 
             <!-- Start Time -->
@@ -32,11 +32,11 @@
             <TimePicker Time="{Binding Activity.EndTime, Mode=TwoWay}" />
 
             <!-- Room -->
-            <Label Text="Room" Margin="0,10,0,0" />
+            <!--<Label Text="Room" Margin="0,10,0,0" />-->
             <Picker Title="Room" SelectedItem="{Binding Activity.Room}" ItemsSource="{Binding Rooms}" />
 
             <!-- Subject -->
-            <Label Text="Subject" Margin="0,10,0,0" />
+            <!-- <Label Text="Subject" Margin="0,10,0,0" /> -->
             <Picker Title="Subject" SelectedItem="{Binding Activity.SubjectId}" ItemsSource="{Binding Subjects}" ItemDisplayBinding="{Binding Name}" />
 
             <!-- Save and Cancel Buttons -->

@@ -10,7 +10,14 @@
     <ScrollView>
         <StackLayout Padding="10">
             <!-- Header Section -->
-            <Label Text="Activities" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,20" />
+            <Grid ColumnSpacing="10" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Activities" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Start" Margin="0,20,0,20" Grid.Column="0"/>
+                <Button Text="Refresh" Command="{Binding RefreshCommand}" HorizontalOptions="End" Margin="0,20,0,20" Grid.Column="1"/>
+            </Grid>
 
             <!-- Add Activity Button -->
             <Button Text="Add Activity" HorizontalOptions="End" Command="{Binding GoToCreateCommand}" Margin="0,0,0,20"/>

@@ -13,13 +13,13 @@ namespace StudIS.APP.ViewModels.Activity
     public partial class ActivityListViewModel : ObservableObject, IViewModel
     {
         private readonly IActivityFacade _activityFacade;
-        private readonly ISubjectFacade _subjectFacade; // Add the subject facade
+        private readonly ISubjectFacade _subjectFacade;
 
         public ActivityListViewModel(IActivityFacade activityFacade, ISubjectFacade subjectFacade)
         {
             _activityFacade = activityFacade;
-            _subjectFacade = subjectFacade; // Initialize the subject facade
-            Activities = new ObservableCollection<ActivityWithSubjectName>(); // Initialize the collection for activities with subject names
+            _subjectFacade = subjectFacade;
+            Activities = new ObservableCollection<ActivityWithSubjectName>();
             SortOptions = new ObservableCollection<string>
             {
                 "Start Date (Earliest First)",
@@ -34,7 +34,7 @@ namespace StudIS.APP.ViewModels.Activity
             SortOption = SortOptions.First();
         }
 
-        public ObservableCollection<ActivityWithSubjectName> Activities { get; } // Collection to store activities with subject names
+        public ObservableCollection<ActivityWithSubjectName> Activities { get; }
 
         [ObservableProperty]
         private string searchTerm;
@@ -145,6 +145,12 @@ namespace StudIS.APP.ViewModels.Activity
             {
                 Activities.Add(activity);
             }
+        }
+
+        [RelayCommand]
+        public async Task RefreshAsync()
+        {
+            await LoadDataAsync();
         }
     }
 
