@@ -72,7 +72,13 @@ namespace StudIS.APP.ViewModels.Student
                 Students.Add(student);
             }
         }
-        
+
+        [RelayCommand]
+        public async Task RefreshAsync()
+        {
+            await LoadDataAsync();
+        }
+
         [RelayCommand]
         public async Task SortAsync()
         {
