@@ -11,13 +11,16 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
     [Fact]
     public async Task AddOne_Student()
     {
-        StudentEntity student = StudentSeeds.BasicStudent;
-        
-        StudIsDbContextSUT.Students.Add(student);
+        StudentEntity student = StudentSeeds.StandardInDbStudent3 with
+        {
+            FirstName = "AAAAA",
+            Id = Guid.NewGuid()
+        };
+        await StudIsDbContextSUT.AddAsync(student);
         await StudIsDbContextSUT.SaveChangesAsync();
         
-        await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
-        StudentEntity actualStudent= await dbContext.Students.SingleAsync(i => i.Id == student.Id);
+        
+        StudentEntity actualStudent = await StudIsDbContextSUT.Students.SingleAsync(i => i.Id == student.Id);
         Assert.Equal(student.FirstName,actualStudent.FirstName);
         Assert.Equal(student.ImageUrl,actualStudent.ImageUrl);
     }
@@ -25,10 +28,7 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
     public async Task Read_Student_By_Id()
     {
         // Arrange
-        var student = StudentSeeds.BasicStudent;
-        await StudIsDbContextSUT.Students.AddAsync(student);
-        await StudIsDbContextSUT.SaveChangesAsync();
-
+        var student = StudentSeeds.StandardInDbStudent1;
         // Act
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
         var actualStudent = await dbContext.Students.FindAsync(student.Id);
@@ -42,9 +42,7 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
     public async Task Update_Student()
     {
         // Arrange
-        var student = StudentSeeds.BasicStudent;
-        await StudIsDbContextSUT.Students.AddAsync(student);
-        await StudIsDbContextSUT.SaveChangesAsync();
+        var student = StudentSeeds.StandardInDbStudent1;
 
         // Act
         student.FirstName = "Updated Name";
@@ -61,11 +59,7 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
     public async Task Delete_Student()
     {
         // Arrange
-        var student = StudentSeeds.BasicStudent;
-        await StudIsDbContextSUT.Students.AddAsync(student);
-        await StudIsDbContextSUT.SaveChangesAsync();
-
-        // Act
+        var student = StudentSeeds.StandardInDbStudent1;
         StudIsDbContextSUT.Students.Remove(student);
         await StudIsDbContextSUT.SaveChangesAsync();
 
@@ -125,12 +119,12 @@ public class DbContextStudentTests(ITestOutputHelper output) : DbContextTestsBas
     [Fact]
     public async Task Delete_Student_And_Image_Url_Removed()
     {
-        StudIsDbContextSUT.Students.Remove(StudentSeeds.StandardInDbStudent);
+        StudIsDbContextSUT.Students.Remove(StudentSeeds.StandardInDbStudent3);
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-        var deletedStudent = await dbContext.Students.FindAsync(StudentSeeds.StandardInDbStudent.Id);
+        var deletedStudent = await dbContext.Students.FindAsync(StudentSeeds.StandardInDbStudent3.Id);
         Assert.Null(deletedStudent);
     }
 }

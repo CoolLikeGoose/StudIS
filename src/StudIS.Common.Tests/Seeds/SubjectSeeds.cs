@@ -3,40 +3,33 @@ using StudIS.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 public static class SubjectSeeds
 {
-    public static readonly SubjectEntity BasicSubject = new SubjectEntity()
+    public static readonly SubjectEntity StandardInDbSubject1 = new SubjectEntity()
     {
-        Id = Guid.Parse("e5dc71e1-c526-478c-97d0-d029129d5c8d"),
+        Id = Guid.Parse("5ca935c9-7abd-4e44-9004-9339c319e495"),
         Name = "mathematics analysis",
         Abbreviation = "ima1"
     };
 
-    public static SubjectEntity SubjectUpdateTest = new SubjectEntity()
+    public static SubjectEntity StandardInDbSubject2 = new SubjectEntity()
     {
-        Id = Guid.Parse("15ed62ae-6ec5-4643-9dd8-4f6e5e0b0a0e"),
+        Id = Guid.Parse("41f887c4-36f2-42f9-88c8-68b77634cfa4"),
         Name = "mathematic analysis 2",
         Abbreviation = "ima2"
     };
     
-    public static SubjectEntity StandardInDbSubject = new SubjectEntity()
+    public static SubjectEntity StandardInDbSubject3 = new SubjectEntity()
     {
-        Id = Guid.Parse("668299f7-8a85-48eb-90ba-4a033757bc72"),
+        Id = Guid.Parse("1e17588a-fe30-4c77-9529-69579adc30bb"),
         Name = "database system",
         Abbreviation = "ids"
-    };
-    
-    public static SubjectEntity SubjectEmpty = new SubjectEntity()
-    {
-        Id = Guid.Parse("0e4b9e16-02e8-4e71-b4c0-2253669ab8e2"),
-        Name = string.Empty,
-        Abbreviation = string.Empty
     };
     
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
-            SubjectUpdateTest,
-            StandardInDbSubject,
-            SubjectEmpty
+            StandardInDbSubject1 with { Activities = null!, Students = null! },
+            StandardInDbSubject2 with { Activities = null!, Students = null! },
+            StandardInDbSubject3 with { Activities = null!, Students = null! }
         );
     }
 }

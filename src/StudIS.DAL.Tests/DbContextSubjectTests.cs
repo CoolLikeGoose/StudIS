@@ -10,9 +10,7 @@ public class DbContextSubjectTests(ITestOutputHelper output) : DbContextTestsBas
     [Fact]
     public async Task AddOne_Subject()
     {
-        SubjectEntity subject = SubjectSeeds.BasicSubject;
-        
-        StudIsDbContextSUT.Subjects.Add(subject);
+        SubjectEntity subject = SubjectSeeds.StandardInDbSubject1;
         await StudIsDbContextSUT.SaveChangesAsync();
         
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
@@ -24,7 +22,7 @@ public class DbContextSubjectTests(ITestOutputHelper output) : DbContextTestsBas
     [Fact]
     public async Task Update_subject()
     {
-        SubjectEntity subject = SubjectSeeds.SubjectUpdateTest;
+        SubjectEntity subject = SubjectSeeds.StandardInDbSubject2;
     
         SubjectEntity subjectUpdated = subject with
         {
@@ -43,8 +41,7 @@ public class DbContextSubjectTests(ITestOutputHelper output) : DbContextTestsBas
     public async Task Read_Subject_By_Id()
     {
         // Arrange
-        var subject = SubjectSeeds.BasicSubject;
-        StudIsDbContextSUT.Subjects.Add(subject);
+        var subject = SubjectSeeds.StandardInDbSubject1;
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Act
@@ -61,12 +58,12 @@ public class DbContextSubjectTests(ITestOutputHelper output) : DbContextTestsBas
     public async Task Delete_Subject()
     {
         // Arrange
-        StudIsDbContextSUT.Subjects.Remove(SubjectSeeds.StandardInDbSubject);
+        StudIsDbContextSUT.Subjects.Remove(SubjectSeeds.StandardInDbSubject3);
         await StudIsDbContextSUT.SaveChangesAsync();
 
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-        var deletedSubject = await dbContext.Subjects.FindAsync(SubjectSeeds.StandardInDbSubject.Id);
+        var deletedSubject = await dbContext.Subjects.FindAsync(SubjectSeeds.StandardInDbSubject3.Id);
         Assert.Null(deletedSubject);
     }
 }
