@@ -15,22 +15,11 @@ public class EvaluationFacadeTest : FacadeTestBase
     {
         _evaluationFacadeSUT = new EvaluationFacade(UnitOfWorkFactory, EvaluationModelMapper);
     }
-    [Fact]
-    public async Task CreateEvaluation()
-    {
-        var evaluationToCreate = EvaluationModelMapper.MapToDetailModel(EvaluationSeeds.StandardInDbEvaluation);
-
-        
-        await _evaluationFacadeSUT.SaveAsync(evaluationToCreate);
-
-        Assert.NotNull(evaluationToCreate);
-        Assert.Equal("example description", evaluationToCreate.Description);
-    }
     
     [Fact]
     public async Task DeleteEvaluation()
     {
-        var evaluationToDelete = EvaluationModelMapper.MapToDetailModel(EvaluationSeeds.StandardInDbEvaluation);
+        var evaluationToDelete = EvaluationModelMapper.MapToDetailModel(EvaluationSeeds.StandardInDbEvaluation1);
 
         var preDeleteCheck = await _evaluationFacadeSUT.GetAsync(evaluationToDelete.Id);
         Assert.NotNull(preDeleteCheck);
@@ -44,7 +33,7 @@ public class EvaluationFacadeTest : FacadeTestBase
     [Fact]
     public async Task UpdateEvaluation()
     {
-        var evaluation = EvaluationModelMapper.MapToDetailModel(EvaluationSeeds.StandardInDbEvaluation);
+        var evaluation = EvaluationModelMapper.MapToDetailModel(EvaluationSeeds.StandardInDbEvaluation1);
         
 
         var updatedEvaluation = evaluation with

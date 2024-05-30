@@ -21,17 +21,17 @@ public class ActivityFacadeTest : FacadeTestBase
     [Fact]
     public async Task CreateEntity()
     {
-        var activityToCreate  = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity);
+        var activityToCreate  = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity1);
         
         var savedActivity = await _activityFacadeSUT.SaveAsync(activityToCreate);
         
         Assert.NotNull(savedActivity);
-        Assert.Equal(ActivitySeeds.StandardInDbActivity.Description, savedActivity.Description);
+        Assert.Equal(ActivitySeeds.StandardInDbActivity1.Description, savedActivity.Description);
     }
     [Fact]
     public async Task DeleteActivity()
     {
-        var activityToDelete = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity);
+        var activityToDelete = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity1);
         
         var preDeleteCheck = await _activityFacadeSUT.GetAsync(activityToDelete.Id);
         Assert.NotNull(preDeleteCheck);
@@ -44,7 +44,7 @@ public class ActivityFacadeTest : FacadeTestBase
     [Fact]
     public async Task UpdateActivity()
     {
-        var activityToUpdate = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity);
+        var activityToUpdate = ActivityModelMapper.MapToDetailModel(ActivitySeeds.StandardInDbActivity1);
 
         var updatedActivity = activityToUpdate with
         {
