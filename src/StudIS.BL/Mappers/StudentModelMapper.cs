@@ -1,4 +1,5 @@
-﻿using StudIS.BL.Models;
+﻿using System.Collections.ObjectModel;
+using StudIS.BL.Models;
 using StudIS.DAL.Entities;
 
 namespace StudIS.BL.Mappers;
@@ -16,7 +17,22 @@ public class StudentModelMapper()
         return new StudentListModel()
         {
             Id = entity.Id,
-            Name = entity.Name
+            FirstName = entity.FirstName,
+            LastName = entity.LastName
+        };
+    }
+    public StudentListModel MapToListModel(StudentDetailModel? entity)
+    {
+        if (entity == null)
+        {
+            return StudentListModel.Empty;
+        }
+
+        return new StudentListModel()
+        {
+            Id = entity.Id,
+            FirstName = entity.FirstName,
+            LastName = entity.LastName
         };
     }
 
@@ -27,13 +43,15 @@ public class StudentModelMapper()
             return StudentDetailModel.Empty;
         }
 
-        SubjectModelMapper modelMapper = new SubjectModelMapper();
+        StudentSubjectsModelMapper studentSubjectsModelMapper = new StudentSubjectsModelMapper();
         return new StudentDetailModel()
         {
             Id = entity.Id,
             ImageUrl = entity.ImageUrl,
-            Name = entity.Name,
-            Subjects = entity.Subjects.Select(e => modelMapper.MapToListModel(e)).ToList()
+            FirstName = entity.FirstName,
+            LastName = entity.LastName,
+            Subjects = new ObservableCollection<StudentSubjectsListModel>
+                (entity.Subjects.Select(e => studentSubjectsModelMapper.MapToListModel(e)).ToList())
         };
     }
 
@@ -43,7 +61,8 @@ public class StudentModelMapper()
         {
             Id = model.Id,
             ImageUrl = model.ImageUrl,
-            Name = model.Name
+            FirstName = model.FirstName,
+            LastName = model.LastName
         };
     }
 }

@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using StudIS.Common.Enums;
-using StudIS.Common.Tests.Seeds; 
 using StudIS.DAL.Entities;
+using StudIS.DAL.Seeds;
 using Xunit.Abstractions;
 
 namespace StudIS.DAL.Tests;
@@ -12,11 +11,7 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
     [Fact]
     public async Task AddOne_Activity()
     {   
-        SubjectEntity subject = SubjectSeeds.BasicSubject;
-        ActivityEntity activity = ActivitySeeds.BasicActivity;
-        
-        StudIsDbContextSUT.Activities.Add(activity);
-        StudIsDbContextSUT.Subjects.Add(subject);
+        ActivityEntity activity = ActivitySeeds.StandardInDbActivity1;
         await StudIsDbContextSUT.SaveChangesAsync();
         
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
@@ -29,27 +24,22 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
     [Fact]
     public async Task Read_Activity_By_Id()
     {
-        // Arrange
-        var activity = ActivitySeeds.BasicActivity;
-        StudIsDbContextSUT.Activities.Add(activity);
-        await StudIsDbContextSUT.SaveChangesAsync();
-
         // Act
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-        var actualActivity = await dbContext.Activities.FindAsync(activity.Id);
+        var actualActivity = await dbContext.Activities.FindAsync(ActivitySeeds.StandardInDbActivity1.Id);
 
         // Assert
         Assert.NotNull(actualActivity);
-        Assert.Equal(activity.Id, actualActivity.Id);
+        Assert.Equal(ActivitySeeds.StandardInDbActivity1.Id, actualActivity.Id);
     }
 
      [Fact]
      public async Task Update_Activity()
      {
-         ActivityEntity activity = ActivitySeeds.StandardInDbActivity;
+         ActivityEntity activity = ActivitySeeds.StandardInDbActivity3;
          ActivityEntity updActivity = activity with
          {
-             Description = "New Description"
+             Description = "New Description1"
          };
          
          StudIsDbContextSUT.Activities.Update(updActivity);
@@ -66,11 +56,11 @@ public class DbContextActivityTests(ITestOutputHelper output) : DbContextTestsBa
       public async Task Delete_Activity()
       {
           // Act
-          StudIsDbContextSUT.Activities.Remove(ActivitySeeds.DeleteTestInDbActivity);
+          StudIsDbContextSUT.Activities.Remove(ActivitySeeds.StandardInDbActivity2);
           await StudIsDbContextSUT.SaveChangesAsync();
      
           await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-          var deletedActivity = await dbContext.Activities.FindAsync(ActivitySeeds.DeleteTestInDbActivity.Id);
+          var deletedActivity = await dbContext.Activities.FindAsync(ActivitySeeds.StandardInDbActivity2.Id);
           Assert.Null(deletedActivity);
       }
    

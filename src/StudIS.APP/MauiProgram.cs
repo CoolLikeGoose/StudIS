@@ -1,9 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using StudIS.APP.ViewModels.Student;
+using StudIS.APP.ViewModels.Activity;
+using StudIS.APP.ViewModels.Subjects;
+using StudIS.APP.Views.Activities;
+using StudIS.APP.Views.Evaluations;
+using StudIS.APP.Views.Student;
+using StudIS.APP.Views.Subjects;
 using StudIS.BL;
-using StudIS.BL.Facades;
-using StudIS.BL.Facades.Interfaces;
 using StudIS.DAL;
 using StudIS.DAL.Migrator;
 using StudIS.DAL.Options;
@@ -22,26 +25,37 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
-        
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
+        // Services
         builder.Services
-            .AddDalServices(new DALOptions()
+            .AddDalServices(new DALOptions
             {
                 DatabaseDirectory = FileSystem.AppDataDirectory,
                 DatabaseName = "StudIS.db",
-                RecreateDatabaseOnStartup = false,
-                SeedDemoData = false
+                RecreateDatabaseOnStartup = true,
+                SeedDemoData = true
             })
             .AddAppServices()
             .AddBlServices();
-        
+
         var app = builder.Build();
-        
+
+        // Migration
         app.Services.GetRequiredService<IDbMigrator>().Migrate();
-        
+
+        // Routing
+        Routing.RegisterRoute("//students/detail", typeof(StudentDetailView));
+        Routing.RegisterRoute("//students/edit", typeof(StudentEditView));
+        Routing.RegisterRoute("//activities/detail", typeof(ActivityDetailView));
+        Routing.RegisterRoute("//activities/edit", typeof(ActivityEditView));  
+        Routing.RegisterRoute("//subjects/detail", typeof(SubjectsDetailView));
+        Routing.RegisterRoute("//subjects/edit", typeof(SubjectsEditView));
+        Routing.RegisterRoute("//evaluations/edit", typeof(EvaluationEditView));
+
         return app;
     }
 }

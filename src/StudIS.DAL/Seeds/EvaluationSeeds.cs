@@ -6,36 +6,36 @@ namespace StudIS.DAL.Seeds;
 
 public static class EvaluationSeeds
 {
-    public static readonly EvaluationEntity BasicEvaluation = new EvaluationEntity()
+    public static readonly EvaluationEntity StandardInDbEvaluation1 = new EvaluationEntity()
     {
-        Id = Guid.Parse("e5b05c91-b092-4064-afa5-da1aeb0e4028"),
-        Description = "example description",
-        ActivityId = ActivitySeeds.BasicActivity.Id,
-        StudentId = StudentSeeds.BasicStudent.Id
+        Id = Guid.Parse("786828c7-e163-4fa7-b83c-4a4602bb568d"),
+        Grade = 50,
+        Description = "description for student 1 with eval 50 act1",
+        ActivityId = ActivitySeeds.StandardInDbActivity1.Id,
+        StudentId = StudentSeeds.StandardInDbStudent1.Id,
+        
+        Activity = ActivitySeeds.StandardInDbActivity1,
+        Student = StudentSeeds.StandardInDbStudent1
     };
     
-    public static readonly EvaluationEntity StandardInDbEvaluation = new EvaluationEntity()
+    public static readonly EvaluationEntity StandardInDbEvaluation2 = new EvaluationEntity()
     {
-        Id = Guid.Parse("fda29883-79e8-44cb-bc1c-570efe779cfa"),
-        Description = "example description",
-        ActivityId = ActivitySeeds.StandardInDbActivity.Id,
-        StudentId = StudentSeeds.StandardInDbStudent.Id
-    };
-    
-    public static readonly EvaluationEntity DeleteTestInDbEval = new EvaluationEntity()
-    {
-        Id = Guid.Parse("014aa0d1-2145-44cb-9244-139a7fdc6fba"),
-        Description = "example description",
-        ActivityId = ActivitySeeds.StandardInDbActivity.Id,
-        StudentId = StudentSeeds.StandardInDbStudent.Id
+        Id = Guid.Parse("e1259b5c-99f1-444f-8b19-1138e1a40b15"),
+        Grade = 0,
+        Description = "description for student2 with eval 0 act 1",
+        ActivityId = ActivitySeeds.StandardInDbActivity1.Id,
+        StudentId = StudentSeeds.StandardInDbStudent2.Id,
+        
+        Activity = ActivitySeeds.StandardInDbActivity1,
+        Student = StudentSeeds.StandardInDbStudent2
     };
     
     
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<EvaluationEntity>().HasData(
-            StandardInDbEvaluation,
-            DeleteTestInDbEval
+            StandardInDbEvaluation1 with { Activity = null, Student = null},
+            StandardInDbEvaluation2 with { Activity = null, Student = null}
         );
     }
 }

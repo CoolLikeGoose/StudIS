@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StudIS.APP.ViewModels.Activity;
 
 namespace StudIS.APP.Views.Activities;
 
-public partial class ActivitiesListView : ContentPage
+public partial class ActivitiesListView
 {
-    public ActivitiesListView()
+    public ActivitiesListView(ActivityListViewModel viewModel) : base(viewModel)
     {
         InitializeComponent();
-    }
+    } 
 }

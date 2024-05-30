@@ -6,7 +6,8 @@ public class StudentEntityMapper : IEntityMapper<StudentEntity>
 {
     public void MapToExistingEntity(StudentEntity existingEntity, StudentEntity newEntity)
     {
-        existingEntity.Name = newEntity.Name;
+        existingEntity.FirstName = newEntity.FirstName;
+        existingEntity.LastName = newEntity.LastName;
         existingEntity.ImageUrl = existingEntity.ImageUrl;
     }
 }

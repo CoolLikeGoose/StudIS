@@ -5,16 +5,18 @@ namespace StudIS.BL.Models;
 
 public record StudentDetailModel : ModelBase
 {
-    public required string Name { get; set; }
-    public required Uri? ImageUrl { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string? ImageUrl { get; set; }
     
-    public ICollection<SubjectListModel> Subjects { get; init; } = new List<SubjectListModel>();
+    public ObservableCollection<StudentSubjectsListModel> Subjects { get; init; } = new ObservableCollection<StudentSubjectsListModel>();
 
     public static StudentDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),
-        Name = string.Empty,
-        ImageUrl = new Uri("example.example")
+        FirstName = string.Empty,
+        LastName = string.Empty,
+        ImageUrl = string.Empty
     };
 
 }

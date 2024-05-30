@@ -2,10 +2,12 @@
 
 public record StudentListModel : ModelBase
 {
-    public required string Name { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
     public static StudentListModel Empty => new()
     {
         Id = Guid.NewGuid(),
-        Name = string.Empty
+        FirstName = string.Empty,
+        LastName = string.Empty
     };
 }

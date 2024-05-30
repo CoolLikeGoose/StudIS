@@ -10,15 +10,7 @@ public class DbContextEvaluationTests(ITestOutputHelper output) : DbContextTests
     [Fact]
     public async Task AddOne_Evaluation()
     {
-        SubjectEntity subject = SubjectSeeds.BasicSubject;
-        ActivityEntity activity = ActivitySeeds.BasicActivity;
-        EvaluationEntity evaluation = EvaluationSeeds.BasicEvaluation;
-        StudentEntity student = StudentSeeds.BasicStudent;
-        
-        StudIsDbContextSUT.Subjects.Add(subject);
-        StudIsDbContextSUT.Students.Add(student);
-        StudIsDbContextSUT.Activities.Add(activity);
-        StudIsDbContextSUT.Evaluations.Add(evaluation);
+        EvaluationEntity evaluation = EvaluationSeeds.StandardInDbEvaluation1;
         await StudIsDbContextSUT.SaveChangesAsync();
         
         await using StudIsDbContext dbContext = await DbContextFactory.CreateDbContextAsync();
@@ -37,23 +29,21 @@ public class DbContextEvaluationTests(ITestOutputHelper output) : DbContextTests
          var actualEvaluation = await dbContext.Evaluations
              .Include(e => e.Activity)
              .Include(e => e.Student)
-             .SingleOrDefaultAsync(i => i.Id == EvaluationSeeds.StandardInDbEvaluation.Id); 
+             .SingleOrDefaultAsync(i => i.Id == EvaluationSeeds.StandardInDbEvaluation1.Id); 
     
          // Assert
          //Assert.NotNull(actualEvaluation);
          // Assert.Equal(evaluation.Description, actualEvaluation.Description);
          Assert.NotNull(actualEvaluation.Activity);
-         Assert.Equal(actualEvaluation.ActivityId, EvaluationSeeds.StandardInDbEvaluation.ActivityId);
+         Assert.Equal(actualEvaluation.ActivityId, EvaluationSeeds.StandardInDbEvaluation1.ActivityId);
          Assert.NotNull(actualEvaluation.Student);
-         Assert.Equal(actualEvaluation.StudentId, EvaluationSeeds.StandardInDbEvaluation.StudentId);
+         Assert.Equal(actualEvaluation.StudentId, EvaluationSeeds.StandardInDbEvaluation1.StudentId);
      }
     [Fact]
     public async Task Update_Evaluation()
     {
         // Arrange
-        var evaluation = EvaluationSeeds.BasicEvaluation;
-        StudIsDbContextSUT.Evaluations.Add(evaluation);
-        await StudIsDbContextSUT.SaveChangesAsync();
+        var evaluation = EvaluationSeeds.StandardInDbEvaluation1;
 
         // Act
         var updatedDescription = "Updated Evaluation Description";
@@ -72,12 +62,12 @@ public class DbContextEvaluationTests(ITestOutputHelper output) : DbContextTests
     public async Task Delete_Evaluation()
     {
         // Act
-        StudIsDbContextSUT.Evaluations.Remove(EvaluationSeeds.DeleteTestInDbEval);
+        StudIsDbContextSUT.Evaluations.Remove(EvaluationSeeds.StandardInDbEvaluation2);
         await StudIsDbContextSUT.SaveChangesAsync();
     
         // Assert
         await using var dbContext = await DbContextFactory.CreateDbContextAsync();
-        var deletedEvaluation = await dbContext.Evaluations.FindAsync(EvaluationSeeds.DeleteTestInDbEval.Id);
+        var deletedEvaluation = await dbContext.Evaluations.FindAsync(EvaluationSeeds.StandardInDbEvaluation2.Id);
         Assert.Null(deletedEvaluation);
     }
 }

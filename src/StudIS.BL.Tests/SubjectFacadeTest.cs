@@ -20,7 +20,7 @@ public class SubjectFacadeTest : FacadeTestBase
     [Fact]
     public async Task CreateEntity()
     {
-        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.BasicSubject);
+        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.StandardInDbSubject1);
 
         var savedSubject  = await _subjectFacadeSUT.SaveAsync(s);
 
@@ -33,7 +33,7 @@ public class SubjectFacadeTest : FacadeTestBase
     [Fact]
     public async Task DeleteEntity()
     {
-        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.BasicSubject);
+        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.StandardInDbSubject1);
 
         var savedSubject = await _subjectFacadeSUT.SaveAsync(s);
         Assert.NotNull(savedSubject);
@@ -46,7 +46,7 @@ public class SubjectFacadeTest : FacadeTestBase
     [Fact]
     public async Task UpdateGetEntity()
     {
-        var initialSubject = SubjectModelMapper.MapToDetailModel(SubjectSeeds.BasicSubject);
+        var initialSubject = SubjectModelMapper.MapToDetailModel(SubjectSeeds.StandardInDbSubject1);
         var updatedSubject = initialSubject with
         {
             Name = "Updated " + initialSubject.Name,
@@ -63,7 +63,7 @@ public class SubjectFacadeTest : FacadeTestBase
     [Fact]
     public async Task DeleteNonExistingEntity()
     {
-        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.SubjectEmpty);
+        SubjectDetailModel s = SubjectModelMapper.MapToDetailModel(SubjectSeeds.StandardInDbSubject1);
 
         await _subjectFacadeSUT.SaveAsync(s);
         await _subjectFacadeSUT.DeleteAsync(s.Id);

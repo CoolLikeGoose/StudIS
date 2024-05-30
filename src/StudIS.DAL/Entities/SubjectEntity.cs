@@ -9,5 +9,5 @@ public record SubjectEntity : IEntity
     public required string Name { get; set; }
     public required string Abbreviation { get; set; }
     public ICollection<ActivityEntity> Activities { get; init; } = new List<ActivityEntity>();
-    public ICollection<StudentEntity> Students { get; init; } = new List<StudentEntity>();
+    public ICollection<StudentsToSubjectsEntity> Students { get; init; } = new List<StudentsToSubjectsEntity>();
 }

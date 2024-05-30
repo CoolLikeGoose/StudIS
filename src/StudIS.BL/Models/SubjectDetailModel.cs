@@ -7,8 +7,8 @@ public record SubjectDetailModel : ModelBase
 {
     public required string Name { get; set; }
     public required string Abbreviation { get; set; }
-    public ICollection<ActivityListModel> Activities { get; init; } = new List<ActivityListModel>();
-    public ICollection<StudentListModel> Students { get; init; } = new List<StudentListModel>();
+    public ObservableCollection<ActivityListModel> Activities { get; init; } = new ObservableCollection<ActivityListModel>();
+    public ObservableCollection<StudentSubjectsListModel> Students { get; init; } = new ObservableCollection<StudentSubjectsListModel>();
     
     public static SubjectDetailModel Empty => new()
     {

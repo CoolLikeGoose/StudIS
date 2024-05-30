@@ -60,6 +60,9 @@ namespace StudIS.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Grade")
+                        .HasColumnType("INTEGER");
+
                     b.Property<Guid>("StudentId")
                         .HasColumnType("TEXT");
 
@@ -78,16 +81,41 @@ namespace StudIS.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("StudIS.DAL.Entities.StudentsToSubjectsEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("SubjectId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("StudentsToSubjects");
                 });
 
             modelBuilder.Entity("StudIS.DAL.Entities.SubjectEntity", b =>
@@ -107,21 +135,6 @@ namespace StudIS.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("StudentEntitySubjectEntity", b =>
-                {
-                    b.Property<Guid>("StudentsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("SubjectsId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("StudentsId", "SubjectsId");
-
-                    b.HasIndex("SubjectsId");
-
-                    b.ToTable("StudentEntitySubjectEntity");
                 });
 
             modelBuilder.Entity("StudIS.DAL.Entities.ActivityEntity", b =>
@@ -154,19 +167,23 @@ namespace StudIS.DAL.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentEntitySubjectEntity", b =>
+            modelBuilder.Entity("StudIS.DAL.Entities.StudentsToSubjectsEntity", b =>
                 {
-                    b.HasOne("StudIS.DAL.Entities.StudentEntity", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
+                    b.HasOne("StudIS.DAL.Entities.StudentEntity", "Student")
+                        .WithMany("Subjects")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudIS.DAL.Entities.SubjectEntity", null)
-                        .WithMany()
-                        .HasForeignKey("SubjectsId")
+                    b.HasOne("StudIS.DAL.Entities.SubjectEntity", "Subject")
+                        .WithMany("Students")
+                        .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("StudIS.DAL.Entities.ActivityEntity", b =>
@@ -174,9 +191,16 @@ namespace StudIS.DAL.Migrations
                     b.Navigation("Evaluations");
                 });
 
+            modelBuilder.Entity("StudIS.DAL.Entities.StudentEntity", b =>
+                {
+                    b.Navigation("Subjects");
+                });
+
             modelBuilder.Entity("StudIS.DAL.Entities.SubjectEntity", b =>
                 {
                     b.Navigation("Activities");
+
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }
