@@ -16,6 +16,9 @@
             <!-- Subject Abbreviation -->
             <Label Text="Student LastName" Margin="0,10,0,0"/>
             <Entry Text="{Binding Student.LastName}" Placeholder="Last Name" />
+            
+            <Label Text="Student Img" Margin="0,10,0,0"/>
+            <Entry Text="{Binding Student.ImageUrl}" Placeholder="Last Name" />
 
             <!-- Save and Cancel Buttons -->
             <StackLayout Orientation="Horizontal" Margin="20,10,20,0">
