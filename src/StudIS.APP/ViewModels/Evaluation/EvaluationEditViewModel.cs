@@ -90,11 +90,14 @@ namespace StudIS.APP.ViewModels.Evaluation
         [RelayCommand]
         private async Task SaveAsync()
         {
-            if (SelectedStudentListModel == null)
+            if (IsStudentsVisible)
             {
-                return;
+                if (SelectedStudentListModel == null)
+                {
+                    return;
+                }
+                Evaluation.StudentId = SelectedStudentListModel.Id;
             }
-            Evaluation.StudentId = SelectedStudentListModel.Id;
             await _evaluationFacade.SaveAsync(Evaluation);
             await Shell.Current.GoToAsync("..");
         }
