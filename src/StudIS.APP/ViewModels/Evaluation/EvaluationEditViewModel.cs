@@ -50,6 +50,7 @@ namespace StudIS.APP.ViewModels.Evaluation
             }
             else
             {
+                IsStudentsVisible = true;
                 StudentsForChoice = (await _studentFacade.GetAsync()).ToList();
                 OnPropertyChanged("StudentsForChoice");
                 Evaluation = new EvaluationDetailModel
@@ -59,6 +60,17 @@ namespace StudIS.APP.ViewModels.Evaluation
                     ActivityId = _activityId,
                     StudentId = Guid.Empty
                 };
+            }
+        }
+        
+        private bool _isStudentsVisible;
+        public bool IsStudentsVisible
+        {
+            get => _isStudentsVisible;
+            set
+            {
+                SetProperty(ref _isStudentsVisible, value);
+                OnPropertyChanged();
             }
         }
 
